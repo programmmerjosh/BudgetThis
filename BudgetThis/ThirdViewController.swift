@@ -24,7 +24,7 @@ class ThirdViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     @IBAction func txtAmountAction(_ sender: UITextField) {
         limitLength = 12
         
-        // VALIDATION
+        // Validation
         var temp:Double = 0
         
         if (txtAmountOutlet.text != "")
@@ -55,11 +55,9 @@ class ThirdViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
         var tempName:String = String()
         var month:String = String()
         
-        
         if (txtCategoryOutlet.text != "")
         {
             tempName = txtCategoryOutlet.text!
-            
             month = String(saveMonth())
         }
         
@@ -98,9 +96,6 @@ class ThirdViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
         super.viewDidAppear(animated)
         
         FirstViewController.AppUtility.lockOrientation(.portrait)
-        // Or to rotate and lock
-        // AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -146,9 +141,7 @@ class ThirdViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
         toolbar.sizeToFit()
         
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(endProcess))
-        
         toolbar.setItems([doneButton], animated: false)
-        
         txtCategoryOutlet.inputAccessoryView = toolbar
         
         // Assign datePicker to TextField
@@ -178,7 +171,6 @@ class ThirdViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
             
             if (amount >= 0.01)
             {
-                
                 let ft:FieldTransaction = NSEntityDescription.insertNewObject(forEntityName: "FieldTransaction", into: DatabaseController.getContext()) as! FieldTransaction
                 
                 ft.fieldName = category
@@ -186,13 +178,12 @@ class ThirdViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
                 ft.timeAndDate = saveDate()
                 ft.monthCat = Int16(saveMonth())
                 
-                if (txtDescriptionOutlet.text != "")
-                {
-                    ft.transactionDesc = txtDescriptionOutlet.text!
-                }
-                else
-                {
+                let temp = ""
+                switch txtDescriptionOutlet.text {
+                case temp, nil:
                     ft.transactionDesc = "/"
+                default:
+                    ft.transactionDesc = txtDescriptionOutlet.text!
                 }
                 
                 DatabaseController.saveContext()
@@ -208,23 +199,7 @@ class ThirdViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
             print("error")
         }
     }
-    
-//    public func returnMonthCategory(selectedDate: String) -> Int {
-//        
-//        let dateFormatter = DateFormatter()
-//        
-//        // temporary seconds-from-GMT because will be different for different timezones
-//        dateFormatter.timeZone = TimeZone.init(secondsFromGMT: global.myTZ)
-//        dateFormatter.dateFormat = "MM/dd/yy hh:mm"
-//        
-//        let now = NSDate()
-//        var then = Date()
-//        
-//        then = dateFormatter.date(from: selectedDate)!
-//        
-//        return MonthsAgo(startDate: then, endDate: now as Date)
-//    }
-    
+
     public func saveDate() -> String {
         
         let dateFormatter = DateFormatter()

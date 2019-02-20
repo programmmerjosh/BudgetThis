@@ -125,15 +125,13 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let currentMonth = saveMonth()
         var filterNumber:Int = currentMonth - monthsAgo
         
-        if (filterNumber == -1)
-        {
-            // November of previous month
+        switch filterNumber {
+        case (-1):
             filterNumber = 11
-        }
-        else if (filterNumber == 0)
-        {
-            // December of previous month
+        case 0:
             filterNumber = 12
+        default:
+            filterNumber = currentMonth - monthsAgo
         }
         
         let strNew:String = String(filterNumber)
@@ -150,7 +148,6 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 amountArray.append(String(result.amountUsed))
                 datesArray.append(String(result.timeAndDate!))
                 global.desc = result.transactionDesc!
-
             }
         }
         catch {
@@ -169,8 +166,6 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let now = NSDate()
         let answer:String = dateFormatter.string(from: now as Date)
         let number:Int = Int(answer)!
-        
-//        let number = 12
         
         return number
     }

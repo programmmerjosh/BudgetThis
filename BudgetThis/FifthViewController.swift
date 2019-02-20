@@ -28,7 +28,6 @@ class FifthViewController: UIViewController {
         lblCategory.adjustsFontSizeToFitWidth = true
         lblAmount.adjustsFontSizeToFitWidth = true
         lblDate.adjustsFontSizeToFitWidth = true
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
