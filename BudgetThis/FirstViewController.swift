@@ -1,6 +1,6 @@
 //
 //  FirstViewController.swift
-//  FineAnce
+//  BudgetThis
 //
 //  Created by Joshua on 2017/03/08.
 //  Copyright © 2017 Josh_Dog101. All rights reserved.
@@ -13,11 +13,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     var temp:Int = 0
     var temp2:Int = 0
-//    let thirdVC:ThirdViewController = ThirdViewController()
-    
-    //@IBOutlet var FirstColumnLable: UILabel!
     @IBOutlet var myTableView: UITableView!
-    
     var RefreshControl:UIRefreshControl = UIRefreshControl()
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -29,34 +25,22 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCellViewController
         
-        if (stR.fields.count == stR.amounts.count)
-        {
-            cell.first.text = stR.fields[indexPath.row]
-            cell.amounts.text = stR.amounts[indexPath.row]
-            
-            let temp:Double = Double(cell.amounts.text!)!
-            
-            if (temp < 0){
-                cell.amounts.textColor = UIColor.red
-            }
-            else if (temp == 0)
-            {
-                cell.amounts.textColor = UIColor.black
-            }
-            else
-            {
-                cell.amounts.textColor = UIColor.green
-            }
-            
-            // NEED TO ADD EMPTY VALUES TO TOTALS ARRAY
-            cell.rightSideAmounts.text = stR.totals[indexPath.row]
-        }
-        else
-        {
-            print("Something went wrong because number of amounts and fields are not the same")
+        cell.first.text = stR.fields[indexPath.row]
+        cell.amounts.text = stR.amounts[indexPath.row]
+        
+        let temp:Double = Double(cell.amounts.text!)!
+        
+        switch temp {
+        case  0:
+            cell.amounts.textColor = UIColor.black
+        case ..<0:
+            cell.amounts.textColor = UIColor.red
+        default:
+            cell.amounts.textColor = UIColor.green
         }
         
-        
+        // Add empty values to totals array
+        cell.rightSideAmounts.text = stR.totals[indexPath.row]
         
         cell.first.adjustsFontSizeToFitWidth = true
         cell.amounts.adjustsFontSizeToFitWidth = true
@@ -69,7 +53,6 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        // REMOVE OLD TRANSACTIONS: 4 MONTHS AGO AND OLDER
         deleteOldData()
         
         // FOR TESTING PURPOSES: CLEAR DATA FROM FIELDTRANSACTIONS
@@ -78,15 +61,14 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         // FOR TESTING PURPOSES: CLEAR DATA FROM ORIGINAL
         //deleteData()
         
-        // CHECK FOR FIRST RUN
+        // Check for first run
         let num = numberOfValuesInDatabase()
-        if (num < 1)
-        {
+        
+        switch num {
+        case ..<1:
             firstRunAddDataToArray()
             stR.firstRun = true
-        }
-        else
-        {
+        default:
             emptyFieldTotals()
             databaseToArrays()
             sortTotalsArray()
@@ -104,7 +86,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
             stR.firstRun = false
         }
         
-        // REFRESH CONTROL
+        // Refresh control
         RefreshControl.addTarget(self, action: #selector(RefreshData), for: UIControlEvents.valueChanged)
         myTableView.refreshControl = RefreshControl
     }
@@ -158,22 +140,19 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     public func numberOfValuesInDatabase() -> Int {
         
         var answer:Int = 0
-        
         let fetchRequest:NSFetchRequest<Original> = Original.fetchRequest()
         do
         {
             let searchResults = try DatabaseController.getContext().fetch(fetchRequest)
-            
             answer = searchResults.count
         }
         catch {
             print("Error! \(error)")
         }
-        
         return answer
     }
     
-    // FUNCTION ADDS ORIGINAL DATA TO ARRAYS...STILL NEED FIELDTOTALS DATA (ELSE BLANK VALUES FOR EACH ORIGINAL FIELD)
+    // Add data to arrays
     public func databaseToArrays() {
         
         var i:Int = 0
@@ -199,14 +178,12 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     stillData = false
                 }
                 
-                if (stillData == false)
-                {
+                switch stillData {
+                case false:
                     stillData = true
-                }
-                else
-                {
+                default:
                     stillData = false
-                }
+                    }
             }
             catch {
                 print("Error! \(error)")
@@ -218,7 +195,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         stR.percentages.remove(at: (stR.percentages.count - 1))
     }
     
-    // DELETES ALL DATA FROM ORIGINAL ENTITY
+    // Delete all data from original entity
     public func deleteData() {
         
         let fetchRequest:NSFetchRequest<Original> = Original.fetchRequest()
@@ -236,7 +213,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         DatabaseController.saveContext()
     }
     
-    // THIS IS TO DELETE TRANSACTIONS THAT ARE MORE THAN 3 MONTHS OLD
+    // // Remove transactions >= 4 months
     public func deleteOldData() {
         
         let currentMonth = saveMonth()
@@ -247,36 +224,53 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         {
             filterNumber = (currentMonth - i)
             
-            if (filterNumber < -5)
-            {
-                // July of previous month
+            switch filterNumber {
+            case ..<(-5):
                 filterNumber = 7
-            }
-            else if (filterNumber < -4)
-            {
-                // August of previous month
+            case ..<(-4):
                 filterNumber = 8
-            }
-            else if (filterNumber < -3)
-            {
-                // September of previous month
+            case ..<(-3):
                 filterNumber = 9
-            }
-            else if (filterNumber < -2)
-            {
-                // October of previous month
+            case ..<(-2):
                 filterNumber = 10
-            }
-            else if (filterNumber < -1)
-            {
-                // November of previous month
+            case ..<(-1):
                 filterNumber = 11
-            }
-            else if (filterNumber < 0)
-            {
-                // December of previous month
+            case ..<0:
                 filterNumber = 12
+            default:
+                filterNumber = (currentMonth - i)
             }
+            
+//            if (filterNumber < -5)
+//            {
+//                // July of previous month
+//
+//            }
+//            else if (filterNumber < -4)
+//            {
+//                // August of previous month
+//                filterNumber = 8
+//            }
+//            else if (filterNumber < -3)
+//            {
+//                // September of previous month
+//                filterNumber = 9
+//            }
+//            else if (filterNumber < -2)
+//            {
+//                // October of previous month
+//                filterNumber = 10
+//            }
+//            else if (filterNumber < -1)
+//            {
+//                // November of previous month
+//                filterNumber = 11
+//            }
+//            else if (filterNumber < 0)
+//            {
+//                // December of previous month
+//                filterNumber = 12
+//            }
             
             let strNew:String = String(filterNumber)
             

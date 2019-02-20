@@ -1,6 +1,6 @@
 //
 //  SecondViewController.swift
-//  FineAnce
+//  BudgetThis
 //
 //  Created by Joshua on 2017/03/08.
 //  Copyright © 2017 Josh_Dog101. All rights reserved.

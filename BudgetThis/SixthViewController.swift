@@ -1,6 +1,6 @@
 //
 //  SixthViewController.swift
-//  FineAnce
+//  BudgetThis
 //
 //  Created by admin on 09/09/2017.
 //  Copyright © 2017 Josh_Dog101. All rights reserved.

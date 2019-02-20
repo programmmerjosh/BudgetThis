@@ -1,6 +1,6 @@
 //
 //  SplashScreenViewController.swift
-//  FineAnce
+//  BudgetThis
 //
 //  Created by Joshua on 2017/03/28.
 //  Copyright © 2017 Josh_Dog101. All rights reserved.

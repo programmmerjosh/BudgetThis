@@ -1,6 +1,6 @@
 //
 //  PurchaseViewController.swift
-//  FineAnce
+//  BudgetThis
 //
 //  Created by Joshua on 2017/03/29.
 //  Copyright © 2017 Josh_Dog101. All rights reserved.
