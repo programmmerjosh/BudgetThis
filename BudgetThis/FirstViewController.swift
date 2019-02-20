@@ -217,62 +217,11 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     public func deleteOldData() {
         
         let currentMonth = saveMonth()
-        var i:Int = 4
-        var filterNumber:Int = 0
         
-        while (i < 10)
+        for i in 1...9
         {
-            filterNumber = (currentMonth - i)
-            
-            switch filterNumber {
-            case ..<(-5):
-                filterNumber = 7
-            case ..<(-4):
-                filterNumber = 8
-            case ..<(-3):
-                filterNumber = 9
-            case ..<(-2):
-                filterNumber = 10
-            case ..<(-1):
-                filterNumber = 11
-            case ..<0:
-                filterNumber = 12
-            default:
-                filterNumber = (currentMonth - i)
-            }
-            
-//            if (filterNumber < -5)
-//            {
-//                // July of previous month
-//
-//            }
-//            else if (filterNumber < -4)
-//            {
-//                // August of previous month
-//                filterNumber = 8
-//            }
-//            else if (filterNumber < -3)
-//            {
-//                // September of previous month
-//                filterNumber = 9
-//            }
-//            else if (filterNumber < -2)
-//            {
-//                // October of previous month
-//                filterNumber = 10
-//            }
-//            else if (filterNumber < -1)
-//            {
-//                // November of previous month
-//                filterNumber = 11
-//            }
-//            else if (filterNumber < 0)
-//            {
-//                // December of previous month
-//                filterNumber = 12
-//            }
-            
-            let strNew:String = String(filterNumber)
+            let monthHistory = (((currentMonth - 1) + i) % 12) + 1
+            let strNew:String = String(monthHistory)
             
             let predicate = NSPredicate(format: "monthCat = %@", strNew)
             let fetchData = NSFetchRequest<NSFetchRequestResult>(entityName: "FieldTransaction")
@@ -288,8 +237,6 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
             catch {
                 print("Error! \(error)")
             }
-            
-            i += 1
         }
         DatabaseController.saveContext()
     }
@@ -337,7 +284,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
     }
     
-    // CLEAR ALL DATA FROM FIELDTRANSACTIONS
+    // Clear all data from FieldTransactions
     public func deleteALLdataInDatabase()
     {
         let fetchData = NSFetchRequest<NSFetchRequestResult>(entityName: "FieldTransaction")
@@ -369,8 +316,6 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         DatabaseController.saveContext()
     }
     
-    // FETCHES FILTERED DATA FROM FieldTotals USING EACH VALUE OF fields[] ARRAY
-    // IF DATA FOUND, THEN ADDS FieldName and Amount to totals ARRAY ELSE: ADDS Fields[] ARRAY NAME VALUE WITH 0.0 AMOUNT TO totals ARRAY
     public func sortTotalsArray()
     {
         FirstViewController.stR.totals = [String()]
@@ -391,26 +336,22 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 {
                     for result in searchResults as! [FieldTotals] {
                         
-                        if (FirstViewController.stR.totals[0] == String())
-                        {
+                        switch FirstViewController.stR.totals[0] {
+                        case String():
                             FirstViewController.stR.totals.insert(String(result.totalAmount), at: 0)
                             FirstViewController.stR.totals.remove(at: 1)
-                        }
-                        else
-                        {
+                        default:
                             FirstViewController.stR.totals.append(String(result.totalAmount))
                         }
                     }
                 }
                 else
                 {
-                    if (FirstViewController.stR.totals[0] == String())
-                    {
+                    switch FirstViewController.stR.totals[0] {
+                    case String():
                         FirstViewController.stR.totals.insert("0.0", at: 0)
                         FirstViewController.stR.totals.remove(at: 1)
-                    }
-                    else
-                    {
+                    default:
                         FirstViewController.stR.totals.append("0.0")
                     }
                 }
@@ -456,7 +397,6 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [predicate1,predicate2])
             let fetchData = NSFetchRequest<NSFetchRequestResult>(entityName: "FieldTransaction")
             fetchData.predicate = predicateCompound
-            
             var tempTotalAmount:Double = 0.0
             
             do {
@@ -498,7 +438,6 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 print("Error! \(error)")
             }
             
-            // add new value
             let ft:FieldTotals = NSEntityDescription.insertNewObject(forEntityName: "FieldTotals", into: DatabaseController.getContext()) as! FieldTotals
             
             ft.fieldName = name
