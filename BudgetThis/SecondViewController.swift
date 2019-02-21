@@ -194,9 +194,13 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         // fetch data
         fetchDatabaseDataThenDisplayIt()
         
-        alphaOneOff()
+        alphaOne(on: false)
         endRenaming()
-        HideAll(Key: "n")
+        hideRequiredFields(numOfFields: 0, side: "right_textfields", justLastField: false)
+        hideRequiredFields(numOfFields: Arraylimit, side: "right_buttons_4+", justLastField: false)
+        hideRequiredFields(numOfFields: Arraylimit, side: "right_buttons_3-", justLastField: false)
+        hideRequiredFields(numOfFields: Arraylimit, side: "left_labels_4+", justLastField: false)
+        hideRequiredFields(numOfFields: Arraylimit, side: "left_labels_3-", justLastField: false)
         showFields(field: Arraylimit)
         
         txtFirst.alpha = 0
@@ -320,7 +324,7 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
             addNewFieldtoArray(Name: global.name)
             
             UIView.animate(withDuration: 0.6, animations: {
-                self.alphaOneOff()
+                self.alphaOne(on: false)
                 self.showFields(field: self.Arraylimit + 1)
                 self.moveBlankLabel(direction: "Down", sizeConstraint: sizeConstraint)
                 self.view.layoutIfNeeded()
@@ -334,7 +338,7 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         Arraylimit = calcNumOfDataOriginal()
         
         UIView.animate(withDuration: 0.6, animations: {
-            self.alphaOneOff()
+            self.alphaOne(on: false)
             self.showFields(field: self.Arraylimit)
             self.view.layoutIfNeeded()
         })
@@ -425,7 +429,7 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
             
             UIView.animate(withDuration: 0.6, animations: {
                 self.endRenaming()
-                self.alphaTwoOff()
+                self.alphaTwo(on: false)
                 self.showFields(field: self.Arraylimit)
             })
         }
@@ -1108,9 +1112,11 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         {
             self.txtFN.text = ""
             UIView.animate(withDuration: 0.3, animations: {
-                self.alphaOneOn()
-                self.hideRightTextFields(Key: "All")
-                self.hideRightButtons(Key: "All")
+                self.alphaOne(on: true)
+                self.hideRequiredFields(numOfFields: self.Arraylimit + 1, side: "left_labels_4+", justLastField: false)
+                self.hideRequiredFields(numOfFields: 0, side: "right_textfields", justLastField: false)
+                self.hideRequiredFields(numOfFields: 3, side: "right_buttons_4+", justLastField: false)
+                self.hideRequiredFields(numOfFields: 3, side: "right_buttons_3-", justLastField: false)
             })
         }
     }
@@ -1127,7 +1133,9 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
             deleteLastFieldCreated(autoNumber: String(numData - 1))
             
             UIView.animate(withDuration: 0.6, animations: {
-                self.hideFields(field: numData)
+                self.hideRequiredFields(numOfFields: numData, side: "left_labels_4+", justLastField: true)
+                self.hideRequiredFields(numOfFields: numData, side: "right_textfields", justLastField: true)
+                self.hideRequiredFields(numOfFields: numData, side: "right_buttons_4+", justLastField: true)
                 self.moveBlankLabel(direction: "Up", sizeConstraint: sizeConstraint)
             })
         }
@@ -1137,7 +1145,7 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         
         initialRenameSet()
         UIView.animate(withDuration: 0.6, animations: {
-            self.alphaTwoOn()
+            self.alphaTwo(on: true)
             self.startRenaming()
         })
     }
@@ -2852,64 +2860,64 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         txtFN.delegate = self
     }
     
-    public func alphaOneOff() {
-        
-        lblNFE.alpha = 0.0
-        lblFN.alpha = 0.0
-        txtFN.alpha = 0.0
-        SubmitButOutlet.alpha = 0.0
-        cancelButOutlet.alpha = 0.0
-        doneRenamingOutlet.alpha = 0.0
-        addFieldOutlet.alpha = 1.0
-        removeFieldOutlet.alpha = 1.0
-        renameFieldsOutlet.alpha = 1.0
-        segmentSelectorOutlet.alpha = 1.0
-        SegPercOutlet.alpha = 1.0
-        SegUnitsOutlet.alpha = 1.0
-        lblAvalableText.alpha = 1.0
-        lblMyIncomeText.alpha = 1.0
-        lblTotal.alpha = 1.0
-        txtTotal.alpha = 1.0
-        lblAvailableBal.alpha = 1.0
-        lblAvBalText.alpha = 1.0
+    public func alphaOne(on: Bool) {
+        switch on {
+        case true:
+            lblNFE.alpha = 1.0
+            lblFN.alpha = 1.0
+            txtFN.alpha = 1.0
+            SubmitButOutlet.alpha = 1.0
+            cancelButOutlet.alpha = 1.0
+            doneRenamingOutlet.alpha = 0
+            addFieldOutlet.alpha = 0
+            removeFieldOutlet.alpha = 0
+            renameFieldsOutlet.alpha = 0
+            segmentSelectorOutlet.alpha = 0
+            SegPercOutlet.alpha = 0
+            SegUnitsOutlet.alpha = 0
+            lblAvalableText.alpha = 0
+            lblMyIncomeText.alpha = 0
+            lblTotal.alpha = 0
+            txtTotal.alpha = 0
+            lblAvailableBal.alpha = 0
+            lblAvBalText.alpha = 0
+        case false:
+            lblNFE.alpha = 0.0
+            lblFN.alpha = 0.0
+            txtFN.alpha = 0.0
+            SubmitButOutlet.alpha = 0.0
+            cancelButOutlet.alpha = 0.0
+            doneRenamingOutlet.alpha = 0.0
+            addFieldOutlet.alpha = 1.0
+            removeFieldOutlet.alpha = 1.0
+            renameFieldsOutlet.alpha = 1.0
+            segmentSelectorOutlet.alpha = 1.0
+            SegPercOutlet.alpha = 1.0
+            SegUnitsOutlet.alpha = 1.0
+            lblAvalableText.alpha = 1.0
+            lblMyIncomeText.alpha = 1.0
+            lblTotal.alpha = 1.0
+            txtTotal.alpha = 1.0
+            lblAvailableBal.alpha = 1.0
+            lblAvBalText.alpha = 1.0
+        }
     }
     
-    public func alphaOneOn() {
-        
-        lblNFE.alpha = 1.0
-        lblFN.alpha = 1.0
-        txtFN.alpha = 1.0
-        SubmitButOutlet.alpha = 1.0
-        cancelButOutlet.alpha = 1.0
-        doneRenamingOutlet.alpha = 0
-        addFieldOutlet.alpha = 0
-        removeFieldOutlet.alpha = 0
-        renameFieldsOutlet.alpha = 0
-        segmentSelectorOutlet.alpha = 0
-        SegPercOutlet.alpha = 0
-        SegUnitsOutlet.alpha = 0
-        lblAvalableText.alpha = 0
-        lblMyIncomeText.alpha = 0
-        lblTotal.alpha = 0
-        txtTotal.alpha = 0
-        lblAvailableBal.alpha = 0
-        lblAvBalText.alpha = 0
-    }
-    
-    public func alphaTwoOff() {
-        doneRenamingOutlet.alpha = 0.0
-        addFieldOutlet.alpha = 1.0
-        removeFieldOutlet.alpha = 1.0
-        renameFieldsOutlet.alpha = 1.0
-        segmentSelectorOutlet.alpha = 1.0
-    }
-    
-    public func alphaTwoOn() {
-        doneRenamingOutlet.alpha = 1.0
-        addFieldOutlet.alpha = 0
-        removeFieldOutlet.alpha = 0
-        renameFieldsOutlet.alpha = 0
-        segmentSelectorOutlet.alpha = 0
+    public func alphaTwo(on: Bool) {
+        switch on {
+        case true:
+            doneRenamingOutlet.alpha = 1.0
+            addFieldOutlet.alpha = 0
+            removeFieldOutlet.alpha = 0
+            renameFieldsOutlet.alpha = 0
+            segmentSelectorOutlet.alpha = 0
+        case false:
+            doneRenamingOutlet.alpha = 0.0
+            addFieldOutlet.alpha = 1.0
+            removeFieldOutlet.alpha = 1.0
+            renameFieldsOutlet.alpha = 1.0
+            segmentSelectorOutlet.alpha = 1.0
+        }
     }
     
     func moveBlankLabel(direction: String, sizeConstraint:Int)
@@ -3145,335 +3153,177 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func hideFields(field: Int)
+    func hideRequiredFields(numOfFields: Int, side: String, justLastField: Bool)
     {
-        if (field == 4)
-        {
-            lbl4.alpha = 0.0
-            txtFourth.alpha = 0.0
-            lblFourth.alpha = 0.0
-            FourthPlusOutlet.alpha = 0.0
-            FourthMinusOutlet.alpha = 0.0
-        }
-        else if (field == 5)
-        {
-            lbl5.alpha = 0.0
-            txtFifth.alpha = 0.0
-            lblFifth.alpha = 0.0
-            FifthPlusOutlet.alpha = 0.0
-            FifthMinusOutlet.alpha = 0.0
-        }
-        else if (field == 6)
-        {
-            lbl6.alpha = 0.0
-            txtSixth.alpha = 0.0
-            lblSixth.alpha = 0.0
-            SixthPlusOutlet.alpha = 0.0
-            SixthMinusOutlet.alpha = 0.0
-        }
-        else if (field == 7)
-        {
-            lbl7.alpha = 0.0
-            txtSeventh.alpha = 0.0
-            lblSeventh.alpha = 0.0
-            SeventhPlusOutlet.alpha = 0.0
-            SeventhMinusOutlet.alpha = 0.0
-        }
-        else if (field == 8)
-        {
-            lbl8.alpha = 0.0
-            txtEighth.alpha = 0.0
-            lblEighth.alpha = 0.0
-            EighthPlusOutlet.alpha = 0.0
-            EighthMinusOutlet.alpha = 0.0
-        }
-        else if (field == 9)
-        {
-            lbl9.alpha = 0.0
-            txtNineth.alpha = 0.0
-            lblNineth.alpha = 0.0
-            NinethPlusOutlet.alpha = 0.0
-            NinethMinusOutlet.alpha = 0.0
-        }
-        else if (field == 10)
-        {
-            lbl10.alpha = 0.0
-            txtTenth.alpha = 0.0
-            lblTenth.alpha = 0.0
-            TenthPlusOutlet.alpha = 0.0
-            TenthMinusOutlet.alpha = 0.0
-        }
-        else if (field == 11)
-        {
-            lbl11.alpha = 0.0
-            txtEleventh.alpha = 0.0
-            lblEleventh.alpha = 0.0
-            EleventhPlusOutlet.alpha = 0.0
-            EleventhMinusOutlet.alpha = 0.0
-        }
-        else if (field == 12)
-        {
-            lbl12.alpha = 0.0
-            txtTwelfth.alpha = 0.0
-            lblTwelfth.alpha = 0.0
-            TwelfthPlusOutlet.alpha = 0.0
-            TwelfthMinusOutlet.alpha = 0.0
-        }
-        else if (field == 13)
-        {
-            lbl13.alpha = 0.0
-            txtThirteenth.alpha = 0.0
-            lblThirteenth.alpha = 0.0
-            ThirteenthPlusOutlet.alpha = 0.0
-            ThirteenthMinusOutlet.alpha = 0.0
-        }
-        else if (field == 14)
-        {
-            lbl14.alpha = 0.0
-            txtFourteenth.alpha = 0.0
-            lblFourteenth.alpha = 0.0
-            FourteenthPlusOutlet.alpha = 0.0
-            FourteenthMinusOutlet.alpha = 0.0
-        }
-        else if (field == 15)
-        {
-            lbl15.alpha = 0.0
-            txtFifteenth.alpha = 0.0
-            lblFifteenth.alpha = 0.0
-            FifteenthPlusOutlet.alpha = 0.0
-            FifteenthMinusOutlet.alpha = 0.0
-        }
-        else if (field == 16)
-        {
-            lbl16.alpha = 0.0
-            txtSixteenth.alpha = 0.0
-            lblSixteenth.alpha = 0.0
-            SixteenthPlusOutlet.alpha = 0.0
-            SixteenthMinusOutlet.alpha = 0.0
-        }
-        else if (field == 17)
-        {
-            lbl17.alpha = 0.0
-            txtSeventeenth.alpha = 0.0
-            lblSeventeenth.alpha = 0.0
-            SeventeenthPlusOutlet.alpha = 0.0
-            SeventeenthMinusOutlet.alpha = 0.0
-        }
-        else if (field == 18)
-        {
-            lbl18.alpha = 0.0
-            txtEighteenth.alpha = 0.0
-            lblEighteenth.alpha = 0.0
-            EighteenthPlusOutlet.alpha = 0.0
-            EighteenthMinusOutlet.alpha = 0.0
-        }
-        else if (field == 19)
-        {
-            lbl19.alpha = 0.0
-            txtNineteenth.alpha = 0.0
-            lblNineteenth.alpha = 0.0
-            NineteenthPlusOutlet.alpha = 0.0
-            NineteenthMinusOutlet.alpha = 0.0
-        }
-        else if (field == 20)
-        {
-            lbl20.alpha = 0.0
-            txtTwentieth.alpha = 0.0
-            lblTwentieth.alpha = 0.0
-            TwentiethPlusOutlet.alpha = 0.0
-            TwentiethMinusOutlet.alpha = 0.0
-        }
-        else if (field == 21)
-        {
-            lbl21.alpha = 0.0
-            txtTwentyFirst.alpha = 0.0
-            lblTwentyFirst.alpha = 0.0
-            TwentyFirstPlusOutlet.alpha = 0.0
-            TwentyFirstMinusOutlet.alpha = 0.0
-        }
-        else if (field == 22)
-        {
-            lbl22.alpha = 0.0
-            txtTwentySecond.alpha = 0.0
-            lblTwentySecond.alpha = 0.0
-            TwentySecondPlusOutlet.alpha = 0.0
-            TwentySecondMinusOutlet.alpha = 0.0
-        }
-        else if (field == 23)
-        {
-            lbl23.alpha = 0.0
-            txtTwentyThird.alpha = 0.0
-            lblTwentyThird.alpha = 0.0
-            TwentyThirdPlusOutlet.alpha = 0.0
-            TwentyThirdMinusOutlet.alpha = 0.0
-        }
-        else if (field == 24)
-        {
-            lbl24.alpha = 0.0
-            txtTwentyFourth.alpha = 0.0
-            lblTwentyFourth.alpha = 0.0
-            TwentyFourthPlusOutlet.alpha = 0.0
-            TwentyFourthMinusOutlet.alpha = 0.0
-        }
-        else if (field == 25)
-        {
-            lbl25.alpha = 0.0
-            txtTwentyFifth.alpha = 0.0
-            lblTwentyFifth.alpha = 0.0
-            TwentyFifthPlusOutlet.alpha = 0.0
-            TwentyFifthMinusOutlet.alpha = 0.0
-        }
-        else if (field == 26)
-        {
-            lbl26.alpha = 0.0
-            txtTwentySixth.alpha = 0.0
-            lblTwentySixth.alpha = 0.0
-            TwentySixthPlusOutlet.alpha = 0.0
-            TwentySixthMinusOutlet.alpha = 0.0
-        }
-        else if (field == 27)
-        {
-            lbl27.alpha = 0.0
-            txtTwentySeventh.alpha = 0.0
-            lblTwentySeventh.alpha = 0.0
-            TwentySeventhPlusOutlet.alpha = 0.0
-            TwentySeventhMinusOutlet.alpha = 0.0
-        }
-        else if (field == 28)
-        {
-            lbl28.alpha = 0.0
-            txtTwentyEighth.alpha = 0.0
-            lblTwentyEighth.alpha = 0.0
-            TwentyEighthPlusOutlet.alpha = 0.0
-            TwentyEighthMinusOutlet.alpha = 0.0
-        }
-        else if (field == 29)
-        {
-            lbl29.alpha = 0.0
-            txtTwentyNineth.alpha = 0.0
-            lblTwentyNineth.alpha = 0.0
-            TwentyNinethPlusOutlet.alpha = 0.0
-            TwentyNinethMinusOutlet.alpha = 0.0
-        }
-        else if (field == 30)
-        {
-            lbl30.alpha = 0.0
-            txtThirtieth.alpha = 0.0
-            lblThirtieth.alpha = 0.0
-            ThirtiethPlusOutlet.alpha = 0.0
-            ThirtiethMinusOutlet.alpha = 0.0
-        }
-        else if (field == 3)
-        {
-            print("showing no additional fields")
-        }
-        else
-        {
-            //error -> incorrect field
-            print("error with field parameter")
-        }
-    }
-    
-    // 100% WORKING CORRECTLY
-    func HideAll(Key: String)
-    {
-        if (Key == "All")
-        {
-            hideLeft(Key: "All")
-            hideRightTextFields(Key: "All")
-            hideRightButtons(Key: "All")
-        }
-        else
-        {
-            hideLeft(Key: "n")
-            hideRightTextFields(Key: "n")
-            hideRightButtons(Key: "n")
-        }
-    }
-    
-    // 100% WORKING CORRECTLY
-    func hideLeft(Key: String)
-    {
-        if (Key == "All")
-        {
+        var i:Int = numOfFields
+        var limit:Int = 30
+        if (justLastField) { limit = (i + 1) }
+        
+        switch side {
+        case "left_labels_4+":
+            while (i < limit) {
+                switch i {
+                case 4: lbl4.alpha = 0.0
+                case 5: lbl5.alpha = 0.0
+                case 6: lbl6.alpha = 0.0
+                case 7: lbl7.alpha = 0.0
+                case 8: lbl8.alpha = 0.0
+                case 9: lbl9.alpha = 0.0
+                case 10: lbl10.alpha = 0.0
+                case 11: lbl11.alpha = 0.0
+                case 12: lbl12.alpha = 0.0
+                case 13: lbl13.alpha = 0.0
+                case 14: lbl14.alpha = 0.0
+                case 15: lbl15.alpha = 0.0
+                case 16: lbl16.alpha = 0.0
+                case 17: lbl17.alpha = 0.0
+                case 18: lbl18.alpha = 0.0
+                case 19: lbl19.alpha = 0.0
+                case 20: lbl20.alpha = 0.0
+                case 21: lbl21.alpha = 0.0
+                case 22: lbl22.alpha = 0.0
+                case 23: lbl23.alpha = 0.0
+                case 24: lbl24.alpha = 0.0
+                case 25: lbl25.alpha = 0.0
+                case 26: lbl26.alpha = 0.0
+                case 27: lbl27.alpha = 0.0
+                case 28: lbl28.alpha = 0.0
+                case 29: lbl29.alpha = 0.0
+                case 30: lbl30.alpha = 0.0
+                default: print("end")
+                }
+                i += 1
+            }
+        case "right_textfields":
+            while (i < limit) {
+                switch i {
+                case 1: txtFirst.alpha = 0.0
+                case 2: txtSecond.alpha = 0.0
+                case 3: txtThird.alpha = 0.0
+                case 4: txtFourth.alpha = 0.0
+                case 5: txtFifth.alpha = 0.0
+                case 6: txtSixth.alpha = 0.0
+                case 7: txtSeventh.alpha = 0.0
+                case 8: txtEighth.alpha = 0.0
+                case 9: txtNineth.alpha = 0.0
+                case 10: txtTenth.alpha = 0.0
+                case 11: txtEleventh.alpha = 0.0
+                case 12: txtTwelfth.alpha = 0.0
+                case 13: txtThirteenth.alpha = 0.0
+                case 14: txtFourteenth.alpha = 0.0
+                case 15: txtFifteenth.alpha = 0.0
+                case 16: txtSixteenth.alpha = 0.0
+                case 17: txtSeventeenth.alpha = 0.0
+                case 18: txtEighteenth.alpha = 0.0
+                case 19: txtNineteenth.alpha = 0.0
+                case 20: txtTwentieth.alpha = 0.0
+                case 21: txtTwentyFirst.alpha = 0.0
+                case 22: txtTwentySecond.alpha = 0.0
+                case 23: txtTwentyThird.alpha = 0.0
+                case 24: txtTwentyFourth.alpha = 0.0
+                case 25: txtTwentyFifth.alpha = 0.0
+                case 26: txtTwentySixth.alpha = 0.0
+                case 27: txtTwentySeventh.alpha = 0.0
+                case 28: txtTwentyEighth.alpha = 0.0
+                case 29: txtTwentyNineth.alpha = 0.0
+                case 30: txtThirtieth.alpha = 0.0
+                default: print("end")
+                }
+                i += 1
+            }
+        case "right_buttons_4+":
+            while (i < limit) {
+                switch i {
+                case 4: lblFourth.alpha = 0.0
+                FourthPlusOutlet.alpha = 0.0
+                FourthMinusOutlet.alpha = 0.0
+                case 5: lblFifth.alpha = 0.0
+                FifthPlusOutlet.alpha = 0.0
+                FifthMinusOutlet.alpha = 0.0
+                case 6: lblSixth.alpha = 0.0
+                SixthPlusOutlet.alpha = 0.0
+                SixthMinusOutlet.alpha = 0.0
+                case 7: lblSeventh.alpha = 0.0
+                SeventhPlusOutlet.alpha = 0.0
+                SeventhMinusOutlet.alpha = 0.0
+                case 8: lblEighth.alpha = 0.0
+                EighthPlusOutlet.alpha = 0.0
+                EighthMinusOutlet.alpha = 0.0
+                case 9: lblNineth.alpha = 0.0
+                NinethPlusOutlet.alpha = 0.0
+                NinethMinusOutlet.alpha = 0.0
+                case 10: lblTenth.alpha = 0.0
+                TenthPlusOutlet.alpha = 0.0
+                TenthMinusOutlet.alpha = 0.0
+                case 11: lblEleventh.alpha = 0.0
+                EleventhPlusOutlet.alpha = 0.0
+                EleventhMinusOutlet.alpha = 0.0
+                case 12: lblTwelfth.alpha = 0.0
+                TwelfthPlusOutlet.alpha = 0.0
+                TwelfthMinusOutlet.alpha = 0.0
+                case 13: lblThirteenth.alpha = 0.0
+                ThirteenthPlusOutlet.alpha = 0.0
+                ThirteenthMinusOutlet.alpha = 0.0
+                case 14: lblFourteenth.alpha = 0.0
+                FourteenthPlusOutlet.alpha = 0.0
+                FourteenthMinusOutlet.alpha = 0.0
+                case 15: lblFifteenth.alpha = 0.0
+                FifteenthPlusOutlet.alpha = 0.0
+                FifteenthMinusOutlet.alpha = 0.0
+                case 16: lblSixteenth.alpha = 0.0
+                SixteenthPlusOutlet.alpha = 0.0
+                SixteenthMinusOutlet.alpha = 0.0
+                case 17: lblSeventeenth.alpha = 0.0
+                SeventeenthPlusOutlet.alpha = 0.0
+                SeventeenthMinusOutlet.alpha = 0.0
+                case 18: lblEighteenth.alpha = 0.0
+                EighteenthPlusOutlet.alpha = 0.0
+                EighteenthMinusOutlet.alpha = 0.0
+                case 19: lblNineteenth.alpha = 0.0
+                NineteenthPlusOutlet.alpha = 0.0
+                NineteenthMinusOutlet.alpha = 0.0
+                case 20: lblTwentieth.alpha = 0.0
+                TwentiethPlusOutlet.alpha = 0.0
+                TwentiethMinusOutlet.alpha = 0.0
+                case 21: lblTwentyFirst.alpha = 0.0
+                TwentyFirstPlusOutlet.alpha = 0.0
+                TwentyFirstMinusOutlet.alpha = 0.0
+                case 22: lblTwentySecond.alpha = 0.0
+                TwentySecondPlusOutlet.alpha = 0.0
+                TwentySecondMinusOutlet.alpha = 0.0
+                case 23: lblTwentyThird.alpha = 0.0
+                TwentyThirdPlusOutlet.alpha = 0.0
+                TwentyThirdMinusOutlet.alpha = 0.0
+                case 24: lblTwentyFourth.alpha = 0.0
+                TwentyFourthPlusOutlet.alpha = 0.0
+                TwentyFourthMinusOutlet.alpha = 0.0
+                case 25: lblTwentyFifth.alpha = 0.0
+                TwentyFifthPlusOutlet.alpha = 0.0
+                TwentyFifthMinusOutlet.alpha = 0.0
+                case 26: lblTwentySixth.alpha = 0.0
+                TwentySixthPlusOutlet.alpha = 0.0
+                TwentySixthMinusOutlet.alpha = 0.0
+                case 27: lblTwentySeventh.alpha = 0.0
+                TwentySeventhPlusOutlet.alpha = 0.0
+                TwentySeventhMinusOutlet.alpha = 0.0
+                case 28: lblTwentyEighth.alpha = 0.0
+                TwentyEighthPlusOutlet.alpha = 0.0
+                TwentyEighthMinusOutlet.alpha = 0.0
+                case 29: lblTwentyNineth.alpha = 0.0
+                TwentyNinethPlusOutlet.alpha = 0.0
+                TwentyNinethMinusOutlet.alpha = 0.0
+                case 30: lblThirtieth.alpha = 0.0
+                ThirtiethPlusOutlet.alpha = 0.0
+                ThirtiethMinusOutlet.alpha = 0.0
+                default: print("end")
+                }
+                i += 1
+            }
+        case "left_labels_3-":
             lbl1.alpha = 0.0
             lbl2.alpha = 0.0
             lbl3.alpha = 0.0
-        }
-        
-        lbl4.alpha = 0.0
-        lbl5.alpha = 0.0
-        lbl6.alpha = 0.0
-        lbl7.alpha = 0.0
-        lbl8.alpha = 0.0
-        lbl9.alpha = 0.0
-        lbl10.alpha = 0.0
-        lbl11.alpha = 0.0
-        lbl12.alpha = 0.0
-        lbl13.alpha = 0.0
-        lbl14.alpha = 0.0
-        lbl15.alpha = 0.0
-        lbl16.alpha = 0.0
-        lbl17.alpha = 0.0
-        lbl18.alpha = 0.0
-        lbl19.alpha = 0.0
-        lbl20.alpha = 0.0
-        lbl21.alpha = 0.0
-        lbl22.alpha = 0.0
-        lbl23.alpha = 0.0
-        lbl24.alpha = 0.0
-        lbl25.alpha = 0.0
-        lbl26.alpha = 0.0
-        lbl27.alpha = 0.0
-        lbl28.alpha = 0.0
-        lbl29.alpha = 0.0
-        lbl30.alpha = 0.0
-    }
-    
-    // 100% WORKING CORRECTLY
-    func hideRightTextFields(Key: String)
-    {
-        if (Key == "All")
-        {
-            txtFirst.alpha = 0.0
-            txtSecond.alpha = 0.0
-            txtThird.alpha = 0.0
-        }
-        
-        txtFourth.alpha = 0.0
-        txtFifth.alpha = 0.0
-        txtSixth.alpha = 0.0
-        txtSeventh.alpha = 0.0
-        txtEighth.alpha = 0.0
-        txtNineth.alpha = 0.0
-        txtTenth.alpha = 0.0
-        txtEleventh.alpha = 0.0
-        txtTwelfth.alpha = 0.0
-        txtThirteenth.alpha = 0.0
-        txtFourteenth.alpha = 0.0
-        txtFifteenth.alpha = 0.0
-        txtSixteenth.alpha = 0.0
-        txtSeventeenth.alpha = 0.0
-        txtEighteenth.alpha = 0.0
-        txtNineteenth.alpha = 0.0
-        txtTwentieth.alpha = 0.0
-        txtTwentyFirst.alpha = 0.0
-        txtTwentySecond.alpha = 0.0
-        txtTwentyThird.alpha = 0.0
-        txtTwentyFourth.alpha = 0.0
-        txtTwentyFifth.alpha = 0.0
-        txtTwentySixth.alpha = 0.0
-        txtTwentySeventh.alpha = 0.0
-        txtTwentyEighth.alpha = 0.0
-        txtTwentyNineth.alpha = 0.0
-        txtThirtieth.alpha = 0.0
-    }
-    
-    // 100% WORKING CORRECTLY
-    func hideRightButtons(Key: String)
-    {
-        if (Key == "All")
-        {
+        case "right_buttons_3-":
             lblFirst.alpha = 0.0
             lblSecond.alpha = 0.0
             lblThird.alpha = 0.0
@@ -3483,93 +3333,11 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
             firstMinusOutlet.alpha = 0.0
             secondMinusOutlet.alpha = 0.0
             thirdMinusOutlet.alpha = 0.0
+        default:
+            print("error")
         }
-        
-        lblFourth.alpha = 0.0
-        lblFifth.alpha = 0.0
-        lblSixth.alpha = 0.0
-        lblSeventh.alpha = 0.0
-        lblEighth.alpha = 0.0
-        lblNineth.alpha = 0.0
-        lblTenth.alpha = 0.0
-        lblEleventh.alpha = 0.0
-        lblTwelfth.alpha = 0.0
-        lblThirteenth.alpha = 0.0
-        lblFourteenth.alpha = 0.0
-        lblFifteenth.alpha = 0.0
-        lblSixteenth.alpha = 0.0
-        lblSeventeenth.alpha = 0.0
-        lblEighteenth.alpha = 0.0
-        lblNineteenth.alpha = 0.0
-        lblTwentieth.alpha = 0.0
-        lblTwentyFirst.alpha = 0.0
-        lblTwentySecond.alpha = 0.0
-        lblTwentyThird.alpha = 0.0
-        lblTwentyFourth.alpha = 0.0
-        lblTwentyFifth.alpha = 0.0
-        lblTwentySixth.alpha = 0.0
-        lblTwentySeventh.alpha = 0.0
-        lblTwentyEighth.alpha = 0.0
-        lblTwentyNineth.alpha = 0.0
-        lblThirtieth.alpha = 0.0
-        
-        FourthPlusOutlet.alpha = 0.0
-        FifthPlusOutlet.alpha = 0.0
-        SixthPlusOutlet.alpha = 0.0
-        SeventhPlusOutlet.alpha = 0.0
-        EighthPlusOutlet.alpha = 0.0
-        NinethPlusOutlet.alpha = 0.0
-        TenthPlusOutlet.alpha = 0.0
-        EleventhPlusOutlet.alpha = 0.0
-        TwelfthPlusOutlet.alpha = 0.0
-        ThirteenthPlusOutlet.alpha = 0.0
-        FourteenthPlusOutlet.alpha = 0.0
-        FifteenthPlusOutlet.alpha = 0.0
-        SixteenthPlusOutlet.alpha = 0.0
-        SeventeenthPlusOutlet.alpha = 0.0
-        EighteenthPlusOutlet.alpha = 0.0
-        NineteenthPlusOutlet.alpha = 0.0
-        TwentiethPlusOutlet.alpha = 0.0
-        TwentyFirstPlusOutlet.alpha = 0.0
-        TwentySecondPlusOutlet.alpha = 0.0
-        TwentyThirdPlusOutlet.alpha = 0.0
-        TwentyFourthPlusOutlet.alpha = 0.0
-        TwentyFifthPlusOutlet.alpha = 0.0
-        TwentySixthPlusOutlet.alpha = 0.0
-        TwentySeventhPlusOutlet.alpha = 0.0
-        TwentyEighthPlusOutlet.alpha = 0.0
-        TwentyNinethPlusOutlet.alpha = 0.0
-        ThirtiethPlusOutlet.alpha = 0.0
-        
-        FourthMinusOutlet.alpha = 0.0
-        FifthMinusOutlet.alpha = 0.0
-        SixthMinusOutlet.alpha = 0.0
-        SeventhMinusOutlet.alpha = 0.0
-        EighthMinusOutlet.alpha = 0.0
-        NinethMinusOutlet.alpha = 0.0
-        TenthMinusOutlet.alpha = 0.0
-        EleventhMinusOutlet.alpha = 0.0
-        TwelfthMinusOutlet.alpha = 0.0
-        ThirteenthMinusOutlet.alpha = 0.0
-        FourteenthMinusOutlet.alpha = 0.0
-        FifteenthMinusOutlet.alpha = 0.0
-        SixteenthMinusOutlet.alpha = 0.0
-        SeventeenthMinusOutlet.alpha = 0.0
-        EighteenthMinusOutlet.alpha = 0.0
-        NineteenthMinusOutlet.alpha = 0.0
-        TwentiethMinusOutlet.alpha = 0.0
-        TwentyFirstMinusOutlet.alpha = 0.0
-        TwentySecondMinusOutlet.alpha = 0.0
-        TwentyThirdMinusOutlet.alpha = 0.0
-        TwentyFourthMinusOutlet.alpha = 0.0
-        TwentyFifthMinusOutlet.alpha = 0.0
-        TwentySixthMinusOutlet.alpha = 0.0
-        TwentySeventhMinusOutlet.alpha = 0.0
-        TwentyEighthMinusOutlet.alpha = 0.0
-        TwentyNinethMinusOutlet.alpha = 0.0
-        ThirtiethMinusOutlet.alpha = 0.0
     }
-    
+
     // 100% WORKING CORRECTLY
     func ExecuteSegmentTwo()
     {
@@ -4092,7 +3860,7 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         return answer
     }
     
-    // HIDES RENAME TEXTFIELDS
+    // hides rename textfields
     func endRenaming()
     {
         txtRnm1.alpha = 0.0
@@ -4129,130 +3897,60 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     
     func startRenaming()
     {
-        let nimble:Int = calcNumOfDataOriginal()
+        let num:Int = calcNumOfDataOriginal()
         
         txtRnm1.alpha = 1.0
         txtRnm2.alpha = 1.0
         txtRnm3.alpha = 1.0
         
-        if (nimble > 3)
-        {
-            txtRnm4.alpha = 1
-        }
-        if (nimble > 4)
-        {
-            txtRnm5.alpha = 1
-        }
-        if (nimble > 5)
-        {
-            txtRnm6.alpha = 1
-        }
-        if (nimble > 6)
-        {
-            txtRnm7.alpha = 1
-        }
-        if (nimble > 7)
-        {
-            txtRnm8.alpha = 1
-        }
-        if (nimble > 8)
-        {
-            txtRnm9.alpha = 1
-        }
-        if (nimble > 9)
-        {
-            txtRnm10.alpha = 1
-        }
-        if (nimble > 10)
-        {
-            txtRnm11.alpha = 1
-        }
-        if (nimble > 11)
-        {
-            txtRnm12.alpha = 1
-        }
-        if (nimble > 12)
-        {
-            txtRnm13.alpha = 1
-        }
-        if (nimble > 13)
-        {
-            txtRnm14.alpha = 1
-        }
-        if (nimble > 14)
-        {
-            txtRnm15.alpha = 1
-        }
-        if (nimble > 15)
-        {
-            txtRnm16.alpha = 1
-        }
-        if (nimble > 16)
-        {
-            txtRnm17.alpha = 1
-        }
-        if (nimble > 17)
-        {
-            txtRnm18.alpha = 1
-        }
-        if (nimble > 18)
-        {
-            txtRnm19.alpha = 1
-        }
-        if (nimble > 19)
-        {
-            txtRnm20.alpha = 1
-        }
-        if (nimble > 20)
-        {
-            txtRnm21.alpha = 1
-        }
-        if (nimble > 21)
-        {
-            txtRnm22.alpha = 1
-        }
-        if (nimble > 22)
-        {
-            txtRnm23.alpha = 1
-        }
-        if (nimble > 23)
-        {
-            txtRnm24.alpha = 1
-        }
-        if (nimble > 24)
-        {
-            txtRnm25.alpha = 1
-        }
-        if (nimble > 25)
-        {
-            txtRnm26.alpha = 1
-        }
-        if (nimble > 26)
-        {
-            txtRnm27.alpha = 1
-        }
-        if (nimble > 27)
-        {
-            txtRnm28.alpha = 1
-        }
-        if (nimble > 28)
-        {
-            txtRnm29.alpha = 1
-        }
-        if (nimble > 29)
-        {
-            txtRnm30.alpha = 1
-        }
-        hideRightButtons(Key: "All")
-        hideLeft(Key: "All")
+        var i:Int = num
+        let limit:Int = 3
         
+        while (i > limit)
+        {
+            switch i {
+            case 4: txtRnm4.alpha = 1
+            case 5: txtRnm5.alpha = 1
+            case 6: txtRnm6.alpha = 1
+            case 7: txtRnm7.alpha = 1
+            case 8: txtRnm8.alpha = 1
+            case 9: txtRnm9.alpha = 1
+            case 10: txtRnm10.alpha = 1
+            case 11: txtRnm11.alpha = 1
+            case 12: txtRnm12.alpha = 1
+            case 13: txtRnm13.alpha = 1
+            case 14: txtRnm14.alpha = 1
+            case 15: txtRnm15.alpha = 1
+            case 16: txtRnm16.alpha = 1
+            case 17: txtRnm17.alpha = 1
+            case 18: txtRnm18.alpha = 1
+            case 19: txtRnm19.alpha = 1
+            case 20: txtRnm20.alpha = 1
+            case 21: txtRnm21.alpha = 1
+            case 22: txtRnm22.alpha = 1
+            case 23: txtRnm23.alpha = 1
+            case 24: txtRnm24.alpha = 1
+            case 25: txtRnm25.alpha = 1
+            case 26: txtRnm26.alpha = 1
+            case 27: txtRnm27.alpha = 1
+            case 28: txtRnm28.alpha = 1
+            case 29: txtRnm29.alpha = 1
+            case 30: txtRnm30.alpha = 1
+            default: print("error")
+            }
+            i -= 1
+        }
+        hideRequiredFields(numOfFields: num, side: "right_buttons_4+", justLastField: false)
+        hideRequiredFields(numOfFields: num, side: "right_buttons_3-", justLastField: false)
+        hideRequiredFields(numOfFields: num, side: "left_labels_4+", justLastField: false)
+        hideRequiredFields(numOfFields: num, side: "left_labels_3-", justLastField: false)
+        hideRequiredFields(numOfFields: 0, side: "right_textfields", justLastField: false)
     }
     
     public func amountOrPercentChangeInArray(name:String) {
         
         var i:Int = 0
         let limit = calcNumOfDataOriginal()
-        
         
         while (i < limit)
         {
@@ -4468,126 +4166,37 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     }
     
     public func initialRenameSet() {
-        if (lbl1.alpha == 1)
-        {
-            txtRnm1.text = lbl1.text
-        }
-        if (lbl2.alpha == 1)
-        {
-            txtRnm2.text = lbl2.text
-        }
-        if (lbl3.alpha == 1)
-        {
-            txtRnm3.text = lbl3.text
-        }
-        if (lbl4.alpha == 1)
-        {
-            txtRnm4.text = lbl4.text
-        }
-        if (lbl5.alpha == 1)
-        {
-            txtRnm5.text = lbl5.text
-        }
-        if (lbl6.alpha == 1)
-        {
-            txtRnm6.text = lbl6.text
-        }
-        if (lbl7.alpha == 1)
-        {
-            txtRnm7.text = lbl7.text
-        }
-        if (lbl8.alpha == 1)
-        {
-            txtRnm8.text = lbl8.text
-        }
-        if (lbl9.alpha == 1)
-        {
-            txtRnm9.text = lbl9.text
-        }
-        if (lbl10.alpha == 1)
-        {
-            txtRnm10.text = lbl10.text
-        }
-        if (lbl11.alpha == 1)
-        {
-            txtRnm11.text = lbl11.text
-        }
-        if (lbl12.alpha == 1)
-        {
-            txtRnm12.text = lbl12.text
-        }
-        if (lbl13.alpha == 1)
-        {
-            txtRnm13.text = lbl13.text
-        }
-        if (lbl14.alpha == 1)
-        {
-            txtRnm14.text = lbl14.text
-        }
-        if (lbl15.alpha == 1)
-        {
-            txtRnm15.text = lbl15.text
-        }
-        if (lbl16.alpha == 1)
-        {
-            txtRnm16.text = lbl16.text
-        }
-        if (lbl17.alpha == 1)
-        {
-            txtRnm17.text = lbl17.text
-        }
-        if (lbl18.alpha == 1)
-        {
-            txtRnm18.text = lbl18.text
-        }
-        if (lbl19.alpha == 1)
-        {
-            txtRnm19.text = lbl19.text
-        }
-        if (lbl20.alpha == 1)
-        {
-            txtRnm20.text = lbl20.text
-        }
-        if (lbl21.alpha == 1)
-        {
-            txtRnm21.text = lbl21.text
-        }
-        if (lbl22.alpha == 1)
-        {
-            txtRnm22.text = lbl22.text
-        }
-        if (lbl23.alpha == 1)
-        {
-            txtRnm23.text = lbl23.text
-        }
-        if (lbl24.alpha == 1)
-        {
-            txtRnm24.text = lbl24.text
-        }
-        if (lbl25.alpha == 1)
-        {
-            txtRnm25.text = lbl25.text
-        }
-        if (lbl26.alpha == 1)
-        {
-            txtRnm26.text = lbl26.text
-        }
-        if (lbl27.alpha == 1)
-        {
-            txtRnm27.text = lbl27.text
-        }
-        if (lbl28.alpha == 1)
-        {
-            txtRnm28.text = lbl28.text
-        }
-        if (lbl29.alpha == 1)
-        {
-            txtRnm29.text = lbl29.text
-        }
-        if (lbl30.alpha == 1)
-        {
-            txtRnm30.text = lbl30.text
-        }
+        
+        if (lbl1.alpha == 1) { txtRnm1.text = lbl1.text }
+        if (lbl2.alpha == 1) { txtRnm2.text = lbl2.text }
+        if (lbl3.alpha == 1) { txtRnm3.text = lbl3.text }
+        if (lbl4.alpha == 1) { txtRnm4.text = lbl4.text }
+        if (lbl5.alpha == 1) { txtRnm5.text = lbl5.text }
+        if (lbl6.alpha == 1) { txtRnm6.text = lbl6.text }
+        if (lbl7.alpha == 1) { txtRnm7.text = lbl7.text }
+        if (lbl8.alpha == 1) { txtRnm8.text = lbl8.text }
+        if (lbl9.alpha == 1) { txtRnm9.text = lbl9.text }
+        if (lbl10.alpha == 1) { txtRnm10.text = lbl10.text }
+        if (lbl11.alpha == 1) { txtRnm11.text = lbl11.text }
+        if (lbl12.alpha == 1) { txtRnm12.text = lbl12.text }
+        if (lbl13.alpha == 1) { txtRnm13.text = lbl13.text }
+        if (lbl14.alpha == 1) { txtRnm14.text = lbl14.text }
+        if (lbl15.alpha == 1) { txtRnm15.text = lbl15.text }
+        if (lbl16.alpha == 1) { txtRnm16.text = lbl16.text }
+        if (lbl17.alpha == 1) { txtRnm17.text = lbl17.text }
+        if (lbl18.alpha == 1) { txtRnm18.text = lbl18.text }
+        if (lbl19.alpha == 1) { txtRnm19.text = lbl19.text }
+        if (lbl20.alpha == 1) { txtRnm20.text = lbl20.text }
+        if (lbl21.alpha == 1) { txtRnm21.text = lbl21.text }
+        if (lbl22.alpha == 1) { txtRnm22.text = lbl22.text }
+        if (lbl23.alpha == 1) { txtRnm23.text = lbl23.text }
+        if (lbl24.alpha == 1) { txtRnm24.text = lbl24.text }
+        if (lbl25.alpha == 1) { txtRnm25.text = lbl25.text }
+        if (lbl26.alpha == 1) { txtRnm26.text = lbl26.text }
+        if (lbl27.alpha == 1) { txtRnm27.text = lbl27.text }
+        if (lbl28.alpha == 1) { txtRnm28.text = lbl28.text }
+        if (lbl29.alpha == 1) { txtRnm29.text = lbl29.text }
+        if (lbl30.alpha == 1) { txtRnm30.text = lbl30.text }
     }
     
     public func adjustFontSizesToFitTheWidths() {
@@ -4639,12 +4248,10 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
             }
             i += 1
         }
-        
         return true
     }
     
     public func displaySameNameMessage() {
-        //        print("WARNING MESSAGE TO BE DISPLAYED")
         createAlert(title: "Renaming Error", message: "One or more fields have the same name OR is blank. Every field should be different from the other and cannot be blank.")
     }
     
@@ -4653,7 +4260,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
             alert.dismiss(animated: true, completion: nil)
-            // add action here
         }))
         
         self.present(alert, animated: true, completion: nil)
