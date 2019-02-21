@@ -179,23 +179,21 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        // TEXTFIELD DELEGATES
+        // Initialise textfields
         textDelegates()
         
-        // CHECK FOR FIRST RUN
+        // Check for first run
         if (FirstViewController.stR.firstRun == true)
         {
             addInitialFieldsToDatabase()
-            print("first run executed!")
         }
         
         // calc num of data
         Arraylimit = calcNumOfDataOriginal()
         
-        // FETCH DATA
+        // Fetch data
         fetchDatabaseDataThenDisplayIt()
         
-        // ALPHAS
         alphaOneOff()
         endRenaming()
         HideAll(Key: "n")
@@ -204,8 +202,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         txtFirst.alpha = 0
         txtSecond.alpha = 0
         txtThird.alpha = 0
-        
-        // DISPLAY PERCENTAGE CORRECTLY AT ALL TIMES
         updateTotalDisplays()
     }
     
@@ -218,7 +214,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         
         if (bLabel) {
             let sizeConstraint:Int = Int(txtTotal.bounds.height)
-            // BLANK LABEL   NOT LOADING IN CORRECT POSITION YET!!!!!
             moveBlankLabelAppropriately(sizeConstraint: sizeConstraint)
             blankLabelTopConstraint.constant = CGFloat(Gvars.blanklabelHeight)
             bLabel =  false
@@ -229,7 +224,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
         // Don't forget to reset when view is being removed
         FirstViewController.AppUtility.lockOrientation(.all)
     }
@@ -427,13 +421,9 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         
         if (disallowRenameToSameName())
         {
-            // COMPARES POTENTIAL NEW NAME TO OLD NAME AND THEN CALLES ANOTHER FUNC TO RENAME IT IN DATABASE
             nameChangeAddToDatabase()
             nameChangeToArray()
-            
-            // FETCHES ALL DATA FROM DATABASE AND DISPLAYS IT APPROPRIATELY
             fetchDatabaseDataThenDisplayIt()
-            
             Arraylimit = calcNumOfDataOriginal()
             
             UIView.animate(withDuration: 0.6, animations: {
@@ -450,15 +440,15 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     // adding a percentage to the first row
     @IBAction func addFirst(_ sender: UIButton) {
         
-        // SEARCHES DATABASE FOR FIRST FIELD'S VALUES AND STORES VALUES IN GLOBAL VARS
+        // searches database for first field's values and stores values in global vars
         retrievepercent(autoNumber: "0")
         
-        // GETS CORRECT AMOUNT TO ADD, ADDS AMOUNT TO GLOBAL VAR AND THEN VALUES ADDED TO DATABASE
+        // gets correct amount to add, adds amount to global var and then values added to database
         addTopercent()
         
         amountOrPercentChangeInArray(name: global.name)
         
-        // MUST DISPLAY THE NEW VALUES APPROPRIATELY
+        // must display the new values appropriately
         global.name = lbl1.text!
         lblFirst.text = String(Double(round(100*global.percent)/100)) + "%"
         txtFirst.text = String(Double(round(100*global.amount)/100))
@@ -1196,19 +1186,17 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func DeleteMostRecentFieldButtonAction(_ sender: UIButton) {
         
-        let frenchi:Int = calcNumOfDataOriginal()
-        let noobi:Int = frenchi - 1
+        let numData:Int = calcNumOfDataOriginal()
         let sizeConstraint:Int = Int(txtRnm1.bounds.height)
         
-        if (frenchi > 3)
+        if (numData > 3)
         {
             let name:String = calcLastName()
-            
             removeLastFieldFromArray(lastName: name)
-            deleteLastFieldCreated(autoNumber: String(noobi))
+            deleteLastFieldCreated(autoNumber: String(numData - 1))
             
             UIView.animate(withDuration: 0.6, animations: {
-                self.hideFields(field: frenchi)
+                self.hideFields(field: numData)
                 self.moveBlankLabel(direction: "Up", sizeConstraint: sizeConstraint)
             })
         }
@@ -1217,7 +1205,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     @IBAction func RenameAFieldButtonAction(_ sender: UIButton) {
         
         initialRenameSet()
-        
         UIView.animate(withDuration: 0.6, animations: {
             self.alphaTwoOn()
             self.startRenaming()
@@ -1237,918 +1224,514 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         
         tempIncome = income
         
-        // REPLACES NEW AMOUNTS IN DATABASE, PERCENTAGES STAY SAME
+        // replaces new amounts in database, percentages stay same
         incomeChange()
         
-        // INCOME IS ADDED TO DATABASE SEPARATELY WITH UNIQUE AUTONUMBER
+        // income is added to database separately with unique autonumber
         addIncomeAmount(incomeAmount: tempIncome)
         
-        // DISPLAY PERCENTAGE CORRECTLY AT ALL TIMES
+        // display percentage correctly at all times
         updateTotalDisplays()
-        
     }
     @IBAction func FirstEdited(_ sender: UITextField) {
         
         limitLength = 12
-        
-        // VALIDATION
-        if (!textValueChangeApproved()) {
+        var field = userInputAmountInTextField(sender: sender.text!)
+        switch field {
+        case "":
             txtFirst.text = ""
             lblFirst.text = "0.0%"
-        }
-        else
-        {
-            var temp:Double = 0
-            
-            if (txtFirst.text != "")
-            {
-                temp = validDouble(double: txtFirst.text!)
-            }
-            if (temp == 0)
-            {
-                txtFirst.text = ""
-            }
-            
-            fieldAmountChange(autoNumber: "0", newAmount: temp)
+        default:
+            field = userInputAmountInTextField(sender: field)
+            fieldAmountChange(autoNumber: "0", newAmount: validDouble(double: field))
             insertGlobalsToDatabase()
-            
             lblFirst.text = String(Double(round(100*global.percent)/100)) + "%"
-            lblTotal.text = String(Double(round(100*calcAvailablePercent())/100)) + "%"
-            lblAvailableBal.text = String(Double(round(100*calcAvailableAmount())/100))
         }
         amountOrPercentChangeInArray(name: global.name)
     }
     @IBAction func SecondEdited(_ sender: UITextField) {
         
         limitLength = 12
-        
-        // VALIDATION
-        if (!textValueChangeApproved()) {
+        var field = userInputAmountInTextField(sender: sender.text!)
+        switch field {
+        case "":
             txtSecond.text = ""
             lblSecond.text = "0.0%"
-        }
-        else
-        {
-            var temp:Double = 0
-            
-            if (txtSecond.text != "")
-            {
-                temp = validDouble(double: txtSecond.text!)
-            }
-            if (temp == 0)
-            {
-                txtSecond.text = ""
-            }
-            
-            fieldAmountChange(autoNumber: "1", newAmount: temp)
+        default:
+            field = userInputAmountInTextField(sender: field)
+            fieldAmountChange(autoNumber: "1", newAmount: validDouble(double: field))
             insertGlobalsToDatabase()
-            
             lblSecond.text = String(Double(round(100*global.percent)/100)) + "%"
-            lblTotal.text = String(Double(round(100*calcAvailablePercent())/100)) + "%"
-            lblAvailableBal.text = String(Double(round(100*calcAvailableAmount())/100))
         }
         amountOrPercentChangeInArray(name: global.name)
     }
     @IBAction func ThirdEdited(_ sender: UITextField) {
         
         limitLength = 12
-        
-        // VALIDATION
-        if (!textValueChangeApproved()) {
+        var field = userInputAmountInTextField(sender: sender.text!)
+        switch field {
+        case "":
             txtThird.text = ""
             lblThird.text = "0.0%"
-        }
-        else
-        {
-            var temp:Double = 0
-            
-            if (txtThird.text != "")
-            {
-                temp = validDouble(double: txtThird.text!)
-            }
-            if (temp == 0)
-            {
-                txtThird.text = ""
-            }
-            
-            fieldAmountChange(autoNumber: "2", newAmount: temp)
+        default:
+            field = userInputAmountInTextField(sender: field)
+            fieldAmountChange(autoNumber: "2", newAmount: validDouble(double: field))
             insertGlobalsToDatabase()
-            
             lblThird.text = String(Double(round(100*global.percent)/100)) + "%"
-            lblTotal.text = String(Double(round(100*calcAvailablePercent())/100)) + "%"
-            lblAvailableBal.text = String(Double(round(100*calcAvailableAmount())/100))
         }
         amountOrPercentChangeInArray(name: global.name)
     }
     @IBAction func FourthEdited(_ sender: UITextField) {
     
         limitLength = 12
-        // VALIDATION
-        if (!textValueChangeApproved()) {
+        var field = userInputAmountInTextField(sender: sender.text!)
+        switch field {
+        case "":
             txtFourth.text = ""
             lblFourth.text = "0.0%"
-        }
-        else
-        {
-            var temp:Double = 0
-            
-            if (txtFourth.text != "")
-            {
-                temp = validDouble(double: txtFourth.text!)
-            }
-            if (temp == 0)
-            {
-                txtFourth.text = ""
-            }
-            
-            fieldAmountChange(autoNumber: "3", newAmount: temp)
+        default:
+            field = userInputAmountInTextField(sender: field)
+            fieldAmountChange(autoNumber: "3", newAmount: validDouble(double: field))
             insertGlobalsToDatabase()
-            
             lblFourth.text = String(Double(round(100*global.percent)/100)) + "%"
-            lblTotal.text = String(Double(round(100*calcAvailablePercent())/100)) + "%"
-            lblAvailableBal.text = String(Double(round(100*calcAvailableAmount())/100))
         }
         amountOrPercentChangeInArray(name: global.name)
     }
     @IBAction func FifthEdited(_ sender: UITextField) {
         
         limitLength = 12
-        // VALIDATION
-        if (!textValueChangeApproved()) {
+        var field = userInputAmountInTextField(sender: sender.text!)
+        switch field {
+        case "":
             txtFifth.text = ""
             lblFifth.text = "0.0%"
-        }
-        else
-        {
-            var temp:Double = 0
-            
-            if (txtFifth.text != "")
-            {
-                temp = validDouble(double: txtFifth.text!)
-            }
-            if (temp == 0)
-            {
-                txtFifth.text = ""
-            }
-            
-            fieldAmountChange(autoNumber: "4", newAmount: temp)
+        default:
+            field = userInputAmountInTextField(sender: field)
+            fieldAmountChange(autoNumber: "4", newAmount: validDouble(double: field))
             insertGlobalsToDatabase()
-            
             lblFifth.text = String(Double(round(100*global.percent)/100)) + "%"
-            lblTotal.text = String(Double(round(100*calcAvailablePercent())/100)) + "%"
-            lblAvailableBal.text = String(Double(round(100*calcAvailableAmount())/100))
         }
         amountOrPercentChangeInArray(name: global.name)
     }
     @IBAction func SixthEdited(_ sender: UITextField) {
         
         limitLength = 12
-        // VALIDATION
-        if (!textValueChangeApproved()) {
+        var field = userInputAmountInTextField(sender: sender.text!)
+        switch field {
+        case "":
             txtSixth.text = ""
             lblSixth.text = "0.0%"
-        }
-        else
-        {
-            var temp:Double = 0
-            
-            if (txtSixth.text != "")
-            {
-                temp = validDouble(double: txtSixth.text!)
-            }
-            if (temp == 0)
-            {
-                txtSixth.text = ""
-            }
-            
-            fieldAmountChange(autoNumber: "5", newAmount: temp)
+        default:
+            field = userInputAmountInTextField(sender: field)
+            fieldAmountChange(autoNumber: "5", newAmount: validDouble(double: field))
             insertGlobalsToDatabase()
-            
             lblSixth.text = String(Double(round(100*global.percent)/100)) + "%"
-            lblTotal.text = String(Double(round(100*calcAvailablePercent())/100)) + "%"
-            lblAvailableBal.text = String(Double(round(100*calcAvailableAmount())/100))
         }
         amountOrPercentChangeInArray(name: global.name)
     }
     @IBAction func SeventhEdited(_ sender: UITextField) {
         
         limitLength = 12
-        // VALIDATION
-        if (!textValueChangeApproved()) {
+        var field = userInputAmountInTextField(sender: sender.text!)
+        switch field {
+        case "":
             txtSeventh.text = ""
             lblSeventh.text = "0.0%"
-        }
-        else
-        {
-            var temp:Double = 0
-            
-            if (txtSeventh.text != "")
-            {
-                temp = validDouble(double: txtSeventh.text!)
-            }
-            if (temp == 0)
-            {
-                txtSeventh.text = ""
-            }
-            
-            fieldAmountChange(autoNumber: "6", newAmount: temp)
+        default:
+            field = userInputAmountInTextField(sender: field)
+            fieldAmountChange(autoNumber: "6", newAmount: validDouble(double: field))
             insertGlobalsToDatabase()
-            
             lblSeventh.text = String(Double(round(100*global.percent)/100)) + "%"
-            lblTotal.text = String(Double(round(100*calcAvailablePercent())/100)) + "%"
-            lblAvailableBal.text = String(Double(round(100*calcAvailableAmount())/100))
         }
         amountOrPercentChangeInArray(name: global.name)
     }
     @IBAction func EighthEdited(_ sender: UITextField) {
         
         limitLength = 12
-        // VALIDATION
-        if (!textValueChangeApproved()) {
+        var field = userInputAmountInTextField(sender: sender.text!)
+        switch field {
+        case "":
             txtEighth.text = ""
             lblEighth.text = "0.0%"
-        }
-        else
-        {
-            var temp:Double = 0
-            
-            if (txtEighth.text != "")
-            {
-                temp = validDouble(double: txtEighth.text!)
-            }
-            if (temp == 0)
-            {
-                txtEighth.text = ""
-            }
-            
-            fieldAmountChange(autoNumber: "7", newAmount: temp)
+        default:
+            field = userInputAmountInTextField(sender: field)
+            fieldAmountChange(autoNumber: "7", newAmount: validDouble(double: field))
             insertGlobalsToDatabase()
-            
             lblEighth.text = String(Double(round(100*global.percent)/100)) + "%"
-            lblTotal.text = String(Double(round(100*calcAvailablePercent())/100)) + "%"
-            lblAvailableBal.text = String(Double(round(100*calcAvailableAmount())/100))
         }
         amountOrPercentChangeInArray(name: global.name)
     }
     @IBAction func NinethEdited(_ sender: UITextField) {
         
         limitLength = 12
-        // VALIDATION
-        if (!textValueChangeApproved()) {
+        var field = userInputAmountInTextField(sender: sender.text!)
+        switch field {
+        case "":
             txtNineth.text = ""
             lblNineth.text = "0.0%"
-        }
-        else
-        {
-            var temp:Double = 0
-            
-            if (txtNineth.text != "")
-            {
-                temp = validDouble(double: txtNineth.text!)
-            }
-            if (temp == 0)
-            {
-                txtNineth.text = ""
-            }
-            
-            fieldAmountChange(autoNumber: "8", newAmount: temp)
+        default:
+            field = userInputAmountInTextField(sender: field)
+            fieldAmountChange(autoNumber: "8", newAmount: validDouble(double: field))
             insertGlobalsToDatabase()
-            
             lblNineth.text = String(Double(round(100*global.percent)/100)) + "%"
-            lblTotal.text = String(Double(round(100*calcAvailablePercent())/100)) + "%"
-            lblAvailableBal.text = String(Double(round(100*calcAvailableAmount())/100))
         }
         amountOrPercentChangeInArray(name: global.name)
     }
     @IBAction func TenthEdited(_ sender: UITextField) {
         
         limitLength = 12
-        // VALIDATION
-        if (!textValueChangeApproved()) {
+        var field = userInputAmountInTextField(sender: sender.text!)
+        switch field {
+        case "":
             txtTenth.text = ""
             lblTenth.text = "0.0%"
-        }
-        else
-        {
-            var temp:Double = 0
-            
-            if (txtTenth.text != "")
-            {
-                temp = validDouble(double: txtTenth.text!)
-            }
-            if (temp == 0)
-            {
-                txtTenth.text = ""
-            }
-            
-            fieldAmountChange(autoNumber: "9", newAmount: temp)
+        default:
+            field = userInputAmountInTextField(sender: field)
+            fieldAmountChange(autoNumber: "9", newAmount: validDouble(double: field))
             insertGlobalsToDatabase()
-            
             lblTenth.text = String(Double(round(100*global.percent)/100)) + "%"
-            lblTotal.text = String(Double(round(100*calcAvailablePercent())/100)) + "%"
-            lblAvailableBal.text = String(Double(round(100*calcAvailableAmount())/100))
         }
         amountOrPercentChangeInArray(name: global.name)
     }
     @IBAction func EleventhEdited(_ sender: UITextField) {
         
         limitLength = 12
-        // VALIDATION
-        if (!textValueChangeApproved()) {
+        var field = userInputAmountInTextField(sender: sender.text!)
+        switch field {
+        case "":
             txtEleventh.text = ""
             lblEleventh.text = "0.0%"
-        }
-        else
-        {
-            var temp:Double = 0
-            
-            if (txtEleventh.text != "")
-            {
-                temp = validDouble(double: txtEleventh.text!)
-            }
-            if (temp == 0)
-            {
-                txtEleventh.text = ""
-            }
-            
-            fieldAmountChange(autoNumber: "10", newAmount: temp)
+        default:
+            field = userInputAmountInTextField(sender: field)
+            fieldAmountChange(autoNumber: "10", newAmount: validDouble(double: field))
             insertGlobalsToDatabase()
-            
             lblEleventh.text = String(Double(round(100*global.percent)/100)) + "%"
-            lblTotal.text = String(Double(round(100*calcAvailablePercent())/100)) + "%"
-            lblAvailableBal.text = String(Double(round(100*calcAvailableAmount())/100))
         }
         amountOrPercentChangeInArray(name: global.name)
     }
     @IBAction func TwelfthEdited(_ sender: UITextField) {
         
         limitLength = 12
-        // VALIDATION
-        if (!textValueChangeApproved()) {
+        var field = userInputAmountInTextField(sender: sender.text!)
+        switch field {
+        case "":
             txtTwelfth.text = ""
             lblTwelfth.text = "0.0%"
-        }
-        else
-        {
-            var temp:Double = 0
-            
-            if (txtTwelfth.text != "")
-            {
-                temp = validDouble(double: txtTwelfth.text!)
-            }
-            if (temp == 0)
-            {
-                txtTwelfth.text = ""
-            }
-            
-            fieldAmountChange(autoNumber: "11", newAmount: temp)
+        default:
+            field = userInputAmountInTextField(sender: field)
+            fieldAmountChange(autoNumber: "11", newAmount: validDouble(double: field))
             insertGlobalsToDatabase()
-            
             lblTwelfth.text = String(Double(round(100*global.percent)/100)) + "%"
-            lblTotal.text = String(Double(round(100*calcAvailablePercent())/100)) + "%"
-            lblAvailableBal.text = String(Double(round(100*calcAvailableAmount())/100))
         }
         amountOrPercentChangeInArray(name: global.name)
     }
     @IBAction func ThirteenthEdited(_ sender: UITextField) {
         
         limitLength = 12
-        // VALIDATION
-        if (!textValueChangeApproved()) {
+        var field = userInputAmountInTextField(sender: sender.text!)
+        switch field {
+        case "":
             txtThirteenth.text = ""
             lblThirteenth.text = "0.0%"
-        }
-        else
-        {
-            var temp:Double = 0
-            
-            if (txtThirteenth.text != "")
-            {
-                temp = validDouble(double: txtThirteenth.text!)
-            }
-            if (temp == 0)
-            {
-                txtThirteenth.text = ""
-            }
-            
-            fieldAmountChange(autoNumber: "12", newAmount: temp)
+        default:
+            field = userInputAmountInTextField(sender: field)
+            fieldAmountChange(autoNumber: "12", newAmount: validDouble(double: field))
             insertGlobalsToDatabase()
-            
             lblThirteenth.text = String(Double(round(100*global.percent)/100)) + "%"
-            lblTotal.text = String(Double(round(100*calcAvailablePercent())/100)) + "%"
-            lblAvailableBal.text = String(Double(round(100*calcAvailableAmount())/100))
         }
         amountOrPercentChangeInArray(name: global.name)
     }
     @IBAction func FourteenthEdited(_ sender: UITextField) {
         
         limitLength = 12
-        // VALIDATION
-        if (!textValueChangeApproved()) {
+        var field = userInputAmountInTextField(sender: sender.text!)
+        switch field {
+        case "":
             txtFourteenth.text = ""
             lblFourteenth.text = "0.0%"
-        }
-        else
-        {
-            var temp:Double = 0
-            
-            if (txtFourteenth.text != "")
-            {
-                temp = validDouble(double: txtFourteenth.text!)
-            }
-            if (temp == 0)
-            {
-                txtFourteenth.text = ""
-            }
-            
-            fieldAmountChange(autoNumber: "13", newAmount: temp)
+        default:
+            field = userInputAmountInTextField(sender: field)
+            fieldAmountChange(autoNumber: "13", newAmount: validDouble(double: field))
             insertGlobalsToDatabase()
-            
             lblFourteenth.text = String(Double(round(100*global.percent)/100)) + "%"
-            lblTotal.text = String(Double(round(100*calcAvailablePercent())/100)) + "%"
-            lblAvailableBal.text = String(Double(round(100*calcAvailableAmount())/100))
         }
         amountOrPercentChangeInArray(name: global.name)
     }
     @IBAction func FifteenthEdited(_ sender: UITextField) {
         
         limitLength = 12
-        // VALIDATION
-        if (!textValueChangeApproved()) {
+        var field = userInputAmountInTextField(sender: sender.text!)
+        switch field {
+        case "":
             txtFifteenth.text = ""
             lblFifteenth.text = "0.0%"
-        }
-        else
-        {
-            var temp:Double = 0
-            
-            if (txtFifteenth.text != "")
-            {
-                temp = validDouble(double: txtFifteenth.text!)
-            }
-            if (temp == 0)
-            {
-                txtFifteenth.text = ""
-            }
-            
-            fieldAmountChange(autoNumber: "14", newAmount: temp)
+        default:
+            field = userInputAmountInTextField(sender: field)
+            fieldAmountChange(autoNumber: "14", newAmount: validDouble(double: field))
             insertGlobalsToDatabase()
-            
             lblFifteenth.text = String(Double(round(100*global.percent)/100)) + "%"
-            lblTotal.text = String(Double(round(100*calcAvailablePercent())/100)) + "%"
-            lblAvailableBal.text = String(Double(round(100*calcAvailableAmount())/100))
         }
         amountOrPercentChangeInArray(name: global.name)
     }
     @IBAction func SixteenthEdited(_ sender: UITextField) {
         
         limitLength = 12
-        // VALIDATION
-        if (!textValueChangeApproved()) {
+        var field = userInputAmountInTextField(sender: sender.text!)
+        switch field {
+        case "":
             txtSixteenth.text = ""
             lblSixteenth.text = "0.0%"
-        }
-        else
-        {
-            var temp:Double = 0
-            
-            if (txtSixteenth.text != "")
-            {
-                temp = validDouble(double: txtSixteenth.text!)
-            }
-            if (temp == 0)
-            {
-                txtSixteenth.text = ""
-            }
-            
-            fieldAmountChange(autoNumber: "15", newAmount: temp)
+        default:
+            field = userInputAmountInTextField(sender: field)
+            fieldAmountChange(autoNumber: "15", newAmount: validDouble(double: field))
             insertGlobalsToDatabase()
-            
             lblSixteenth.text = String(Double(round(100*global.percent)/100)) + "%"
-            lblTotal.text = String(Double(round(100*calcAvailablePercent())/100)) + "%"
-            lblAvailableBal.text = String(Double(round(100*calcAvailableAmount())/100))
         }
         amountOrPercentChangeInArray(name: global.name)
     }
     @IBAction func SeventeenthEdited(_ sender: UITextField) {
         
         limitLength = 12
-        // VALIDATION
-        if (!textValueChangeApproved()) {
+        var field = userInputAmountInTextField(sender: sender.text!)
+        switch field {
+        case "":
             txtSeventeenth.text = ""
             lblSeventeenth.text = "0.0%"
-        }
-        else
-        {
-            var temp:Double = 0
-            
-            if (txtSeventeenth.text != "")
-            {
-                temp = validDouble(double: txtSeventeenth.text!)
-            }
-            if (temp == 0)
-            {
-                txtSeventeenth.text = ""
-            }
-            
-            fieldAmountChange(autoNumber: "16", newAmount: temp)
+        default:
+            field = userInputAmountInTextField(sender: field)
+            fieldAmountChange(autoNumber: "16", newAmount: validDouble(double: field))
             insertGlobalsToDatabase()
-            
             lblSeventeenth.text = String(Double(round(100*global.percent)/100)) + "%"
-            lblTotal.text = String(Double(round(100*calcAvailablePercent())/100)) + "%"
-            lblAvailableBal.text = String(Double(round(100*calcAvailableAmount())/100))
         }
         amountOrPercentChangeInArray(name: global.name)
     }
     @IBAction func EighteenthEdited(_ sender: UITextField) {
         
         limitLength = 12
-        // VALIDATION
-        if (!textValueChangeApproved()) {
+        var field = userInputAmountInTextField(sender: sender.text!)
+        switch field {
+        case "":
             txtEighteenth.text = ""
             lblEighteenth.text = "0.0%"
-        }
-        else
-        {
-            var temp:Double = 0
-            
-            if (txtEighteenth.text != "")
-            {
-                temp = validDouble(double: txtEighteenth.text!)
-            }
-            if (temp == 0)
-            {
-                txtEighteenth.text = ""
-            }
-            
-            fieldAmountChange(autoNumber: "17", newAmount: temp)
+        default:
+            field = userInputAmountInTextField(sender: field)
+            fieldAmountChange(autoNumber: "17", newAmount: validDouble(double: field))
             insertGlobalsToDatabase()
-            
             lblEighteenth.text = String(Double(round(100*global.percent)/100)) + "%"
-            lblTotal.text = String(Double(round(100*calcAvailablePercent())/100)) + "%"
-            lblAvailableBal.text = String(Double(round(100*calcAvailableAmount())/100))
         }
         amountOrPercentChangeInArray(name: global.name)
     }
     @IBAction func NineteenthEdited(_ sender: UITextField) {
         
         limitLength = 12
-        // VALIDATION
-        if (!textValueChangeApproved()) {
+        var field = userInputAmountInTextField(sender: sender.text!)
+        switch field {
+        case "":
             txtNineteenth.text = ""
             lblNineteenth.text = "0.0%"
-        }
-        else
-        {
-            var temp:Double = 0
-            
-            if (txtNineteenth.text != "")
-            {
-                temp = validDouble(double: txtNineteenth.text!)
-            }
-            if (temp == 0)
-            {
-                txtNineteenth.text = ""
-            }
-            
-            fieldAmountChange(autoNumber: "18", newAmount: temp)
+        default:
+            field = userInputAmountInTextField(sender: field)
+            fieldAmountChange(autoNumber: "18", newAmount: validDouble(double: field))
             insertGlobalsToDatabase()
-            
             lblNineteenth.text = String(Double(round(100*global.percent)/100)) + "%"
-            lblTotal.text = String(Double(round(100*calcAvailablePercent())/100)) + "%"
-            lblAvailableBal.text = String(Double(round(100*calcAvailableAmount())/100))
         }
         amountOrPercentChangeInArray(name: global.name)
     }
     @IBAction func TwentiethEdited(_ sender: UITextField) {
         
         limitLength = 12
-        // VALIDATION
-        if (!textValueChangeApproved()) {
+        var field = userInputAmountInTextField(sender: sender.text!)
+        switch field {
+        case "":
             txtTwentieth.text = ""
             lblTwentieth.text = "0.0%"
-        }
-        else
-        {
-            var temp:Double = 0
-            
-            if (txtTwentieth.text != "")
-            {
-                temp = validDouble(double: txtTwentieth.text!)
-            }
-            if (temp == 0)
-            {
-                txtTwentieth.text = ""
-            }
-            
-            fieldAmountChange(autoNumber: "19", newAmount: temp)
+        default:
+            field = userInputAmountInTextField(sender: field)
+            fieldAmountChange(autoNumber: "19", newAmount: validDouble(double: field))
             insertGlobalsToDatabase()
-            
             lblTwentieth.text = String(Double(round(100*global.percent)/100)) + "%"
-            lblTotal.text = String(Double(round(100*calcAvailablePercent())/100)) + "%"
-            lblAvailableBal.text = String(Double(round(100*calcAvailableAmount())/100))
         }
         amountOrPercentChangeInArray(name: global.name)
     }
     @IBAction func TwentyFirst(_ sender: UITextField) {
         
         limitLength = 12
-        // VALIDATION
-        if (!textValueChangeApproved()) {
+        var field = userInputAmountInTextField(sender: sender.text!)
+        switch field {
+        case "":
             txtTwentyFirst.text = ""
             lblTwentyFirst.text = "0.0%"
-        }
-        else
-        {
-            var temp:Double = 0
-            
-            if (txtTwentyFirst.text != "")
-            {
-                temp = validDouble(double: txtTwentyFirst.text!)
-            }
-            if (temp == 0)
-            {
-                txtTwentyFirst.text = ""
-            }
-            
-            fieldAmountChange(autoNumber: "20", newAmount: temp)
+        default:
+            field = userInputAmountInTextField(sender: field)
+            fieldAmountChange(autoNumber: "20", newAmount: validDouble(double: field))
             insertGlobalsToDatabase()
-            
             lblTwentyFirst.text = String(Double(round(100*global.percent)/100)) + "%"
-            lblTotal.text = String(Double(round(100*calcAvailablePercent())/100)) + "%"
-            lblAvailableBal.text = String(Double(round(100*calcAvailableAmount())/100))
         }
         amountOrPercentChangeInArray(name: global.name)
     }
     @IBAction func TwentySecondEdited(_ sender: UITextField) {
         
         limitLength = 12
-        // VALIDATION
-        if (!textValueChangeApproved()) {
+        var field = userInputAmountInTextField(sender: sender.text!)
+        switch field {
+        case "":
             txtTwentySecond.text = ""
             lblTwentySecond.text = "0.0%"
-        }
-        else
-        {
-            var temp:Double = 0
-            
-            if (txtTwentySecond.text != "")
-            {
-                temp = validDouble(double: txtTwentySecond.text!)
-            }
-            if (temp == 0)
-            {
-                txtTwentySecond.text = ""
-            }
-            
-            fieldAmountChange(autoNumber: "21", newAmount: temp)
+        default:
+            field = userInputAmountInTextField(sender: field)
+            fieldAmountChange(autoNumber: "21", newAmount: validDouble(double: field))
             insertGlobalsToDatabase()
-            
             lblTwentySecond.text = String(Double(round(100*global.percent)/100)) + "%"
-            lblTotal.text = String(Double(round(100*calcAvailablePercent())/100)) + "%"
-            lblAvailableBal.text = String(Double(round(100*calcAvailableAmount())/100))
         }
         amountOrPercentChangeInArray(name: global.name)
     }
     @IBAction func TwentyThirdEdited(_ sender: UITextField) {
         
         limitLength = 12
-        // VALIDATION
-        if (!textValueChangeApproved()) {
+        var field = userInputAmountInTextField(sender: sender.text!)
+        switch field {
+        case "":
             txtTwentyThird.text = ""
             lblTwentyThird.text = "0.0%"
-        }
-        else
-        {
-            var temp:Double = 0
-            
-            if (txtTwentyThird.text != "")
-            {
-                temp = validDouble(double: txtTwentyThird.text!)
-            }
-            if (temp == 0)
-            {
-                txtTwentyThird.text = ""
-            }
-            
-            fieldAmountChange(autoNumber: "22", newAmount: temp)
+        default:
+            field = userInputAmountInTextField(sender: field)
+            fieldAmountChange(autoNumber: "22", newAmount: validDouble(double: field))
             insertGlobalsToDatabase()
-            
             lblTwentyThird.text = String(Double(round(100*global.percent)/100)) + "%"
-            lblTotal.text = String(Double(round(100*calcAvailablePercent())/100)) + "%"
-            lblAvailableBal.text = String(Double(round(100*calcAvailableAmount())/100))
         }
         amountOrPercentChangeInArray(name: global.name)
     }
     @IBAction func TwentyFourthEdited(_ sender: UITextField) {
         
         limitLength = 12
-        // VALIDATION
-        if (!textValueChangeApproved()) {
+        var field = userInputAmountInTextField(sender: sender.text!)
+        switch field {
+        case "":
             txtTwentyFourth.text = ""
             lblTwentyFourth.text = "0.0%"
-        }
-        else
-        {
-            var temp:Double = 0
-            
-            if (txtTwentyFourth.text != "")
-            {
-                temp = validDouble(double: txtTwentyFourth.text!)
-            }
-            if (temp == 0)
-            {
-                txtTwentyFourth.text = ""
-            }
-            
-            fieldAmountChange(autoNumber: "23", newAmount: temp)
+        default:
+            field = userInputAmountInTextField(sender: field)
+            fieldAmountChange(autoNumber: "23", newAmount: validDouble(double: field))
             insertGlobalsToDatabase()
-            
             lblTwentyFourth.text = String(Double(round(100*global.percent)/100)) + "%"
-            lblTotal.text = String(Double(round(100*calcAvailablePercent())/100)) + "%"
-            lblAvailableBal.text = String(Double(round(100*calcAvailableAmount())/100))
         }
         amountOrPercentChangeInArray(name: global.name)
     }
     @IBAction func TwentyFifthEdited(_ sender: UITextField) {
         
         limitLength = 12
-        // VALIDATION
-        if (!textValueChangeApproved()) {
+        var field = userInputAmountInTextField(sender: sender.text!)
+        switch field {
+        case "":
             txtTwentyFifth.text = ""
             lblTwentyFifth.text = "0.0%"
-        }
-        else
-        {
-            var temp:Double = 0
-            
-            if (txtTwentyFifth.text != "")
-            {
-                temp = validDouble(double: txtTwentyFifth.text!)
-            }
-            if (temp == 0)
-            {
-                txtTwentyFifth.text = ""
-            }
-            
-            fieldAmountChange(autoNumber: "24", newAmount: temp)
+        default:
+            field = userInputAmountInTextField(sender: field)
+            fieldAmountChange(autoNumber: "24", newAmount: validDouble(double: field))
             insertGlobalsToDatabase()
-            
             lblTwentyFifth.text = String(Double(round(100*global.percent)/100)) + "%"
-            lblTotal.text = String(Double(round(100*calcAvailablePercent())/100)) + "%"
-            lblAvailableBal.text = String(Double(round(100*calcAvailableAmount())/100))
         }
         amountOrPercentChangeInArray(name: global.name)
     }
     @IBAction func TwentySixthEdited(_ sender: UITextField) {
         
         limitLength = 12
-        // VALIDATION
-        if (!textValueChangeApproved()) {
+        var field = userInputAmountInTextField(sender: sender.text!)
+        switch field {
+        case "":
             txtTwentySixth.text = ""
             lblTwentySixth.text = "0.0%"
-        }
-        else
-        {
-            var temp:Double = 0
-            
-            if (txtTwentySixth.text != "")
-            {
-                temp = validDouble(double: txtTwentySixth.text!)
-            }
-            if (temp == 0)
-            {
-                txtTwentySixth.text = ""
-            }
-            
-            fieldAmountChange(autoNumber: "25", newAmount: temp)
+        default:
+            field = userInputAmountInTextField(sender: field)
+            fieldAmountChange(autoNumber: "25", newAmount: validDouble(double: field))
             insertGlobalsToDatabase()
-            
             lblTwentySixth.text = String(Double(round(100*global.percent)/100)) + "%"
-            lblTotal.text = String(Double(round(100*calcAvailablePercent())/100)) + "%"
-            lblAvailableBal.text = String(Double(round(100*calcAvailableAmount())/100))
         }
         amountOrPercentChangeInArray(name: global.name)
     }
     @IBAction func TwentySeventhEdited(_ sender: UITextField) {
         
         limitLength = 12
-        // VALIDATION
-        if (!textValueChangeApproved()) {
+        var field = userInputAmountInTextField(sender: sender.text!)
+        switch field {
+        case "":
             txtTwentySeventh.text = ""
             lblTwentySeventh.text = "0.0%"
-        }
-        else
-        {
-            var temp:Double = 0
-            
-            if (txtTwentySeventh.text != "")
-            {
-                temp = validDouble(double: txtTwentySeventh.text!)
-            }
-            if (temp == 0)
-            {
-                txtTwentySeventh.text = ""
-            }
-            
-            fieldAmountChange(autoNumber: "26", newAmount: temp)
+        default:
+            field = userInputAmountInTextField(sender: field)
+            fieldAmountChange(autoNumber: "26", newAmount: validDouble(double: field))
             insertGlobalsToDatabase()
-            
             lblTwentySeventh.text = String(Double(round(100*global.percent)/100)) + "%"
-            lblTotal.text = String(Double(round(100*calcAvailablePercent())/100)) + "%"
-            lblAvailableBal.text = String(Double(round(100*calcAvailableAmount())/100))
         }
         amountOrPercentChangeInArray(name: global.name)
     }
     @IBAction func TwentyEighthEdited(_ sender: UITextField) {
         
         limitLength = 12
-        // VALIDATION
-        if (!textValueChangeApproved()) {
+        var field = userInputAmountInTextField(sender: sender.text!)
+        switch field {
+        case "":
             txtTwentyEighth.text = ""
             lblTwentyEighth.text = "0.0%"
-        }
-        else
-        {
-            var temp:Double = 0
-            
-            if (txtTwentyEighth.text != "")
-            {
-                temp = validDouble(double: txtTwentyEighth.text!)
-            }
-            if (temp == 0)
-            {
-                txtTwentyEighth.text = ""
-            }
-            
-            fieldAmountChange(autoNumber: "27", newAmount: temp)
+        default:
+            field = userInputAmountInTextField(sender: field)
+            fieldAmountChange(autoNumber: "27", newAmount: validDouble(double: field))
             insertGlobalsToDatabase()
-            
             lblTwentyEighth.text = String(Double(round(100*global.percent)/100)) + "%"
-            lblTotal.text = String(Double(round(100*calcAvailablePercent())/100)) + "%"
-            lblAvailableBal.text = String(Double(round(100*calcAvailableAmount())/100))
         }
         amountOrPercentChangeInArray(name: global.name)
     }
     @IBAction func TwentyNinethEdited(_ sender: UITextField) {
         
         limitLength = 12
-        // VALIDATION
-        if (!textValueChangeApproved()) {
+        var field = userInputAmountInTextField(sender: sender.text!)
+        switch field {
+        case "":
             txtTwentyNineth.text = ""
             lblTwentyNineth.text = "0.0%"
-        }
-        else
-        {
-            var temp:Double = 0
-            
-            if (txtTwentyNineth.text != "")
-            {
-                temp = validDouble(double: txtTwentyNineth.text!)
-            }
-            if (temp == 0)
-            {
-                txtTwentyNineth.text = ""
-            }
-            
-            fieldAmountChange(autoNumber: "28", newAmount: temp)
+        default:
+            field = userInputAmountInTextField(sender: field)
+            fieldAmountChange(autoNumber: "28", newAmount: validDouble(double: field))
             insertGlobalsToDatabase()
-            
             lblTwentyNineth.text = String(Double(round(100*global.percent)/100)) + "%"
-            lblTotal.text = String(Double(round(100*calcAvailablePercent())/100)) + "%"
-            lblAvailableBal.text = String(Double(round(100*calcAvailableAmount())/100))
         }
         amountOrPercentChangeInArray(name: global.name)
     }
     @IBAction func ThirtiethEdited(_ sender: UITextField) {
         
         limitLength = 12
-        // VALIDATION
-        if (!textValueChangeApproved()) {
+        var field = userInputAmountInTextField(sender: sender.text!)
+        switch field {
+        case "":
             txtThirtieth.text = ""
             lblThirtieth.text = "0.0%"
-        }
-        else
-        {
-            var temp:Double = 0
-            
-            if (txtThirtieth.text != "")
-            {
-                temp = validDouble(double: txtThirtieth.text!)
-            }
-            if (temp == 0)
-            {
-                txtThirtieth.text = ""
-            }
-            
-            fieldAmountChange(autoNumber: "29", newAmount: temp)
+        default:
+            field = userInputAmountInTextField(sender: field)
+            fieldAmountChange(autoNumber: "29", newAmount: validDouble(double: field))
             insertGlobalsToDatabase()
-            
             lblThirtieth.text = String(Double(round(100*global.percent)/100)) + "%"
-            lblTotal.text = String(Double(round(100*calcAvailablePercent())/100)) + "%"
-            lblAvailableBal.text = String(Double(round(100*calcAvailableAmount())/100))
         }
         amountOrPercentChangeInArray(name: global.name)
+    }
+    
+    public func userInputAmountInTextField(sender:String) -> String  {
+        
+        var answer:String = ""
+        switch textValueChangeApproved() {
+        case true:
+            switch sender {
+            case nil, "":
+                return answer
+            default:
+                let dbl = validDouble(double: sender)
+                lblTotal.text = String(Double(round(100*calcAvailablePercent())/100)) + "%"
+                lblAvailableBal.text = String(Double(round(100*calcAvailableAmount())/100))
+                answer = String(Double(round(100*dbl)/100))
+            }
+            return answer
+        case false:
+            return answer
+        }
     }
     
     @IBAction func txt1AmountClicked(_ sender: UITextField) {
@@ -2494,16 +2077,25 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         
         mod = mod + 1
         
-        if (mod % 2 == 1)
-        {
+        switch mod % 2 {
+        case 1:
             ExecuteSegmentTwo()
             Segment = true
-        }
-        else
-        {
+        default:
             ExecuteSegmentOne()
             Segment = false
         }
+        
+//        if (mod % 2 == 1)
+//        {
+//            ExecuteSegmentTwo()
+//            Segment = true
+//        }
+//        else
+//        {
+//            ExecuteSegmentOne()
+//            Segment = false
+//        }
     }
     
     @IBAction func hideOpenKeyboard(_ sender: UIButton) {
@@ -2577,18 +2169,25 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         
         var next:Int = 0
         var position:Int = 0
-        //txtRnm1.bounds.height
-        if (sizeConstraint < 50)
-        {
+        
+        switch sizeConstraint {
+        case ..<50:
             next = 42
-            //position = 42
-            print("small")
-        }
-        else{
+        default:
             next = 72
-            //position = 84
-            print("big")
         }
+        
+//        if (sizeConstraint < 50)
+//        {
+//            next = 42
+//            //position = 42
+//            print("small")
+//        }
+//        else{
+//            next = 72
+//            //position = 84
+//            print("big")
+//        }
         
         var i:Int = 3
         
@@ -2639,7 +2238,7 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         DatabaseController.saveContext()
     }
     
-    // DELETES ALL DATA FROM ORIGINAL ENTITY
+    // deletes all data from original entity
     public func deleteData() {
         
         let retrieve = NSFetchRequest<NSFetchRequestResult>(entityName: "Original")
@@ -2657,7 +2256,7 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         DatabaseController.saveContext()
     }
     
-    // SEARCHES DATABASE FOR A PARTICULAR FIELD'S VALUES AND STORES VALUES INTO GLOBAL VARS AND DELETES RESULT FROM DATABASE
+    // searches database for a particular field's values and stores values into global vars and deletes result from database
     public func retrievepercent(autoNumber:String) {
         
         let predicate = NSPredicate(format: "autoNumber = %@", autoNumber)
@@ -2681,7 +2280,7 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         DatabaseController.saveContext()
     }
     
-    // GETS CORRECT AMOUNT TO ADD, ADDS AMOUNT TO GLOBAL VAR AND THEN VALUES ADDED TO DATABASE
+    // gets correct amount to add, adds amount to global var and then values added to database
     public func addTopercent() {
         
         let addition:Double = amountToAdd()
@@ -2694,10 +2293,8 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     public func subtractFrompercent() {
         
         let subtraction:Double = amountToSubtract()
-        
         global.percent = global.percent - subtraction
         global.amount = calcAmountFromPercent(percent: global.percent, income: tempIncome)
-        
         insertGlobalsToDatabase()
     }
     
@@ -2734,34 +2331,36 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         fetchValuesAndAddToGlobals(autoNumber: "29")
     }
     
-    // CALCULATES CORRECT AMOUNT TO ADD
+    // calculates correct amount to add
     public func amountToAdd() -> Double {
         
         step1inAmountChange()
         global.totalAmountFetched = global.totalAmountFetched + global.amount
         global.totalPercentFetched = global.totalPercentFetched + global.percent
         
-        // difference: 5000 - SUM(all field totalAmounts)
         let difference:Double = tempIncome - global.totalAmountFetched
-        
-        // amountPerPercent: 1% of 5000
         let amountPerPercent:Double = tempIncome * 0.01
-        
         var answer:Double = 0
         
-        // if SUM(field percentages) < 100 then there can be an addition
         if (global.totalPercentFetched < 100)
         {
-            // if 1% of 5000 > current amount i.e 20: then addition value will = 0.2
-            if (amountPerPercent > difference)
-            {
+            switch amountPerPercent {
+            case _ where amountPerPercent > difference:
                 answer = difference / tempIncome * 100
-            }
-                // else addition value will be = 1
-            else
-            {
+            default:
                 answer = 1
             }
+            
+//            // if 1% of 5000 > current amount i.e 20: then addition value will = 0.2
+//            if (amountPerPercent > difference)
+//            {
+//                answer = difference / tempIncome * 100
+//            }
+//                // else addition value will be = 1
+//            else
+//            {
+//                answer = 1
+//            }
         }
         // reset global variables so that they will be calculated properly next time button pressed.
         global.totalAmountFetched = 0
@@ -2784,16 +2383,24 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         // current field percentage > 0 then there can be a subtraction
         if (global.percent > 0)
         {
-            // if current amount < 1% of 5000 i.e 20 then subtraction will be = 0.2
-            if (global.amount < amountPerPercent)
-            {
+            switch amountPerPercent {
+            case _ where amountPerPercent > global.amount:
                 answer = global.percent
-            }
-                // else addition value will be = 1
-            else
-            {
+            default:
                 answer = 1
             }
+            
+            
+//            // if current amount < 1% of 5000 i.e 20 then subtraction will be = 0.2
+//            if (global.amount < amountPerPercent)
+//            {
+//                answer = global.percent
+//            }
+//                // else addition value will be = 1
+//            else
+//            {
+//                answer = 1
+//            }
         }
         // reset global variables so that they will be calculated properly next time button pressed.
         global.totalAmountFetched = 0
@@ -2990,20 +2597,26 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         return totalAmounts
     }
     
-    // VALIDATE THAT INPUT AMOUNT IS A DOUBLE AND DOES NOT EXCEED AVAILABLE AMOUNT
+    // validate that input amount is a double and does not exceed available amount
     public func textValueChangeApproved() -> Bool {
         
         let totalAmounts:Double = calcTotalAmount()
         
-        // FINAL VALIDATION
-        if (totalAmounts > tempIncome)
-        {
+        switch totalAmounts {
+        case _ where totalAmounts > tempIncome:
             return false
-        }
-        else
-        {
+        default:
             return true
         }
+//        // FINAL VALIDATION
+//        if (totalAmounts > tempIncome)
+//        {
+//            return false
+//        }
+//        else
+//        {
+//            return true
+//        }
     }
     
     public func validDouble(double:String) -> Double {
@@ -3023,14 +2636,20 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
             }
         }
         
-        if ((Double(newString)) != nil)
-        {
+        switch Double(newString) {
+        case nil:
+            return 0
+        default:
             return Double(newString)!
         }
-        else
-        {
-            return 0
-        }
+//        if ((Double(newString)) != nil)
+//        {
+//            return Double(newString)!
+//        }
+//        else
+//        {
+//            return 0
+//        }
     }
     
     public func insertGlobalsToDatabase() {
@@ -3040,7 +2659,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         add.percent = global.percent
         add.autoNumber = String(global.autoNumber)
         add.amount = global.amount
-        
         DatabaseController.saveContext()
     }
     
@@ -3049,9 +2667,7 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         
         add.fieldName = global.name
         add.totalAmount = 0
-        
         FirstViewController.stR.totals.append("0.0")
-        
         DatabaseController.saveContext()
     }
     
@@ -3060,7 +2676,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         let totalAmounts:Double = calcTotalAmount()
         var available:Double = 0
         
-        // TOTAL
         if (txtTotal.text != "")
         {
             available = (tempIncome - totalAmounts) / tempIncome * 100
@@ -3074,7 +2689,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         let totalAmounts:Double = calcTotalAmount()
         var available:Double = 0
         
-        // TOTAL
         if (txtTotal.text != "")
         {
             available = tempIncome - totalAmounts
@@ -3083,8 +2697,8 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         return available
     }
     
-    // TAKES ALL CURRENT VALUES, PUTS THEM INTO AN ARRAY, BUT CHANGES AMOUNTS USING THE NEW INCOME INPUT BY USER, PERCENTAGES STAY SAME
-    // THEN ADDS NEW VALUES TO DATABASE
+    // takes all current values, puts them into an array, but changes amounts using the new income input by user, percentages stay same
+    // then adds new values to database
     public func incomeChange() {
         
         var autoNumber:Int = 0
@@ -3096,7 +2710,7 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         var amounts = [String()]
         var percentages = [String()]
         
-        // ADD ALL DATABASE DATA (THAT DOESN'T CHANGE) AS WELL AS NEW VALUES TO ARRAYS AND DELETE DATABASE DATA
+        // add all database data (that doesn't change) as well as new values to arrays and delete database data
         while (go == true)
         {
             go = false
@@ -3135,7 +2749,7 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         autonumbers.remove(at: (autonumbers.count - 1))
         percentages.remove(at: (percentages.count - 1))
         
-        // ADD NEW & DISPLAY
+        // add new & display
         var i:Int = 0
         let limit = names.count
         
@@ -3147,7 +2761,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
             add.percent = Double(percentages[i])!
             add.autoNumber = autonumbers[i]
             add.amount = Double(amounts[i])!
-            
             newAmountForTextFields(autoNumber: i, amount: Double(amounts[i])!)
             DatabaseController.saveContext()
             i += 1
@@ -3157,13 +2770,12 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     public func calcNumOfDataOriginal() -> Int {
         
         var answer:Int = 0
-        
         let retrieve = NSFetchRequest<NSFetchRequestResult>(entityName: "Original")
         
         do {
             let searchResults = try DatabaseController.getContext().fetch(retrieve)
             
-            // MINUS 1 BECAUSE WE DON'T WANT TO COUNT income VALUE
+            // minus 1 because we don't want to count income value
             answer = searchResults.count - 1
         }
         catch {
@@ -3173,129 +2785,166 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     }
     
     public func newAmountForTextFields(autoNumber:Int, amount:Double) {
-        if (autoNumber == 0)
-        {
-            txtFirst.text = String(Double(round(100*Double(amount))/100))
+        
+        let answer = String(Double(round(100*Double(amount))/100))
+        switch autoNumber {
+        case 0: txtFirst.text = answer
+        case 1: txtSecond.text = answer
+        case 2: txtThird.text = answer
+        case 3: txtFourth.text = answer
+        case 4: txtFifth.text = answer
+        case 5: txtSixth.text = answer
+        case 6: txtSeventh.text = answer
+        case 7: txtEighth.text = answer
+        case 8: txtNineth.text = answer
+        case 9: txtTenth.text = answer
+        case 10: txtEleventh.text = answer
+        case 11: txtTwelfth.text = answer
+        case 12: txtThirteenth.text = answer
+        case 13: txtFourteenth.text = answer
+        case 14: txtFifteenth.text = answer
+        case 15: txtSixteenth.text = answer
+        case 16: txtSeventeenth.text = answer
+        case 17: txtEighteenth.text = answer
+        case 18: txtNineteenth.text = answer
+        case 19: txtTwentieth.text = answer
+        case 20: txtTwentyFirst.text = answer
+        case 21: txtTwentySecond.text = answer
+        case 22: txtTwentyThird.text = answer
+        case 23: txtTwentyFourth.text = answer
+        case 24: txtTwentyFifth.text = answer
+        case 25: txtTwentySixth.text = answer
+        case 26: txtTwentySeventh.text = answer
+        case 27: txtTwentyEighth.text = answer
+        case 28: txtTwentyNineth.text = answer
+        case 29: txtThirtieth.text = answer
+        default: print("error")
         }
-        else if (autoNumber == 1)
-        {
-            txtSecond.text = String(Double(round(100*Double(amount))/100))
-        }
-        else if (autoNumber == 2)
-        {
-            txtThird.text = String(Double(round(100*Double(amount))/100))
-        }
-        else if (autoNumber == 3)
-        {
-            txtFourth.text = String(Double(round(100*Double(amount))/100))
-        }
-        else if (autoNumber == 4)
-        {
-            txtFifth.text = String(Double(round(100*Double(amount))/100))
-        }
-        else if (autoNumber == 5)
-        {
-            txtSixth.text = String(Double(round(100*Double(amount))/100))
-        }
-        else if (autoNumber == 6)
-        {
-            txtSeventh.text = String(Double(round(100*Double(amount))/100))
-        }
-        else if (autoNumber == 7)
-        {
-            txtEighth.text = String(Double(round(100*Double(amount))/100))
-        }
-        else if (autoNumber == 8)
-        {
-            txtNineth.text = String(Double(round(100*Double(amount))/100))
-        }
-        else if (autoNumber == 9)
-        {
-            txtTenth.text = String(Double(round(100*Double(amount))/100))
-        }
-        else if (autoNumber == 10)
-        {
-            txtEleventh.text = String(Double(round(100*Double(amount))/100))
-        }
-        else if (autoNumber == 11)
-        {
-            txtTwelfth.text = String(Double(round(100*Double(amount))/100))
-        }
-        else if (autoNumber == 12)
-        {
-            txtThirteenth.text = String(Double(round(100*Double(amount))/100))
-        }
-        else if (autoNumber == 13)
-        {
-            txtFourteenth.text = String(Double(round(100*Double(amount))/100))
-        }
-        else if (autoNumber == 14)
-        {
-            txtFifteenth.text = String(Double(round(100*Double(amount))/100))
-        }
-        else if (autoNumber == 15)
-        {
-            txtSixteenth.text = String(Double(round(100*Double(amount))/100))
-        }
-        else if (autoNumber == 16)
-        {
-            txtSeventeenth.text = String(Double(round(100*Double(amount))/100))
-        }
-        else if (autoNumber == 17)
-        {
-            txtEighteenth.text = String(Double(round(100*Double(amount))/100))
-        }
-        else if (autoNumber == 18)
-        {
-            txtNineteenth.text = String(Double(round(100*Double(amount))/100))
-        }
-        else if (autoNumber == 19)
-        {
-            txtTwentieth.text = String(Double(round(100*Double(amount))/100))
-        }
-        else if (autoNumber == 20)
-        {
-            txtTwentyFirst.text = String(Double(round(100*Double(amount))/100))
-        }
-        else if (autoNumber == 21)
-        {
-            txtTwentySecond.text = String(Double(round(100*Double(amount))/100))
-        }
-        else if (autoNumber == 22)
-        {
-            txtTwentyThird.text = String(Double(round(100*Double(amount))/100))
-        }
-        else if (autoNumber == 23)
-        {
-            txtTwentyFourth.text = String(Double(round(100*Double(amount))/100))
-        }
-        else if (autoNumber == 24)
-        {
-            txtTwentyFifth.text = String(Double(round(100*Double(amount))/100))
-        }
-        else if (autoNumber == 25)
-        {
-            txtTwentySixth.text = String(Double(round(100*Double(amount))/100))
-        }
-        else if (autoNumber == 26)
-        {
-            txtTwentySeventh.text = String(Double(round(100*Double(amount))/100))
-        }
-        else if (autoNumber == 27)
-        {
-            txtTwentyEighth.text = String(Double(round(100*Double(amount))/100))
-        }
-        else if (autoNumber == 28)
-        {
-            txtTwentyNineth.text = String(Double(round(100*Double(amount))/100))
-        }
-        else if (autoNumber == 29)
-        {
-            txtThirtieth.text = String(Double(round(100*Double(amount))/100))
-        }
+//
+//
+//        if (autoNumber == 0)
+//        {
+//            txtFirst.text = String(Double(round(100*Double(amount))/100))
+//        }
+//        else if (autoNumber == 1)
+//        {
+//            txtSecond.text = String(Double(round(100*Double(amount))/100))
+//        }
+//        else if (autoNumber == 2)
+//        {
+//            txtThird.text = String(Double(round(100*Double(amount))/100))
+//        }
+//        else if (autoNumber == 3)
+//        {
+//            txtFourth.text = String(Double(round(100*Double(amount))/100))
+//        }
+//        else if (autoNumber == 4)
+//        {
+//            txtFifth.text = String(Double(round(100*Double(amount))/100))
+//        }
+//        else if (autoNumber == 5)
+//        {
+//            txtSixth.text = String(Double(round(100*Double(amount))/100))
+//        }
+//        else if (autoNumber == 6)
+//        {
+//            txtSeventh.text = String(Double(round(100*Double(amount))/100))
+//        }
+//        else if (autoNumber == 7)
+//        {
+//            txtEighth.text = String(Double(round(100*Double(amount))/100))
+//        }
+//        else if (autoNumber == 8)
+//        {
+//            txtNineth.text = String(Double(round(100*Double(amount))/100))
+//        }
+//        else if (autoNumber == 9)
+//        {
+//            txtTenth.text = String(Double(round(100*Double(amount))/100))
+//        }
+//        else if (autoNumber == 10)
+//        {
+//            txtEleventh.text = String(Double(round(100*Double(amount))/100))
+//        }
+//        else if (autoNumber == 11)
+//        {
+//            txtTwelfth.text = String(Double(round(100*Double(amount))/100))
+//        }
+//        else if (autoNumber == 12)
+//        {
+//            txtThirteenth.text = String(Double(round(100*Double(amount))/100))
+//        }
+//        else if (autoNumber == 13)
+//        {
+//            txtFourteenth.text = String(Double(round(100*Double(amount))/100))
+//        }
+//        else if (autoNumber == 14)
+//        {
+//            txtFifteenth.text = String(Double(round(100*Double(amount))/100))
+//        }
+//        else if (autoNumber == 15)
+//        {
+//            txtSixteenth.text = String(Double(round(100*Double(amount))/100))
+//        }
+//        else if (autoNumber == 16)
+//        {
+//            txtSeventeenth.text = String(Double(round(100*Double(amount))/100))
+//        }
+//        else if (autoNumber == 17)
+//        {
+//            txtEighteenth.text = String(Double(round(100*Double(amount))/100))
+//        }
+//        else if (autoNumber == 18)
+//        {
+//            txtNineteenth.text = String(Double(round(100*Double(amount))/100))
+//        }
+//        else if (autoNumber == 19)
+//        {
+//            txtTwentieth.text = String(Double(round(100*Double(amount))/100))
+//        }
+//        else if (autoNumber == 20)
+//        {
+//            txtTwentyFirst.text = String(Double(round(100*Double(amount))/100))
+//        }
+//        else if (autoNumber == 21)
+//        {
+//            txtTwentySecond.text = String(Double(round(100*Double(amount))/100))
+//        }
+//        else if (autoNumber == 22)
+//        {
+//            txtTwentyThird.text = String(Double(round(100*Double(amount))/100))
+//        }
+//        else if (autoNumber == 23)
+//        {
+//            txtTwentyFourth.text = String(Double(round(100*Double(amount))/100))
+//        }
+//        else if (autoNumber == 24)
+//        {
+//            txtTwentyFifth.text = String(Double(round(100*Double(amount))/100))
+//        }
+//        else if (autoNumber == 25)
+//        {
+//            txtTwentySixth.text = String(Double(round(100*Double(amount))/100))
+//        }
+//        else if (autoNumber == 26)
+//        {
+//            txtTwentySeventh.text = String(Double(round(100*Double(amount))/100))
+//        }
+//        else if (autoNumber == 27)
+//        {
+//            txtTwentyEighth.text = String(Double(round(100*Double(amount))/100))
+//        }
+//        else if (autoNumber == 28)
+//        {
+//            txtTwentyNineth.text = String(Double(round(100*Double(amount))/100))
+//        }
+//        else if (autoNumber == 29)
+//        {
+//            txtThirtieth.text = String(Double(round(100*Double(amount))/100))
+//        }
     }
     
-    // FETCHES ALL DATA FROM DATABASE AND DISPLAYS IT APPROPRIATELY
+    // fetches all data from database and displays it appropriately
     public func fetchDatabaseDataThenDisplayIt() {
         
         var autoNumber:String = String()
@@ -3513,7 +3162,7 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    // DISPLAYS AVAILABLE % AND INCOME
+    // displays available % and income
     public func displayIncomeAndAvailable(usedPercent:Double) {
         let avPercent:Double = 100 - usedPercent
         lblTotal.text = String(Double(round(100*avPercent)/100)) + "%"
@@ -3547,7 +3196,7 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         DatabaseController.saveContext()
     }
     
-    // COMPARES POTENTIAL NEW NAME TO OLD NAME AND THEN CALLES ANOTHER FUNC TO RENAME IT IN DATABASE
+    // compares potential new name to old name and then calles another func to rename it in database
     public func nameChangeAddToDatabase() {
         
         var tempName:String = String()
@@ -3735,7 +3384,7 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    // FETCHES CURRENT DATA FROM OLD FIELD NAME, STORES VALUES IN VARS, DELETES IT FROM DATABASE AND ADDS NEW VALUES TO DATABASE
+    // fetches current data from old field name, stores values in vars, deletes it from database and adds new values to database
     public func rename(newName: String, oldName: String) {
         
         var name:String = String()
