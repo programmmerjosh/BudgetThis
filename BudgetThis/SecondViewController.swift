@@ -179,10 +179,10 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        // Initialise textfields
+        // initialise textfields
         textDelegates()
         
-        // Check for first run
+        // check for first run
         if (FirstViewController.stR.firstRun == true)
         {
             addInitialFieldsToDatabase()
@@ -191,7 +191,7 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         // calc num of data
         Arraylimit = calcNumOfDataOriginal()
         
-        // Fetch data
+        // fetch data
         fetchDatabaseDataThenDisplayIt()
         
         alphaOneOff()
@@ -218,7 +218,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
             blankLabelTopConstraint.constant = CGFloat(Gvars.blanklabelHeight)
             bLabel =  false
         }
-        
         adjustFontSizesToFitTheWidths()
     }
     
@@ -326,7 +325,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
                 self.moveBlankLabel(direction: "Down", sizeConstraint: sizeConstraint)
                 self.view.layoutIfNeeded()
             })
-            
             txtFN.resignFirstResponder()
         }
     }
@@ -340,7 +338,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
             self.showFields(field: self.Arraylimit)
             self.view.layoutIfNeeded()
         })
-        
         txtFN.resignFirstResponder()
     }
     
@@ -440,15 +437,9 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     // adding a percentage to the first row
     @IBAction func addFirst(_ sender: UIButton) {
         
-        // searches database for first field's values and stores values in global vars
         retrievepercent(autoNumber: "0")
-        
-        // gets correct amount to add, adds amount to global var and then values added to database
         addTopercent()
-        
         amountOrPercentChangeInArray(name: global.name)
-        
-        // must display the new values appropriately
         global.name = lbl1.text!
         lblFirst.text = String(Double(round(100*global.percent)/100)) + "%"
         txtFirst.text = String(Double(round(100*global.amount)/100))
@@ -460,7 +451,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         
         retrievepercent(autoNumber: "0")
         subtractFrompercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl1.text!
         lblFirst.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -473,7 +463,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 
         retrievepercent(autoNumber: "1")
         addTopercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl2.text!
         lblSecond.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -486,7 +475,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 
         retrievepercent(autoNumber: "1")
         subtractFrompercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl2.text!
         lblSecond.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -499,7 +487,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         
         retrievepercent(autoNumber: "2")
         addTopercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl3.text!
         lblThird.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -512,7 +499,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         
         retrievepercent(autoNumber: "2")
         subtractFrompercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl3.text!
         lblThird.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -524,7 +510,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     
         retrievepercent(autoNumber: "3")
         addTopercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl4.text!
         lblFourth.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -536,7 +521,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 
         retrievepercent(autoNumber: "3")
         subtractFrompercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl4.text!
         lblFourth.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -548,7 +532,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 
         retrievepercent(autoNumber: "4")
         addTopercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl5.text!
         lblFifth.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -560,7 +543,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 
         retrievepercent(autoNumber: "4")
         subtractFrompercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl5.text!
         lblFifth.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -572,7 +554,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         
         retrievepercent(autoNumber: "5")
         addTopercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl6.text!
         lblSixth.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -584,7 +565,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 
         retrievepercent(autoNumber: "5")
         subtractFrompercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl6.text!
         lblSixth.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -596,7 +576,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 
         retrievepercent(autoNumber: "6")
         addTopercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl7.text!
         lblSeventh.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -608,7 +587,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 
         retrievepercent(autoNumber: "6")
         subtractFrompercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl7.text!
         lblSeventh.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -620,7 +598,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 
         retrievepercent(autoNumber: "7")
         addTopercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl8.text!
         lblEighth.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -632,7 +609,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     
         retrievepercent(autoNumber: "7")
         subtractFrompercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl8.text!
         lblEighth.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -644,7 +620,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     
         retrievepercent(autoNumber: "8")
         addTopercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl9.text!
         lblNineth.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -656,7 +631,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     
         retrievepercent(autoNumber: "8")
         subtractFrompercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl9.text!
         lblNineth.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -668,7 +642,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 
         retrievepercent(autoNumber: "9")
         addTopercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl10.text!
         lblTenth.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -680,7 +653,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 
         retrievepercent(autoNumber: "9")
         subtractFrompercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl10.text!
         lblTenth.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -692,7 +664,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 
         retrievepercent(autoNumber: "10")
         addTopercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl11.text!
         lblEleventh.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -704,7 +675,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     
         retrievepercent(autoNumber: "10")
         subtractFrompercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl11.text!
         lblEleventh.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -716,7 +686,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 
         retrievepercent(autoNumber: "11")
         addTopercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl12.text!
         lblTwelfth.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -728,7 +697,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     
         retrievepercent(autoNumber: "11")
         subtractFrompercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl12.text!
         lblTwelfth.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -740,7 +708,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 
         retrievepercent(autoNumber: "12")
         addTopercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl13.text!
         lblThirteenth.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -752,7 +719,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     
         retrievepercent(autoNumber: "12")
         subtractFrompercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl13.text!
         lblThirteenth.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -764,7 +730,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     
         retrievepercent(autoNumber: "13")
         addTopercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl14.text!
         lblFourteenth.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -776,7 +741,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 
         retrievepercent(autoNumber: "13")
         subtractFrompercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl14.text!
         lblFourteenth.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -788,7 +752,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     
         retrievepercent(autoNumber: "14")
         addTopercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl15.text!
         lblFifteenth.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -800,7 +763,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 
         retrievepercent(autoNumber: "14")
         subtractFrompercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl15.text!
         lblFifteenth.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -812,7 +774,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     
         retrievepercent(autoNumber: "15")
         addTopercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl16.text!
         lblSixteenth.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -824,7 +785,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 
         retrievepercent(autoNumber: "15")
         subtractFrompercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl16.text!
         lblSixteenth.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -836,7 +796,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 
         retrievepercent(autoNumber: "16")
         addTopercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl17.text!
         lblSeventeenth.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -848,7 +807,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     
         retrievepercent(autoNumber: "16")
         subtractFrompercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl17.text!
         lblSeventeenth.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -860,7 +818,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 
         retrievepercent(autoNumber: "17")
         addTopercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl18.text!
         lblEighteenth.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -872,7 +829,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     
         retrievepercent(autoNumber: "17")
         subtractFrompercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl18.text!
         lblEighteenth.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -884,7 +840,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 
         retrievepercent(autoNumber: "18")
         addTopercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl19.text!
         lblNineteenth.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -896,7 +851,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     
         retrievepercent(autoNumber: "18")
         subtractFrompercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl19.text!
         lblNineteenth.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -908,7 +862,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 
         retrievepercent(autoNumber: "19")
         addTopercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl20.text!
         lblTwentieth.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -920,7 +873,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     
         retrievepercent(autoNumber: "19")
         subtractFrompercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl20.text!
         lblTwentieth.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -932,7 +884,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 
         retrievepercent(autoNumber: "20")
         addTopercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl21.text!
         lblTwentyFirst.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -944,7 +895,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 
         retrievepercent(autoNumber: "20")
         subtractFrompercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl21.text!
         lblTwentyFirst.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -956,7 +906,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     
         retrievepercent(autoNumber: "21")
         addTopercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl22.text!
         lblTwentySecond.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -968,7 +917,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     
         retrievepercent(autoNumber: "21")
         subtractFrompercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl22.text!
         lblTwentySecond.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -980,7 +928,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 
         retrievepercent(autoNumber: "22")
         addTopercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl23.text!
         lblTwentyThird.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -992,7 +939,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 
         retrievepercent(autoNumber: "22")
         subtractFrompercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl23.text!
         lblTwentyThird.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -1004,7 +950,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     
         retrievepercent(autoNumber: "23")
         addTopercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl24.text!
         lblTwentyFourth.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -1016,7 +961,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 
         retrievepercent(autoNumber: "23")
         subtractFrompercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl24.text!
         lblTwentyFourth.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -1028,7 +972,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 
         retrievepercent(autoNumber: "24")
         addTopercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl25.text!
         lblTwentyFifth.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -1040,7 +983,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 
         retrievepercent(autoNumber: "24")
         subtractFrompercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl25.text!
         lblTwentyFifth.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -1052,7 +994,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 
         retrievepercent(autoNumber: "25")
         addTopercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl26.text!
         lblTwentySixth.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -1064,7 +1005,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 
         retrievepercent(autoNumber: "25")
         subtractFrompercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl26.text!
         lblTwentySixth.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -1076,7 +1016,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 
         retrievepercent(autoNumber: "26")
         addTopercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl27.text!
         lblTwentySeventh.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -1088,7 +1027,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 
         retrievepercent(autoNumber: "26")
         subtractFrompercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl27.text!
         lblTwentySeventh.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -1100,7 +1038,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 
         retrievepercent(autoNumber: "27")
         addTopercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl28.text!
         lblTwentyEighth.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -1112,7 +1049,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 
         retrievepercent(autoNumber: "27")
         subtractFrompercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl28.text!
         lblTwentyEighth.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -1124,7 +1060,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 
         retrievepercent(autoNumber: "28")
         addTopercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl29.text!
         lblTwentyNineth.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -1136,7 +1071,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 
         retrievepercent(autoNumber: "28")
         subtractFrompercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl29.text!
         lblTwentyNineth.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -1148,7 +1082,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 
         retrievepercent(autoNumber: "29")
         addTopercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl30.text!
         lblThirtieth.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -1160,7 +1093,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     
         retrievepercent(autoNumber: "29")
         subtractFrompercent()
-        
         amountOrPercentChangeInArray(name: global.name)
         global.name = lbl30.text!
         lblThirtieth.text = String(Double(round(100*global.percent)/100)) + "%"
@@ -1175,7 +1107,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         if (Arraylimit < 30)
         {
             self.txtFN.text = ""
-            
             UIView.animate(withDuration: 0.3, animations: {
                 self.alphaOneOn()
                 self.hideRightTextFields(Key: "All")
@@ -1216,21 +1147,13 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         limitLength = 12
         let input:String = txtTotal.text!
         let income:Double = validDouble(double: input)
-        
         if (income == 0)
         {
             txtTotal.text = ""
         }
-        
         tempIncome = income
-        
-        // replaces new amounts in database, percentages stay same
         incomeChange()
-        
-        // income is added to database separately with unique autonumber
         addIncomeAmount(incomeAmount: tempIncome)
-        
-        // display percentage correctly at all times
         updateTotalDisplays()
     }
     @IBAction func FirstEdited(_ sender: UITextField) {
@@ -1714,369 +1637,137 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         amountOrPercentChangeInArray(name: global.name)
     }
     
-    public func userInputAmountInTextField(sender:String) -> String  {
-        
-        var answer:String = ""
-        switch textValueChangeApproved() {
-        case true:
-            switch sender {
-            case nil, "":
-                return answer
-            default:
-                let dbl = validDouble(double: sender)
-                lblTotal.text = String(Double(round(100*calcAvailablePercent())/100)) + "%"
-                lblAvailableBal.text = String(Double(round(100*calcAvailableAmount())/100))
-                answer = String(Double(round(100*dbl)/100))
-            }
-            return answer
-        case false:
-            return answer
-        }
-    }
-    
     @IBAction func txt1AmountClicked(_ sender: UITextField) {
-    
-        if (txtFirst.text == "0.0")
-        {
-            txtFirst.text = ""
-        }
+        if (txtFirst.text == "0.0") { txtFirst.text = "" }
     }
     @IBAction func txt2AmountClicked(_ sender: UITextField) {
-        
-        if (txtSecond.text == "0.0")
-        {
-            txtSecond.text = ""
-        }
+        if (txtSecond.text == "0.0") { txtSecond.text = "" }
     }
     @IBAction func txt3AmountClicked(_ sender: UITextField) {
-        
-        if (txtThird.text == "0.0")
-        {
-            txtThird.text = ""
-        }
+        if (txtThird.text == "0.0") { txtThird.text = "" }
     }
     @IBAction func txt4AmountClicked(_ sender: UITextField) {
-        
-        if (txtFourth.text == "0.0")
-        {
-            txtFourth.text = ""
-        }
+        if (txtFourth.text == "0.0") { txtFourth.text = "" }
     }
     @IBAction func txt5AmountClicked(_ sender: UITextField) {
-        
-        if (txtFifth.text == "0.0")
-        {
-            txtFifth.text = ""
-        }
+        if (txtFifth.text == "0.0") { txtFifth.text = "" }
     }
     @IBAction func txt6AmountClicked(_ sender: UITextField) {
-        
-        if (txtSixth.text == "0.0")
-        {
-            txtSixth.text = ""
-        }
+        if (txtSixth.text == "0.0") { txtSixth.text = "" }
     }
     @IBAction func txt7AmountClicked(_ sender: UITextField) {
-        
-        if (txtSeventh.text == "0.0")
-        {
-            txtSeventh.text = ""
-        }
+        if (txtSeventh.text == "0.0") { txtSeventh.text = "" }
     }
     @IBAction func txt8AmountClicked(_ sender: UITextField) {
-        
-        if (txtEighth.text == "0.0")
-        {
-            txtEighth.text = ""
-        }
+        if (txtEighth.text == "0.0") { txtEighth.text = "" }
     }
     @IBAction func txt9AmountClicked(_ sender: UITextField) {
-        
-        if (txtNineth.text == "0.0")
-        {
-            txtNineth.text = ""
-        }
+        if (txtNineth.text == "0.0") { txtNineth.text = "" }
     }
     @IBAction func txt10AmountClicked(_ sender: UITextField) {
-        
-        if (txtTenth.text == "0.0")
-        {
-            txtTenth.text = ""
-        }
+        if (txtTenth.text == "0.0") { txtTenth.text = "" }
     }
     @IBAction func txt11AmountClicked(_ sender: UITextField) {
-        
-        if (txtEleventh.text == "0.0")
-        {
-            txtEleventh.text = ""
-        }
+        if (txtEleventh.text == "0.0") { txtEleventh.text = "" }
     }
     @IBAction func txt12AmountClicked(_ sender: UITextField) {
-        
-        if (txtTwelfth.text == "0.0")
-        {
-            txtTwelfth.text = ""
-        }
+        if (txtTwelfth.text == "0.0") { txtTwelfth.text = "" }
     }
     @IBAction func txt13AmountClicked(_ sender: UITextField) {
-        
-        if (txtThirteenth.text == "0.0")
-        {
-            txtThirteenth.text = ""
-        }
+        if (txtThirteenth.text == "0.0") { txtThirteenth.text = "" }
     }
     @IBAction func txt14AmountClicked(_ sender: UITextField) {
-        
-        if (txtFourteenth.text == "0.0")
-        {
-            txtFourteenth.text = ""
-        }
+        if (txtFourteenth.text == "0.0") { txtFourteenth.text = "" }
     }
     @IBAction func txt15AmountClicked(_ sender: UITextField) {
-        
-        if (txtFifteenth.text == "0.0")
-        {
-            txtFifteenth.text = ""
-        }
+        if (txtFifteenth.text == "0.0") { txtFifteenth.text = "" }
     }
     @IBAction func txt16AmountClicked(_ sender: UITextField) {
-        
-        if (txtSixteenth.text == "0.0")
-        {
-            txtSixteenth.text = ""
-        }
+        if (txtSixteenth.text == "0.0") { txtSixteenth.text = "" }
     }
     @IBAction func txt17AmountClicked(_ sender: UITextField) {
-        
-        if (txtSeventeenth.text == "0.0")
-        {
-            txtSeventeenth.text = ""
-        }
+        if (txtSeventeenth.text == "0.0") { txtSeventeenth.text = "" }
     }
     @IBAction func txt18AmountClicked(_ sender: UITextField) {
-        
-        if (txtEighteenth.text == "0.0")
-        {
-            txtEighteenth.text = ""
-        }
+        if (txtEighteenth.text == "0.0") { txtEighteenth.text = "" }
     }
     @IBAction func txt19AmountClicked(_ sender: UITextField) {
-        
-        if (txtNineteenth.text == "0.0")
-        {
-            txtNineteenth.text = ""
-        }
+        if (txtNineteenth.text == "0.0") { txtNineteenth.text = "" }
     }
     @IBAction func txt20AmountClicked(_ sender: UITextField) {
-        
-        if (txtTwentieth.text == "0.0")
-        {
-            txtTwentieth.text = ""
-        }
+        if (txtTwentieth.text == "0.0") { txtTwentieth.text = "" }
     }
     @IBAction func txt21AmountClicked(_ sender: UITextField) {
-        
-        if (txtTwentyFirst.text == "0.0")
-        {
-            txtTwentyFirst.text = ""
-        }
+        if (txtTwentyFirst.text == "0.0") { txtTwentyFirst.text = "" }
     }
     @IBAction func txt22AmountClicked(_ sender: UITextField) {
-        
-        if (txtTwentySecond.text == "0.0")
-        {
-            txtTwentySecond.text = ""
-        }
+        if (txtTwentySecond.text == "0.0") { txtTwentySecond.text = "" }
     }
     @IBAction func txt23AmountClicked(_ sender: UITextField) {
-        
-        if (txtTwentyThird.text == "0.0")
-        {
-            txtTwentyThird.text = ""
-        }
+        if (txtTwentyThird.text == "0.0") { txtTwentyThird.text = "" }
     }
     @IBAction func txt24AmountClicked(_ sender: UITextField) {
-        
-        if (txtTwentyFourth.text == "0.0")
-        {
-            txtTwentyFourth.text = ""
-        }
+        if (txtTwentyFourth.text == "0.0") { txtTwentyFourth.text = "" }
     }
     @IBAction func txt25AmountClicked(_ sender: UITextField) {
-        
-        if (txtTwentyFifth.text == "0.0")
-        {
-            txtTwentyFifth.text = ""
-        }
+        if (txtTwentyFifth.text == "0.0") { txtTwentyFifth.text = "" }
     }
     @IBAction func txt26AmountClicked(_ sender: UITextField) {
-        
-        if (txtTwentySixth.text == "0.0")
-        {
-            txtTwentySixth.text = ""
-        }
+        if (txtTwentySixth.text == "0.0") { txtTwentySixth.text = "" }
     }
     @IBAction func txt27AmountClicked(_ sender: UITextField) {
-        
-        if (txtTwentySeventh.text == "0.0")
-        {
-            txtTwentySeventh.text = ""
-        }
+        if (txtTwentySeventh.text == "0.0") { txtTwentySeventh.text = "" }
     }
     @IBAction func txt28AmountClicked(_ sender: UITextField) {
-        
-        if (txtTwentyEighth.text == "0.0")
-        {
-            txtTwentyEighth.text = ""
-        }
+        if (txtTwentyEighth.text == "0.0") { txtTwentyEighth.text = "" }
     }
     @IBAction func txt29AmountClicked(_ sender: UITextField) {
-        
-        if (txtTwentyNineth.text == "0.0")
-        {
-            txtTwentyNineth.text = ""
-        }
+        if (txtTwentyNineth.text == "0.0") { txtTwentyNineth.text = "" }
     }
     @IBAction func txt30AmountClicked(_ sender: UITextField) {
-        
-        if (txtThirtieth.text == "0.0")
-        {
-            txtThirtieth.text = ""
-        }
+        if (txtThirtieth.text == "0.0") { txtThirtieth.text = "" }
     }
-    
     
     @IBAction func EditedNewFieldName(_ sender: UITextField) {
         
         limitLength = 25
         txtFN.adjustsFontSizeToFitWidth = true
     }
-    @IBAction func Editedr1(_ sender: UITextField) {
-        
-        limitLength = 25
-    }
-    @IBAction func Editedr2(_ sender: UITextField) {
-        
-        limitLength = 25
-    }
-    @IBAction func Editedr3(_ sender: UITextField) {
-        
-        limitLength = 25
-    }
-    @IBAction func Editedr4(_ sender: UITextField) {
-        
-        limitLength = 25
-    }
-    @IBAction func Editedr5(_ sender: UITextField) {
-        
-        limitLength = 25
-    }
-    @IBAction func Editedr6(_ sender: UITextField) {
-        
-        limitLength = 25
-    }
-    @IBAction func Editedr7(_ sender: UITextField) {
-        
-        limitLength = 25
-    }
-    @IBAction func Editedr8(_ sender: UITextField) {
-        
-        limitLength = 25
-    }
-    @IBAction func Editedr9(_ sender: UITextField) {
-        
-        limitLength = 25
-    }
-    @IBAction func Editedr10(_ sender: UITextField) {
-        
-        limitLength = 25
-    }
-    @IBAction func Editedr11(_ sender: UITextField) {
-        
-        limitLength = 25
-    }
-    @IBAction func Editedr12(_ sender: UITextField) {
-        
-        limitLength = 25
-    }
-    @IBAction func Editedr13(_ sender: UITextField) {
-        
-        limitLength = 25
-    }
-    @IBAction func Editedr14(_ sender: UITextField) {
-        
-        limitLength = 25
-    }
-    @IBAction func Editedr15(_ sender: UITextField) {
-        
-        limitLength = 25
-    }
-    @IBAction func Editedr16(_ sender: UITextField) {
-        
-        limitLength = 25
-    }
-    @IBAction func Editedr17(_ sender: UITextField) {
-        
-        limitLength = 25
-    }
-    @IBAction func Editedr18(_ sender: UITextField) {
-        
-        limitLength = 25
-    }
-    @IBAction func Editedr19(_ sender: UITextField) {
-        
-        limitLength = 25
-    }
-    @IBAction func Editedr20(_ sender: UITextField) {
-        
-        limitLength = 25
-    }
-    @IBAction func Editedr21(_ sender: UITextField) {
-        
-        limitLength = 25
-    }
-    @IBAction func Editedr22(_ sender: UITextField) {
-        
-        limitLength = 25
-    }
-    @IBAction func Editedr23(_ sender: UITextField) {
-        
-        limitLength = 25
-    }
-    @IBAction func Editedr24(_ sender: UITextField) {
-        
-        limitLength = 25
-    }
-    @IBAction func Editedr25(_ sender: UITextField) {
-        
-        limitLength = 25
-    }
-    @IBAction func Editedr26(_ sender: UITextField) {
-        
-        limitLength = 25
-    }
-    @IBAction func Editedr27(_ sender: UITextField) {
-        
-        limitLength = 25
-    }
-    @IBAction func Editedr28(_ sender: UITextField) {
-        
-        limitLength = 25
-    }
-    @IBAction func Editedr29(_ sender: UITextField) {
-        
-        limitLength = 25
-    }
-    @IBAction func Editedr30(_ sender: UITextField) {
-        
-        limitLength = 25
-    }
+    @IBAction func Editedr1(_ sender: UITextField) {limitLength = 25}
+    @IBAction func Editedr2(_ sender: UITextField) {limitLength = 25}
+    @IBAction func Editedr3(_ sender: UITextField) {limitLength = 25}
+    @IBAction func Editedr4(_ sender: UITextField) {limitLength = 25}
+    @IBAction func Editedr5(_ sender: UITextField) {limitLength = 25}
+    @IBAction func Editedr6(_ sender: UITextField) {limitLength = 25}
+    @IBAction func Editedr7(_ sender: UITextField) {limitLength = 25}
+    @IBAction func Editedr8(_ sender: UITextField) {limitLength = 25}
+    @IBAction func Editedr9(_ sender: UITextField) {limitLength = 25}
+    @IBAction func Editedr10(_ sender: UITextField) {limitLength = 25}
+    @IBAction func Editedr11(_ sender: UITextField) {limitLength = 25}
+    @IBAction func Editedr12(_ sender: UITextField) {limitLength = 25}
+    @IBAction func Editedr13(_ sender: UITextField) {limitLength = 25}
+    @IBAction func Editedr14(_ sender: UITextField) {limitLength = 25}
+    @IBAction func Editedr15(_ sender: UITextField) {limitLength = 25}
+    @IBAction func Editedr16(_ sender: UITextField) {limitLength = 25}
+    @IBAction func Editedr17(_ sender: UITextField) {limitLength = 25}
+    @IBAction func Editedr18(_ sender: UITextField) {limitLength = 25}
+    @IBAction func Editedr19(_ sender: UITextField) {limitLength = 25}
+    @IBAction func Editedr20(_ sender: UITextField) {limitLength = 25}
+    @IBAction func Editedr21(_ sender: UITextField) {limitLength = 25}
+    @IBAction func Editedr22(_ sender: UITextField) {limitLength = 25}
+    @IBAction func Editedr23(_ sender: UITextField) {limitLength = 25}
+    @IBAction func Editedr24(_ sender: UITextField) {limitLength = 25}
+    @IBAction func Editedr25(_ sender: UITextField) {limitLength = 25}
+    @IBAction func Editedr26(_ sender: UITextField) {limitLength = 25}
+    @IBAction func Editedr27(_ sender: UITextField) {limitLength = 25}
+    @IBAction func Editedr28(_ sender: UITextField) {limitLength = 25}
+    @IBAction func Editedr29(_ sender: UITextField) {limitLength = 25}
+    @IBAction func Editedr30(_ sender: UITextField) {limitLength = 25}
     
     // clicking on 1 or 2 to change between percentage alteration or amount input
     @IBAction func firstSegmentChanged(_ sender: UISegmentedControl) {
         
         mod = mod + 1
-        
         switch mod % 2 {
         case 1:
             ExecuteSegmentTwo()
@@ -2085,17 +1776,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
             ExecuteSegmentOne()
             Segment = false
         }
-        
-//        if (mod % 2 == 1)
-//        {
-//            ExecuteSegmentTwo()
-//            Segment = true
-//        }
-//        else
-//        {
-//            ExecuteSegmentOne()
-//            Segment = false
-//        }
     }
     
     @IBAction func hideOpenKeyboard(_ sender: UIButton) {
@@ -2165,6 +1845,26 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         txtFN.resignFirstResponder()
     }
     
+    public func userInputAmountInTextField(sender:String) -> String  {
+        
+        var answer:String = ""
+        switch textValueChangeApproved() {
+        case true:
+            switch sender {
+            case nil, "":
+                return answer
+            default:
+                let dbl = validDouble(double: sender)
+                lblTotal.text = String(Double(round(100*calcAvailablePercent())/100)) + "%"
+                lblAvailableBal.text = String(Double(round(100*calcAvailableAmount())/100))
+                answer = String(Double(round(100*dbl)/100))
+            }
+            return answer
+        case false:
+            return answer
+        }
+    }
+    
     public func moveBlankLabelAppropriately(sizeConstraint:Int) {
         
         var next:Int = 0
@@ -2177,22 +1877,7 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
             next = 72
         }
         
-//        if (sizeConstraint < 50)
-//        {
-//            next = 42
-//            //position = 42
-//            print("small")
-//        }
-//        else{
-//            next = 72
-//            //position = 84
-//            print("big")
-//        }
-        
         var i:Int = 3
-        
-        //Arraylimit = calcNumOfDataOriginal()
-        
         while (i < Arraylimit)
         {
             if (Arraylimit > i)
@@ -2204,6 +1889,7 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    // display percentage correctly at all times
     public func updateTotalDisplays() {
         lblTotal.text = String(Double(round(100*calcAvailablePercent())/100)) + "%"
         lblAvailableBal.text = String(Double(round(100*calcAvailableAmount())/100))
@@ -2234,7 +1920,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         addToOriginal.name = "income"
         addToOriginal.percent = 0
         addToOriginal.amount = tempIncome
-        
         DatabaseController.saveContext()
     }
     
@@ -2286,7 +1971,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         let addition:Double = amountToAdd()
         global.percent = global.percent + addition
         global.amount = calcAmountFromPercent(percent: global.percent, income: tempIncome)
-        
         insertGlobalsToDatabase()
     }
     
@@ -2350,22 +2034,9 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
             default:
                 answer = 1
             }
-            
-//            // if 1% of 5000 > current amount i.e 20: then addition value will = 0.2
-//            if (amountPerPercent > difference)
-//            {
-//                answer = difference / tempIncome * 100
-//            }
-//                // else addition value will be = 1
-//            else
-//            {
-//                answer = 1
-//            }
         }
-        // reset global variables so that they will be calculated properly next time button pressed.
         global.totalAmountFetched = 0
         global.totalPercentFetched = 0
-        
         return answer
     }
     
@@ -2375,12 +2046,9 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         global.totalAmountFetched = global.totalAmountFetched + global.amount
         global.totalPercentFetched = global.totalPercentFetched + global.percent
         
-        // amountPerPercent: 1% of 5000
         let amountPerPercent:Double = tempIncome * 0.01
-        
         var answer:Double = 0
         
-        // current field percentage > 0 then there can be a subtraction
         if (global.percent > 0)
         {
             switch amountPerPercent {
@@ -2389,23 +2057,9 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
             default:
                 answer = 1
             }
-            
-            
-//            // if current amount < 1% of 5000 i.e 20 then subtraction will be = 0.2
-//            if (global.amount < amountPerPercent)
-//            {
-//                answer = global.percent
-//            }
-//                // else addition value will be = 1
-//            else
-//            {
-//                answer = 1
-//            }
         }
-        // reset global variables so that they will be calculated properly next time button pressed.
         global.totalAmountFetched = 0
         global.totalPercentFetched = 0
-        
         return answer
     }
     
@@ -2442,158 +2096,38 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     }
     
     public func calcTotalAmount() -> Double {
+        
         var totalAmounts:Double = 0
-        
-        if (txtFirst.text != "")
-        {
-            totalAmounts = totalAmounts + validDouble(double: txtFirst.text!)
-        }
-        
-        if (txtSecond.text != "")
-        {
-            totalAmounts = totalAmounts + validDouble(double: txtSecond.text!)
-        }
-        
-        if (txtThird.text != "")
-        {
-            totalAmounts = totalAmounts + validDouble(double: txtThird.text!)
-        }
-        
-        if (txtFourth.text != "")
-        {
-            totalAmounts = totalAmounts + validDouble(double: txtFourth.text!)
-        }
-        
-        if (txtFifth.text != "")
-        {
-            totalAmounts = totalAmounts + validDouble(double: txtFifth.text!)
-        }
-        
-        if (txtSixth.text != "")
-        {
-            totalAmounts = totalAmounts + validDouble(double: txtSixth.text!)
-        }
-        
-        if (txtSeventh.text != "")
-        {
-            totalAmounts = totalAmounts + validDouble(double: txtSeventh.text!)
-        }
-        
-        if (txtEighth.text != "")
-        {
-            totalAmounts = totalAmounts + validDouble(double: txtEighth.text!)
-        }
-        
-        if (txtNineth.text != "")
-        {
-            totalAmounts = totalAmounts + validDouble(double: txtNineth.text!)
-        }
-        
-        if (txtTenth.text != "")
-        {
-            totalAmounts = totalAmounts + validDouble(double: txtTenth.text!)
-        }
-        
-        if (txtEleventh.text != "")
-        {
-            totalAmounts = totalAmounts + validDouble(double: txtEleventh.text!)
-        }
-        
-        if (txtTwelfth.text != "")
-        {
-            totalAmounts = totalAmounts + validDouble(double: txtTwelfth.text!)
-        }
-        
-        if (txtThirteenth.text != "")
-        {
-            totalAmounts = totalAmounts + validDouble(double: txtThirteenth.text!)
-        }
-        
-        if (txtFourteenth.text != "")
-        {
-            totalAmounts = totalAmounts + validDouble(double: txtFourteenth.text!)
-        }
-        
-        if (txtFifteenth.text != "")
-        {
-            totalAmounts = totalAmounts + validDouble(double: txtFifteenth.text!)
-        }
-        
-        if (txtSixteenth.text != "")
-        {
-            totalAmounts = totalAmounts + validDouble(double: txtSixteenth.text!)
-        }
-        
-        if (txtSeventeenth.text != "")
-        {
-            totalAmounts = totalAmounts + validDouble(double: txtSeventeenth.text!)
-        }
-        
-        if (txtEighteenth.text != "")
-        {
-            totalAmounts = totalAmounts + validDouble(double: txtEighteenth.text!)
-        }
-        
-        if (txtNineteenth.text != "")
-        {
-            totalAmounts = totalAmounts + validDouble(double: txtNineteenth.text!)
-        }
-        
-        if (txtTwentieth.text != "")
-        {
-            totalAmounts = totalAmounts + validDouble(double: txtTwentieth.text!)
-        }
-        
-        if (txtTwentyFirst.text != "")
-        {
-            totalAmounts = totalAmounts + validDouble(double: txtTwentyFirst.text!)
-        }
-        
-        if (txtTwentySecond.text != "")
-        {
-            totalAmounts = totalAmounts + validDouble(double: txtTwentySecond.text!)
-        }
-        
-        if (txtTwentyThird.text != "")
-        {
-            totalAmounts = totalAmounts + validDouble(double: txtTwentyThird.text!)
-        }
-        
-        if (txtTwentyFourth.text != "")
-        {
-            totalAmounts = totalAmounts + validDouble(double: txtTwentyFourth.text!)
-        }
-        
-        if (txtTwentyFifth.text != "")
-        {
-            totalAmounts = totalAmounts + validDouble(double: txtTwentyFifth.text!)
-        }
-        
-        if (txtTwentySixth.text != "")
-        {
-            totalAmounts = totalAmounts + validDouble(double: txtTwentySixth.text!)
-        }
-        
-        if (txtTwentySeventh.text != "")
-        {
-            totalAmounts = totalAmounts + validDouble(double: txtTwentySeventh.text!)
-        }
-        
-        if (txtTwentyEighth.text != "")
-        {
-            totalAmounts = totalAmounts + validDouble(double: txtTwentyEighth.text!)
-        }
-        
-        if (txtTwentyNineth.text != "")
-        {
-            totalAmounts = totalAmounts + validDouble(double: txtTwentyNineth.text!)
-        }
-        
-        if (txtThirtieth.text != "")
-        {
-            totalAmounts = totalAmounts + validDouble(double: txtThirtieth.text!)
-        }
-        
+        if (txtFirst.text != "") { totalAmounts = totalAmounts + validDouble(double: txtFirst.text!) }
+        if (txtSecond.text != "") { totalAmounts = totalAmounts + validDouble(double: txtSecond.text!) }
+        if (txtThird.text != "") { totalAmounts = totalAmounts + validDouble(double: txtThird.text!) }
+        if (txtFourth.text != "") { totalAmounts = totalAmounts + validDouble(double: txtFourth.text!) }
+        if (txtFifth.text != "") { totalAmounts = totalAmounts + validDouble(double: txtFifth.text!) }
+        if (txtSixth.text != "") { totalAmounts = totalAmounts + validDouble(double: txtSixth.text!) }
+        if (txtSeventh.text != "") { totalAmounts = totalAmounts + validDouble(double: txtSeventh.text!) }
+        if (txtEighth.text != "") { totalAmounts = totalAmounts + validDouble(double: txtEighth.text!) }
+        if (txtNineth.text != "") { totalAmounts = totalAmounts + validDouble(double: txtNineth.text!) }
+        if (txtTenth.text != "") { totalAmounts = totalAmounts + validDouble(double: txtTenth.text!) }
+        if (txtEleventh.text != "") { totalAmounts = totalAmounts + validDouble(double: txtEleventh.text!) }
+        if (txtTwelfth.text != "") { totalAmounts = totalAmounts + validDouble(double: txtTwelfth.text!) }
+        if (txtThirteenth.text != "") { totalAmounts = totalAmounts + validDouble(double: txtThirteenth.text!) }
+        if (txtFourteenth.text != "") { totalAmounts = totalAmounts + validDouble(double: txtFourteenth.text!) }
+        if (txtFifteenth.text != "") { totalAmounts = totalAmounts + validDouble(double: txtFifteenth.text!) }
+        if (txtSixteenth.text != "") { totalAmounts = totalAmounts + validDouble(double: txtSixteenth.text!) }
+        if (txtSeventeenth.text != "") { totalAmounts = totalAmounts + validDouble(double: txtSeventeenth.text!) }
+        if (txtEighteenth.text != "") { totalAmounts = totalAmounts + validDouble(double: txtEighteenth.text!) }
+        if (txtNineteenth.text != "") { totalAmounts = totalAmounts + validDouble(double: txtNineteenth.text!) }
+        if (txtTwentieth.text != "") { totalAmounts = totalAmounts + validDouble(double: txtTwentieth.text!) }
+        if (txtTwentyFirst.text != "") { totalAmounts = totalAmounts + validDouble(double: txtTwentyFirst.text!) }
+        if (txtTwentySecond.text != "") { totalAmounts = totalAmounts + validDouble(double: txtTwentySecond.text!) }
+        if (txtTwentyThird.text != "") { totalAmounts = totalAmounts + validDouble(double: txtTwentyThird.text!) }
+        if (txtTwentyFourth.text != "") { totalAmounts = totalAmounts + validDouble(double: txtTwentyFourth.text!) }
+        if (txtTwentyFifth.text != "") { totalAmounts = totalAmounts + validDouble(double: txtTwentyFifth.text!) }
+        if (txtTwentySixth.text != "") { totalAmounts = totalAmounts + validDouble(double: txtTwentySixth.text!) }
+        if (txtTwentySeventh.text != "") { totalAmounts = totalAmounts + validDouble(double: txtTwentySeventh.text!) }
+        if (txtTwentyEighth.text != "") { totalAmounts = totalAmounts + validDouble(double: txtTwentyEighth.text!) }
+        if (txtTwentyNineth.text != "") { totalAmounts = totalAmounts + validDouble(double: txtTwentyNineth.text!) }
+        if (txtThirtieth.text != "") { totalAmounts = totalAmounts + validDouble(double: txtThirtieth.text!) }
         return totalAmounts
     }
     
@@ -2601,22 +2135,12 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     public func textValueChangeApproved() -> Bool {
         
         let totalAmounts:Double = calcTotalAmount()
-        
         switch totalAmounts {
         case _ where totalAmounts > tempIncome:
             return false
         default:
             return true
         }
-//        // FINAL VALIDATION
-//        if (totalAmounts > tempIncome)
-//        {
-//            return false
-//        }
-//        else
-//        {
-//            return true
-//        }
     }
     
     public func validDouble(double:String) -> Double {
@@ -2626,14 +2150,8 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         let period:Character = "."
         
         for Character in inputString {
-            if (Character != "," && Character != ".")
-            {
-                newString = newString + String(Character)
-            }
-            else
-            {
-                newString = newString + String(period)
-            }
+            if (Character != "," && Character != ".") {newString = newString + String(Character)}
+            else{newString = newString + String(period)}
         }
         
         switch Double(newString) {
@@ -2642,19 +2160,11 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         default:
             return Double(newString)!
         }
-//        if ((Double(newString)) != nil)
-//        {
-//            return Double(newString)!
-//        }
-//        else
-//        {
-//            return 0
-//        }
     }
     
     public func insertGlobalsToDatabase() {
-        let add:Original = NSEntityDescription.insertNewObject(forEntityName: "Original", into: DatabaseController.getContext()) as! Original
         
+        let add:Original = NSEntityDescription.insertNewObject(forEntityName: "Original", into: DatabaseController.getContext()) as! Original
         add.name = global.name
         add.percent = global.percent
         add.autoNumber = String(global.autoNumber)
@@ -2663,8 +2173,8 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     }
     
     public func insertInitialTotalsToDatabase() {
-        let add:FieldTotals = NSEntityDescription.insertNewObject(forEntityName: "FieldTotals", into: DatabaseController.getContext()) as! FieldTotals
         
+        let add:FieldTotals = NSEntityDescription.insertNewObject(forEntityName: "FieldTotals", into: DatabaseController.getContext()) as! FieldTotals
         add.fieldName = global.name
         add.totalAmount = 0
         FirstViewController.stR.totals.append("0.0")
@@ -2680,7 +2190,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         {
             available = (tempIncome - totalAmounts) / tempIncome * 100
         }
-        
         return available
     }
     
@@ -2693,12 +2202,10 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         {
             available = tempIncome - totalAmounts
         }
-        
         return available
     }
     
-    // takes all current values, puts them into an array, but changes amounts using the new income input by user, percentages stay same
-    // then adds new values to database
+    // replaces new amounts in database, percentages stay same
     public func incomeChange() {
         
         var autoNumber:Int = 0
@@ -2749,19 +2256,16 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         autonumbers.remove(at: (autonumbers.count - 1))
         percentages.remove(at: (percentages.count - 1))
         
-        // add new & display
         var i:Int = 0
         let limit = names.count
-        
         while (i < limit)
         {
             let add:Original = NSEntityDescription.insertNewObject(forEntityName: "Original", into: DatabaseController.getContext()) as! Original
-            
             add.name = names[i]
             add.percent = Double(percentages[i])!
             add.autoNumber = autonumbers[i]
             add.amount = Double(amounts[i])!
-            newAmountForTextFields(autoNumber: i, amount: Double(amounts[i])!)
+            newAmountForTextFields(autoNumber: String(i), amount: Double(amounts[i])!)
             DatabaseController.saveContext()
             i += 1
         }
@@ -2774,8 +2278,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         
         do {
             let searchResults = try DatabaseController.getContext().fetch(retrieve)
-            
-            // minus 1 because we don't want to count income value
             answer = searchResults.count - 1
         }
         catch {
@@ -2784,164 +2286,43 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         return answer
     }
     
-    public func newAmountForTextFields(autoNumber:Int, amount:Double) {
+    public func newAmountForTextFields(autoNumber:String, amount:Double) {
         
-        let answer = String(Double(round(100*Double(amount))/100))
+        var answer = String(Double(round(100*Double(amount))/100))
+        if (answer == "0.0") {answer = ""}
         switch autoNumber {
-        case 0: txtFirst.text = answer
-        case 1: txtSecond.text = answer
-        case 2: txtThird.text = answer
-        case 3: txtFourth.text = answer
-        case 4: txtFifth.text = answer
-        case 5: txtSixth.text = answer
-        case 6: txtSeventh.text = answer
-        case 7: txtEighth.text = answer
-        case 8: txtNineth.text = answer
-        case 9: txtTenth.text = answer
-        case 10: txtEleventh.text = answer
-        case 11: txtTwelfth.text = answer
-        case 12: txtThirteenth.text = answer
-        case 13: txtFourteenth.text = answer
-        case 14: txtFifteenth.text = answer
-        case 15: txtSixteenth.text = answer
-        case 16: txtSeventeenth.text = answer
-        case 17: txtEighteenth.text = answer
-        case 18: txtNineteenth.text = answer
-        case 19: txtTwentieth.text = answer
-        case 20: txtTwentyFirst.text = answer
-        case 21: txtTwentySecond.text = answer
-        case 22: txtTwentyThird.text = answer
-        case 23: txtTwentyFourth.text = answer
-        case 24: txtTwentyFifth.text = answer
-        case 25: txtTwentySixth.text = answer
-        case 26: txtTwentySeventh.text = answer
-        case 27: txtTwentyEighth.text = answer
-        case 28: txtTwentyNineth.text = answer
-        case 29: txtThirtieth.text = answer
+        case "0": txtFirst.text = answer
+        case "1": txtSecond.text = answer
+        case "2": txtThird.text = answer
+        case "3": txtFourth.text = answer
+        case "4": txtFifth.text = answer
+        case "5": txtSixth.text = answer
+        case "6": txtSeventh.text = answer
+        case "7": txtEighth.text = answer
+        case "8": txtNineth.text = answer
+        case "9": txtTenth.text = answer
+        case "10": txtEleventh.text = answer
+        case "11": txtTwelfth.text = answer
+        case "12": txtThirteenth.text = answer
+        case "13": txtFourteenth.text = answer
+        case "14": txtFifteenth.text = answer
+        case "15": txtSixteenth.text = answer
+        case "16": txtSeventeenth.text = answer
+        case "17": txtEighteenth.text = answer
+        case "18": txtNineteenth.text = answer
+        case "19": txtTwentieth.text = answer
+        case "20": txtTwentyFirst.text = answer
+        case "21": txtTwentySecond.text = answer
+        case "22": txtTwentyThird.text = answer
+        case "23": txtTwentyFourth.text = answer
+        case "24": txtTwentyFifth.text = answer
+        case "25": txtTwentySixth.text = answer
+        case "26": txtTwentySeventh.text = answer
+        case "27": txtTwentyEighth.text = answer
+        case "28": txtTwentyNineth.text = answer
+        case "29": txtThirtieth.text = answer
         default: print("error")
         }
-//
-//
-//        if (autoNumber == 0)
-//        {
-//            txtFirst.text = String(Double(round(100*Double(amount))/100))
-//        }
-//        else if (autoNumber == 1)
-//        {
-//            txtSecond.text = String(Double(round(100*Double(amount))/100))
-//        }
-//        else if (autoNumber == 2)
-//        {
-//            txtThird.text = String(Double(round(100*Double(amount))/100))
-//        }
-//        else if (autoNumber == 3)
-//        {
-//            txtFourth.text = String(Double(round(100*Double(amount))/100))
-//        }
-//        else if (autoNumber == 4)
-//        {
-//            txtFifth.text = String(Double(round(100*Double(amount))/100))
-//        }
-//        else if (autoNumber == 5)
-//        {
-//            txtSixth.text = String(Double(round(100*Double(amount))/100))
-//        }
-//        else if (autoNumber == 6)
-//        {
-//            txtSeventh.text = String(Double(round(100*Double(amount))/100))
-//        }
-//        else if (autoNumber == 7)
-//        {
-//            txtEighth.text = String(Double(round(100*Double(amount))/100))
-//        }
-//        else if (autoNumber == 8)
-//        {
-//            txtNineth.text = String(Double(round(100*Double(amount))/100))
-//        }
-//        else if (autoNumber == 9)
-//        {
-//            txtTenth.text = String(Double(round(100*Double(amount))/100))
-//        }
-//        else if (autoNumber == 10)
-//        {
-//            txtEleventh.text = String(Double(round(100*Double(amount))/100))
-//        }
-//        else if (autoNumber == 11)
-//        {
-//            txtTwelfth.text = String(Double(round(100*Double(amount))/100))
-//        }
-//        else if (autoNumber == 12)
-//        {
-//            txtThirteenth.text = String(Double(round(100*Double(amount))/100))
-//        }
-//        else if (autoNumber == 13)
-//        {
-//            txtFourteenth.text = String(Double(round(100*Double(amount))/100))
-//        }
-//        else if (autoNumber == 14)
-//        {
-//            txtFifteenth.text = String(Double(round(100*Double(amount))/100))
-//        }
-//        else if (autoNumber == 15)
-//        {
-//            txtSixteenth.text = String(Double(round(100*Double(amount))/100))
-//        }
-//        else if (autoNumber == 16)
-//        {
-//            txtSeventeenth.text = String(Double(round(100*Double(amount))/100))
-//        }
-//        else if (autoNumber == 17)
-//        {
-//            txtEighteenth.text = String(Double(round(100*Double(amount))/100))
-//        }
-//        else if (autoNumber == 18)
-//        {
-//            txtNineteenth.text = String(Double(round(100*Double(amount))/100))
-//        }
-//        else if (autoNumber == 19)
-//        {
-//            txtTwentieth.text = String(Double(round(100*Double(amount))/100))
-//        }
-//        else if (autoNumber == 20)
-//        {
-//            txtTwentyFirst.text = String(Double(round(100*Double(amount))/100))
-//        }
-//        else if (autoNumber == 21)
-//        {
-//            txtTwentySecond.text = String(Double(round(100*Double(amount))/100))
-//        }
-//        else if (autoNumber == 22)
-//        {
-//            txtTwentyThird.text = String(Double(round(100*Double(amount))/100))
-//        }
-//        else if (autoNumber == 23)
-//        {
-//            txtTwentyFourth.text = String(Double(round(100*Double(amount))/100))
-//        }
-//        else if (autoNumber == 24)
-//        {
-//            txtTwentyFifth.text = String(Double(round(100*Double(amount))/100))
-//        }
-//        else if (autoNumber == 25)
-//        {
-//            txtTwentySixth.text = String(Double(round(100*Double(amount))/100))
-//        }
-//        else if (autoNumber == 26)
-//        {
-//            txtTwentySeventh.text = String(Double(round(100*Double(amount))/100))
-//        }
-//        else if (autoNumber == 27)
-//        {
-//            txtTwentyEighth.text = String(Double(round(100*Double(amount))/100))
-//        }
-//        else if (autoNumber == 28)
-//        {
-//            txtTwentyNineth.text = String(Double(round(100*Double(amount))/100))
-//        }
-//        else if (autoNumber == 29)
-//        {
-//            txtThirtieth.text = String(Double(round(100*Double(amount))/100))
-//        }
     }
     
     // fetches all data from database and displays it appropriately
@@ -2963,7 +2344,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
                 name = result.name!
                 amount = result.amount
                 percent = result.percent
-                
                 whereToDisplayData(autoNumber: autoNumber, name: name, amount: amount, percent: percent)
                 usedPercent = usedPercent + percent
             }
@@ -2971,194 +2351,136 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         catch {
             print("Error! \(error)")
         }
-        
         displayIncomeAndAvailable(usedPercent: usedPercent)
     }
     
     public func whereToDisplayData(autoNumber:String, name:String, amount:Double, percent:Double) {
-        if (autoNumber == "0")
-        {
+        
+        switch autoNumber {
+        case "0":
             lblFirst.text = String(Double(round(100*percent)/100)) + "%"
             txtFirst.text = String(Double(round(100*amount)/100))
             lbl1.text = String(name)
-        }
-        else if (autoNumber == "1")
-        {
+        case "1":
             lblSecond.text = String(Double(round(100*percent)/100)) + "%"
             txtSecond.text = String(Double(round(100*amount)/100))
             lbl2.text = String(name)
-        }
-        else if (autoNumber == "2")
-        {
+        case "2":
             lblThird.text = String(Double(round(100*percent)/100)) + "%"
             txtThird.text = String(Double(round(100*amount)/100))
             lbl3.text = String(name)
-        }
-        else if (autoNumber == "3")
-        {
+        case "3":
             lblFourth.text = String(Double(round(100*percent)/100)) + "%"
             txtFourth.text = String(Double(round(100*amount)/100))
             lbl4.text = String(name)
-        }
-        else if (autoNumber == "4")
-        {
+        case "4":
             lblFifth.text = String(Double(round(100*percent)/100)) + "%"
             txtFifth.text = String(Double(round(100*amount)/100))
             lbl5.text = String(name)
-        }
-        else if (autoNumber == "5")
-        {
+        case "5":
             lblSixth.text = String(Double(round(100*percent)/100)) + "%"
             txtSixth.text = String(Double(round(100*amount)/100))
             lbl6.text = String(name)
-        }
-        else if (autoNumber == "6")
-        {
+        case "6":
             lblSeventh.text = String(Double(round(100*percent)/100)) + "%"
             txtSeventh.text = String(Double(round(100*amount)/100))
             lbl7.text = String(name)
-        }
-        else if (autoNumber == "7")
-        {
+        case "7":
             lblEighth.text = String(Double(round(100*percent)/100)) + "%"
             txtEighth.text = String(Double(round(100*amount)/100))
             lbl8.text = String(name)
-        }
-        else if (autoNumber == "8")
-        {
+        case "8":
             lblNineth.text = String(Double(round(100*percent)/100)) + "%"
             txtNineth.text = String(Double(round(100*amount)/100))
             lbl9.text = String(name)
-        }
-        else if (autoNumber == "9")
-        {
+        case "9":
             lblTenth.text = String(Double(round(100*percent)/100)) + "%"
             txtTenth.text = String(Double(round(100*amount)/100))
             lbl10.text = String(name)
-        }
-        else if (autoNumber == "10")
-        {
+        case "10":
             lblEleventh.text = String(Double(round(100*percent)/100)) + "%"
             txtEleventh.text = String(Double(round(100*amount)/100))
             lbl11.text = String(name)
-        }
-        else if (autoNumber == "11")
-        {
+        case "11":
             lblTwelfth.text = String(Double(round(100*percent)/100)) + "%"
             txtTwelfth.text = String(Double(round(100*amount)/100))
             lbl12.text = String(name)
-        }
-        else if (autoNumber == "12")
-        {
+        case "12":
             lblThirteenth.text = String(Double(round(100*percent)/100)) + "%"
             txtThirteenth.text = String(Double(round(100*amount)/100))
             lbl13.text = String(name)
-        }
-        else if (autoNumber == "13")
-        {
+        case "13":
             lblFourteenth.text = String(Double(round(100*percent)/100)) + "%"
             txtFourteenth.text = String(Double(round(100*amount)/100))
             lbl14.text = String(name)
-        }
-        else if (autoNumber == "14")
-        {
+        case "14":
             lblFifteenth.text = String(Double(round(100*percent)/100)) + "%"
             txtFifteenth.text = String(Double(round(100*amount)/100))
             lbl15.text = String(name)
-        }
-        else if (autoNumber == "15")
-        {
+        case "15":
             lblSixteenth.text = String(Double(round(100*percent)/100)) + "%"
             txtSixteenth.text = String(Double(round(100*amount)/100))
             lbl16.text = String(name)
-        }
-        else if (autoNumber == "16")
-        {
+        case "16":
             lblSeventeenth.text = String(Double(round(100*percent)/100)) + "%"
             txtSeventeenth.text = String(Double(round(100*amount)/100))
             lbl17.text = String(name)
-        }
-        else if (autoNumber == "17")
-        {
+        case "17":
             lblEighteenth.text = String(Double(round(100*percent)/100)) + "%"
             txtEighteenth.text = String(Double(round(100*amount)/100))
             lbl18.text = String(name)
-        }
-        else if (autoNumber == "18")
-        {
+        case "18":
             lblNineteenth.text = String(Double(round(100*percent)/100)) + "%"
             txtNineteenth.text = String(Double(round(100*amount)/100))
             lbl19.text = String(name)
-        }
-        else if (autoNumber == "19")
-        {
+        case "19":
             lblTwentieth.text = String(Double(round(100*percent)/100)) + "%"
             txtTwentieth.text = String(Double(round(100*amount)/100))
             lbl20.text = String(name)
-        }
-        else if (autoNumber == "20")
-        {
+        case "20":
             lblTwentyFirst.text = String(Double(round(100*percent)/100)) + "%"
             txtTwentyFirst.text = String(Double(round(100*amount)/100))
             lbl21.text = String(name)
-        }
-        else if (autoNumber == "21")
-        {
+        case "21":
             lblTwentySecond.text = String(Double(round(100*percent)/100)) + "%"
             txtTwentySecond.text = String(Double(round(100*amount)/100))
             lbl22.text = String(name)
-        }
-        else if (autoNumber == "22")
-        {
+        case "22":
             lblTwentyThird.text = String(Double(round(100*percent)/100)) + "%"
             txtTwentyThird.text = String(Double(round(100*amount)/100))
             lbl23.text = String(name)
-        }
-        else if (autoNumber == "23")
-        {
+        case "23":
             lblTwentyFourth.text = String(Double(round(100*percent)/100)) + "%"
             txtTwentyFourth.text = String(Double(round(100*amount)/100))
             lbl24.text = String(name)
-        }
-        else if (autoNumber == "24")
-        {
+        case "24":
             lblTwentyFifth.text = String(Double(round(100*percent)/100)) + "%"
             txtTwentyFifth.text = String(Double(round(100*amount)/100))
             lbl25.text = String(name)
-        }
-        else if (autoNumber == "25")
-        {
+        case "25":
             lblTwentySixth.text = String(Double(round(100*percent)/100)) + "%"
             txtTwentySixth.text = String(Double(round(100*amount)/100))
             lbl26.text = String(name)
-        }
-        else if (autoNumber == "26")
-        {
+        case "26":
             lblTwentySeventh.text = String(Double(round(100*percent)/100)) + "%"
             txtTwentySeventh.text = String(Double(round(100*amount)/100))
             lbl27.text = String(name)
-        }
-        else if (autoNumber == "27")
-        {
+        case "27":
             lblTwentyEighth.text = String(Double(round(100*percent)/100)) + "%"
             txtTwentyEighth.text = String(Double(round(100*amount)/100))
             lbl28.text = String(name)
-        }
-        else if (autoNumber == "28")
-        {
+        case "28":
             lblTwentyNineth.text = String(Double(round(100*percent)/100)) + "%"
             txtTwentyNineth.text = String(Double(round(100*amount)/100))
             lbl29.text = String(name)
-        }
-        else if (autoNumber == "29")
-        {
+        case "29":
             lblThirtieth.text = String(Double(round(100*percent)/100)) + "%"
             txtThirtieth.text = String(Double(round(100*amount)/100))
             lbl30.text = String(name)
-        }
-        
-        if (autoNumber == "999") {
+        case "999":
             tempIncome = Double(amount)
+        default:
+            print("error")
         }
     }
     
@@ -3169,12 +2491,12 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         txtTotal.text = String(tempIncome)
     }
     
+    // income is added to database separately with unique autonumber
     public func addIncomeAmount(incomeAmount:Double) {
         
         let predicate = NSPredicate(format: "autoNumber = %@", "999")
         let retrieve = NSFetchRequest<NSFetchRequestResult>(entityName: "Original")
         retrieve.predicate = predicate
-        
         do {
             let searchResults = try DatabaseController.getContext().fetch(retrieve)
             
@@ -3188,7 +2510,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         DatabaseController.saveContext()
         
         let add:Original = NSEntityDescription.insertNewObject(forEntityName: "Original", into: DatabaseController.getContext()) as! Original
-        
         add.name = "income"
         add.amount = incomeAmount
         add.percent = 0
@@ -3413,7 +2734,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         DatabaseController.saveContext()
         
         let add:Original = NSEntityDescription.insertNewObject(forEntityName: "Original", into: DatabaseController.getContext()) as! Original
-        
         add.name = name
         add.amount = amount
         add.percent = percent
@@ -3421,31 +2741,22 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         DatabaseController.saveContext()
     }
     
-    // TESTS APP IF IT'S BEEN USED BEFORE
+    // tests app if it's been used before
     public func firstRun() -> Bool {
         
         let retrieve = NSFetchRequest<NSFetchRequestResult>(entityName: "Original")
-        
         do {
             let searchResults = try DatabaseController.getContext().fetch(retrieve)
-            
-            if (searchResults.count > 0)
-            {
-                return false
-            }
-            else
-            {
-                return true
-            }
+            if (searchResults.count > 0) {return false}
+            else {return true}
         }
         catch {
             print("Error! \(error)")
         }
-        
         return true
     }
     
-    // GLOBAL VARS
+    // global vars
     struct global {
         static var percent:Double = 0
         static var amount:Double = 0
@@ -3461,12 +2772,11 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         let predicate = NSPredicate(format: "autoNumber = %@", autoNumber)
         let retrieve = NSFetchRequest<NSFetchRequestResult>(entityName: "Original")
         retrieve.predicate = predicate
-        
         do {
             let searchResults = try DatabaseController.getContext().fetch(retrieve)
             
             for result in searchResults as! [Original] {
-                clearTextFieldAmountOnceDeleted(autoNumber: autoNumber)
+                newAmountForTextFields(autoNumber: autoNumber, amount: 0.0)
                 DatabaseController.getContext().delete(result)
             }
         }
@@ -3474,129 +2784,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
             print("Error! \(error)")
         }
         DatabaseController.saveContext()
-    }
-    
-    public func clearTextFieldAmountOnceDeleted(autoNumber:String) {
-        if (autoNumber == "0")
-        {
-            txtFirst.text = ""
-        }
-        else if (autoNumber == "1")
-        {
-            txtSecond.text = ""
-        }
-        else if (autoNumber == "2")
-        {
-            txtThird.text = ""
-        }
-        else if (autoNumber == "3")
-        {
-            txtFourth.text = ""
-        }
-        else if (autoNumber == "4")
-        {
-            txtFifth.text = ""
-        }
-        else if (autoNumber == "5")
-        {
-            txtSixth.text = ""
-        }
-        else if (autoNumber == "6")
-        {
-            txtSeventh.text = ""
-        }
-        else if (autoNumber == "7")
-        {
-            txtEighth.text = ""
-        }
-        else if (autoNumber == "8")
-        {
-            txtNineth.text = ""
-        }
-        else if (autoNumber == "9")
-        {
-            txtTenth.text = ""
-        }
-        else if (autoNumber == "10")
-        {
-            txtEleventh.text = ""
-        }
-        else if (autoNumber == "11")
-        {
-            txtTwelfth.text = ""
-        }
-        else if (autoNumber == "12")
-        {
-            txtThirteenth.text = ""
-        }
-        else if (autoNumber == "13")
-        {
-            txtFourteenth.text = ""
-        }
-        else if (autoNumber == "14")
-        {
-            txtFifteenth.text = ""
-        }
-        else if (autoNumber == "15")
-        {
-            txtSixteenth.text = ""
-        }
-        else if (autoNumber == "16")
-        {
-            txtSeventeenth.text = ""
-        }
-        else if (autoNumber == "17")
-        {
-            txtEighteenth.text = ""
-        }
-        else if (autoNumber == "18")
-        {
-            txtNineteenth.text = ""
-        }
-        else if (autoNumber == "19")
-        {
-            txtTwentieth.text = ""
-        }
-        else if (autoNumber == "20")
-        {
-            txtTwentyFirst.text = ""
-        }
-        else if (autoNumber == "21")
-        {
-            txtTwentySecond.text = ""
-        }
-        else if (autoNumber == "22")
-        {
-            txtTwentyThird.text = ""
-        }
-        else if (autoNumber == "23")
-        {
-            txtTwentyFourth.text = ""
-        }
-        else if (autoNumber == "24")
-        {
-            txtTwentyFifth.text = ""
-        }
-        else if (autoNumber == "25")
-        {
-            txtTwentySixth.text = ""
-        }
-        else if (autoNumber == "26")
-        {
-            txtTwentySeventh.text = ""
-        }
-        else if (autoNumber == "27")
-        {
-            txtTwentyEighth.text = ""
-        }
-        else if (autoNumber == "28")
-        {
-            txtTwentyNineth.text = ""
-        }
-        else if (autoNumber == "29")
-        {
-            txtThirtieth.text = ""
-        }
     }
     
     public func textDelegates() {
@@ -3673,7 +2860,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         SubmitButOutlet.alpha = 0.0
         cancelButOutlet.alpha = 0.0
         doneRenamingOutlet.alpha = 0.0
-        
         addFieldOutlet.alpha = 1.0
         removeFieldOutlet.alpha = 1.0
         renameFieldsOutlet.alpha = 1.0
@@ -3696,7 +2882,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         SubmitButOutlet.alpha = 1.0
         cancelButOutlet.alpha = 1.0
         doneRenamingOutlet.alpha = 0
-        
         addFieldOutlet.alpha = 0
         removeFieldOutlet.alpha = 0
         renameFieldsOutlet.alpha = 0
@@ -3733,13 +2918,12 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         var max:Int = 0
         var amount:Int = 0
         
-        if (sizeConstraint < 50)
-        {
+        switch sizeConstraint {
+        case ..<50:
             min = 12
             max = 1146
             amount = 42
-        }
-        else {
+        default:
             min = 12
             max = 1956
             amount = 72
@@ -3768,14 +2952,70 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         lbl2.alpha = 1.0
         lbl3.alpha = 1.0
         
-        if (Segment == true)
-        {
+        switch Segment {
+        case true:
             txtFirst.alpha = 1.0
             txtSecond.alpha = 1.0
             txtThird.alpha = 1.0
-        }
-        else
-        {
+            
+            switch field {
+            case 4: txtFourth.alpha = 1.0
+            lbl4.alpha = 1.0
+            case 5: txtFifth.alpha = 1.0
+            lbl5.alpha = 1.0
+            case 6: txtSixth.alpha = 1.0
+            lbl6.alpha = 1.0
+            case 7: txtSeventh.alpha = 1.0
+            lbl7.alpha = 1.0
+            case 8: txtEighth.alpha = 1.0
+            lbl8.alpha = 1.0
+            case 9: txtNineth.alpha = 1.0
+            lbl9.alpha = 1.0
+            case 10: txtTenth.alpha = 1.0
+            lbl10.alpha = 1.0
+            case 11: txtEleventh.alpha = 1.0
+            lbl11.alpha = 1.0
+            case 12: txtTwelfth.alpha = 1.0
+            lbl12.alpha = 1.0
+            case 13: txtThirteenth.alpha = 1.0
+            lbl13.alpha = 1.0
+            case 14: txtFourteenth.alpha = 1.0
+            lbl14.alpha = 1.0
+            case 15: txtFifteenth.alpha = 1.0
+            lbl15.alpha = 1.0
+            case 16: txtSixteenth.alpha = 1.0
+            lbl16.alpha = 1.0
+            case 17: txtSeventeenth.alpha = 1.0
+            lbl17.alpha = 1.0
+            case 18: txtEighteenth.alpha = 1.0
+            lbl18.alpha = 1.0
+            case 19: txtNineteenth.alpha = 1.0
+            lbl19.alpha = 1.0
+            case 20: txtTwentieth.alpha = 1.0
+            lbl20.alpha = 1.0
+            case 21: txtTwentyFirst.alpha = 1.0
+            lbl21.alpha = 1.0
+            case 22: txtTwentySecond.alpha = 1.0
+            lbl22.alpha = 1.0
+            case 23: txtTwentyThird.alpha = 1.0
+            lbl23.alpha = 1.0
+            case 24: txtTwentyFourth.alpha = 1.0
+            lbl24.alpha = 1.0
+            case 25: txtTwentyFifth.alpha = 1.0
+            lbl25.alpha = 1.0
+            case 26: txtTwentySixth.alpha = 1.0
+            lbl26.alpha = 1.0
+            case 27: txtTwentySeventh.alpha = 1.0
+            lbl27.alpha = 1.0
+            case 28: txtTwentyEighth.alpha = 1.0
+            lbl28.alpha = 1.0
+            case 29: txtTwentyNineth.alpha = 1.0
+            lbl29.alpha = 1.0
+            case 30: txtThirtieth.alpha = 1.0
+            lbl30.alpha = 1.0
+            default: print("error")
+            }
+        default:
             lblFirst.alpha = 1.0
             firstPlusOutlet.alpha = 1.0
             firstMinusOutlet.alpha = 1.0
@@ -3785,421 +3025,118 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
             lblThird.alpha = 1.0
             thirdPlusOutlet.alpha = 1.0
             thirdMinusOutlet.alpha = 1.0
-        }
-        
-        if (field >= 4)
-        {
+            
+            switch field {
+            case 4: lblFourth.alpha = 1.0
+            FourthPlusOutlet.alpha = 1.0
+            FourthMinusOutlet.alpha = 1.0
             lbl4.alpha = 1.0
-            
-            if (Segment == true)
-            {
-                txtFourth.alpha = 1.0
-            }
-            else
-            {
-                lblFourth.alpha = 1.0
-                FourthPlusOutlet.alpha = 1.0
-                FourthMinusOutlet.alpha = 1.0
-            }
-        }
-        if (field >= 5)
-        {
+            case 5: lblFifth.alpha = 1.0
+            FifthPlusOutlet.alpha = 1.0
+            FifthMinusOutlet.alpha = 1.0
             lbl5.alpha = 1.0
-            
-            if (Segment == true)
-            {
-                txtFifth.alpha = 1.0
-            }
-            else
-            {
-                lblFifth.alpha = 1.0
-                FifthPlusOutlet.alpha = 1.0
-                FifthMinusOutlet.alpha = 1.0
-            }
-        }
-        if (field >= 6)
-        {
+            case 6: lblSixth.alpha = 1.0
+            SixthPlusOutlet.alpha = 1.0
+            SixthMinusOutlet.alpha = 1.0
             lbl6.alpha = 1.0
-            
-            if (Segment == true)
-            {
-                txtSixth.alpha = 1.0
-            }
-            else
-            {
-                lblSixth.alpha = 1.0
-                SixthPlusOutlet.alpha = 1.0
-                SixthMinusOutlet.alpha = 1.0
-            }
-        }
-        if (field >= 7)
-        {
+            case 7: lblSeventh.alpha = 1.0
+            SeventhPlusOutlet.alpha = 1.0
+            SeventhMinusOutlet.alpha = 1.0
             lbl7.alpha = 1.0
-            
-            if (Segment == true)
-            {
-                txtSeventh.alpha = 1.0
-            }
-            else
-            {
-                lblSeventh.alpha = 1.0
-                SeventhPlusOutlet.alpha = 1.0
-                SeventhMinusOutlet.alpha = 1.0
-            }
-        }
-        if (field >= 8)
-        {
+            case 8: lblEighth.alpha = 1.0
+            EighthPlusOutlet.alpha = 1.0
+            EighthMinusOutlet.alpha = 1.0
             lbl8.alpha = 1.0
-            
-            if (Segment == true)
-            {
-                txtEighth.alpha = 1.0
-            }
-            else
-            {
-                lblEighth.alpha = 1.0
-                EighthPlusOutlet.alpha = 1.0
-                EighthMinusOutlet.alpha = 1.0
-            }
-        }
-        if (field >= 9)
-        {
+            case 9: lblNineth.alpha = 1.0
+            NinethPlusOutlet.alpha = 1.0
+            NinethMinusOutlet.alpha = 1.0
             lbl9.alpha = 1.0
-            
-            if (Segment == true)
-            {
-                txtNineth.alpha = 1.0
-            }
-            else
-            {
-                lblNineth.alpha = 1.0
-                NinethPlusOutlet.alpha = 1.0
-                NinethMinusOutlet.alpha = 1.0
-            }
-        }
-        if (field >= 10)
-        {
+            case 10: lblTenth.alpha = 1.0
+            TenthPlusOutlet.alpha = 1.0
+            TenthMinusOutlet.alpha = 1.0
             lbl10.alpha = 1.0
-            
-            if (Segment == true)
-            {
-                txtTenth.alpha = 1.0
-            }
-            else
-            {
-                lblTenth.alpha = 1.0
-                TenthPlusOutlet.alpha = 1.0
-                TenthMinusOutlet.alpha = 1.0
-            }
-        }
-        if (field >= 11)
-        {
+            case 11: lblEleventh.alpha = 1.0
+            EleventhPlusOutlet.alpha = 1.0
+            EleventhMinusOutlet.alpha = 1.0
             lbl11.alpha = 1.0
-            
-            if (Segment == true)
-            {
-                txtEleventh.alpha = 1.0
-            }
-            else
-            {
-                lblEleventh.alpha = 1.0
-                EleventhPlusOutlet.alpha = 1.0
-                EleventhMinusOutlet.alpha = 1.0
-            }
-        }
-        if (field >= 12)
-        {
+            case 12: lblTwelfth.alpha = 1.0
+            TwelfthPlusOutlet.alpha = 1.0
+            TwelfthMinusOutlet.alpha = 1.0
             lbl12.alpha = 1.0
-            
-            if (Segment == true)
-            {
-                txtTwelfth.alpha = 1.0
-            }
-            else
-            {
-                lblTwelfth.alpha = 1.0
-                TwelfthPlusOutlet.alpha = 1.0
-                TwelfthMinusOutlet.alpha = 1.0
-            }
-        }
-        if (field >= 13)
-        {
+            case 13: lblThirteenth.alpha = 1.0
+            ThirteenthPlusOutlet.alpha = 1.0
+            ThirteenthMinusOutlet.alpha = 1.0
             lbl13.alpha = 1.0
-            
-            if (Segment == true)
-            {
-                txtThirteenth.alpha = 1.0
-            }
-            else
-            {
-                lblThirteenth.alpha = 1.0
-                ThirteenthPlusOutlet.alpha = 1.0
-                ThirteenthMinusOutlet.alpha = 1.0
-            }
-        }
-        if (field >= 14)
-        {
+            case 14: lblFourteenth.alpha = 1.0
+            FourteenthPlusOutlet.alpha = 1.0
+            FourteenthMinusOutlet.alpha = 1.0
             lbl14.alpha = 1.0
-            
-            if (Segment == true)
-            {
-                txtFourteenth.alpha = 1.0
-            }
-            else
-            {
-                lblFourteenth.alpha = 1.0
-                FourteenthPlusOutlet.alpha = 1.0
-                FourteenthMinusOutlet.alpha = 1.0
-            }
-        }
-        if (field >= 15)
-        {
+            case 15: lblFifteenth.alpha = 1.0
+            FifteenthPlusOutlet.alpha = 1.0
+            FifteenthMinusOutlet.alpha = 1.0
             lbl15.alpha = 1.0
-            
-            if (Segment == true)
-            {
-                txtFifteenth.alpha = 1.0
-            }
-            else
-            {
-                lblFifteenth.alpha = 1.0
-                FifteenthPlusOutlet.alpha = 1.0
-                FifteenthMinusOutlet.alpha = 1.0
-            }
-        }
-        if (field >= 16)
-        {
+            case 16: lblSixteenth.alpha = 1.0
+            SixteenthPlusOutlet.alpha = 1.0
+            SixteenthMinusOutlet.alpha = 1.0
             lbl16.alpha = 1.0
-            
-            if (Segment == true)
-            {
-                txtSixteenth.alpha = 1.0
-            }
-            else
-            {
-                lblSixteenth.alpha = 1.0
-                SixteenthPlusOutlet.alpha = 1.0
-                SixteenthMinusOutlet.alpha = 1.0
-            }
-        }
-        if (field >= 17)
-        {
+            case 17: lblSeventeenth.alpha = 1.0
+            SeventeenthPlusOutlet.alpha = 1.0
+            SeventeenthMinusOutlet.alpha = 1.0
             lbl17.alpha = 1.0
-            
-            if (Segment == true)
-            {
-                txtSeventeenth.alpha = 1.0
-            }
-            else
-            {
-                lblSeventeenth.alpha = 1.0
-                SeventeenthPlusOutlet.alpha = 1.0
-                SeventeenthMinusOutlet.alpha = 1.0
-            }
-        }
-        if (field >= 18)
-        {
+            case 18: lblEighteenth.alpha = 1.0
+            EighteenthPlusOutlet.alpha = 1.0
+            EighteenthMinusOutlet.alpha = 1.0
             lbl18.alpha = 1.0
-            
-            if (Segment == true)
-            {
-                txtEighteenth.alpha = 1.0
-            }
-            else
-            {
-                lblEighteenth.alpha = 1.0
-                EighteenthPlusOutlet.alpha = 1.0
-                EighteenthMinusOutlet.alpha = 1.0
-            }
-        }
-        if (field >= 19)
-        {
+            case 19: lblNineteenth.alpha = 1.0
+            NineteenthPlusOutlet.alpha = 1.0
+            NineteenthMinusOutlet.alpha = 1.0
             lbl19.alpha = 1.0
-            
-            if (Segment == true)
-            {
-                txtNineteenth.alpha = 1.0
-            }
-            else
-            {
-                lblNineteenth.alpha = 1.0
-                NineteenthPlusOutlet.alpha = 1.0
-                NineteenthMinusOutlet.alpha = 1.0
-            }
-        }
-        if (field >= 20)
-        {
+            case 20: lblTwentieth.alpha = 1.0
+            TwentiethPlusOutlet.alpha = 1.0
+            TwentiethMinusOutlet.alpha = 1.0
             lbl20.alpha = 1.0
-            
-            if (Segment == true)
-            {
-                txtTwentieth.alpha = 1.0
-            }
-            else
-            {
-                lblTwentieth.alpha = 1.0
-                TwentiethPlusOutlet.alpha = 1.0
-                TwentiethMinusOutlet.alpha = 1.0
-            }
-        }
-        if (field >= 21)
-        {
+            case 21: lblTwentyFirst.alpha = 1.0
+            TwentyFirstPlusOutlet.alpha = 1.0
+            TwentyFirstMinusOutlet.alpha = 1.0
             lbl21.alpha = 1.0
-            
-            if (Segment == true)
-            {
-                txtTwentyFirst.alpha = 1.0
-            }
-            else
-            {
-                lblTwentyFirst.alpha = 1.0
-                TwentyFirstPlusOutlet.alpha = 1.0
-                TwentyFirstMinusOutlet.alpha = 1.0
-            }
-        }
-        if (field >= 22)
-        {
+            case 22: lblTwentySecond.alpha = 1.0
+            TwentySecondPlusOutlet.alpha = 1.0
+            TwentySecondMinusOutlet.alpha = 1.0
             lbl22.alpha = 1.0
-            
-            if (Segment == true)
-            {
-                txtTwentySecond.alpha = 1.0
-            }
-            else
-            {
-                lblTwentySecond.alpha = 1.0
-                TwentySecondPlusOutlet.alpha = 1.0
-                TwentySecondMinusOutlet.alpha = 1.0
-            }
-        }
-        if (field >= 23)
-        {
+            case 23: lblTwentyThird.alpha = 1.0
+            TwentyThirdPlusOutlet.alpha = 1.0
+            TwentyThirdMinusOutlet.alpha = 1.0
             lbl23.alpha = 1.0
-            
-            if (Segment == true)
-            {
-                txtTwentyThird.alpha = 1.0
-            }
-            else
-            {
-                lblTwentyThird.alpha = 1.0
-                TwentyThirdPlusOutlet.alpha = 1.0
-                TwentyThirdMinusOutlet.alpha = 1.0
-            }
-        }
-        if (field >= 24)
-        {
+            case 24: lblTwentyFourth.alpha = 1.0
+            TwentyFourthPlusOutlet.alpha = 1.0
+            TwentyFourthMinusOutlet.alpha = 1.0
             lbl24.alpha = 1.0
-            
-            if (Segment == true)
-            {
-                txtTwentyFourth.alpha = 1.0
-            }
-            else
-            {
-                lblTwentyFourth.alpha = 1.0
-                TwentyFourthPlusOutlet.alpha = 1.0
-                TwentyFourthMinusOutlet.alpha = 1.0
-            }
-        }
-        if (field >= 25)
-        {
+            case 25: lblTwentyFifth.alpha = 1.0
+            TwentyFifthPlusOutlet.alpha = 1.0
+            TwentyFifthMinusOutlet.alpha = 1.0
             lbl25.alpha = 1.0
-            
-            if (Segment == true)
-            {
-                txtTwentyFifth.alpha = 1.0
-            }
-            else
-            {
-                lblTwentyFifth.alpha = 1.0
-                TwentyFifthPlusOutlet.alpha = 1.0
-                TwentyFifthMinusOutlet.alpha = 1.0
-            }
-        }
-        if (field >= 26)
-        {
+            case 26: lblTwentySixth.alpha = 1.0
+            TwentySixthPlusOutlet.alpha = 1.0
+            TwentySixthMinusOutlet.alpha = 1.0
             lbl26.alpha = 1.0
-            
-            if (Segment == true)
-            {
-                txtTwentySixth.alpha = 1.0
-            }
-            else
-            {
-                lblTwentySixth.alpha = 1.0
-                TwentySixthPlusOutlet.alpha = 1.0
-                TwentySixthMinusOutlet.alpha = 1.0
-            }
-        }
-        if (field >= 27)
-        {
+            case 27: lblTwentySeventh.alpha = 1.0
+            TwentySeventhPlusOutlet.alpha = 1.0
+            TwentySeventhMinusOutlet.alpha = 1.0
             lbl27.alpha = 1.0
-            
-            if (Segment == true)
-            {
-                txtTwentySeventh.alpha = 1.0
-            }
-            else
-            {
-                lblTwentySeventh.alpha = 1.0
-                TwentySeventhPlusOutlet.alpha = 1.0
-                TwentySeventhMinusOutlet.alpha = 1.0
-            }
-        }
-        if (field >= 28)
-        {
+            case 28: lblTwentyEighth.alpha = 1.0
+            TwentyEighthPlusOutlet.alpha = 1.0
+            TwentyEighthMinusOutlet.alpha = 1.0
             lbl28.alpha = 1.0
-            
-            if (Segment == true)
-            {
-                txtTwentyEighth.alpha = 1.0
-            }
-            else
-            {
-                lblTwentyEighth.alpha = 1.0
-                TwentyEighthPlusOutlet.alpha = 1.0
-                TwentyEighthMinusOutlet.alpha = 1.0
-            }
-        }
-        if (field >= 29)
-        {
+            case 29: lblTwentyNineth.alpha = 1.0
+            TwentyNinethPlusOutlet.alpha = 1.0
+            TwentyNinethMinusOutlet.alpha = 1.0
             lbl29.alpha = 1.0
-            
-            if (Segment == true)
-            {
-                txtTwentyNineth.alpha = 1.0
-            }
-            else
-            {
-                lblTwentyNineth.alpha = 1.0
-                TwentyNinethPlusOutlet.alpha = 1.0
-                TwentyNinethMinusOutlet.alpha = 1.0
-            }
-        }
-        if (field >= 30)
-        {
+            case 30: lblThirtieth.alpha = 1.0
+            ThirtiethPlusOutlet.alpha = 1.0
+            ThirtiethMinusOutlet.alpha = 1.0
             lbl30.alpha = 1.0
-            
-            if (Segment == true)
-            {
-                txtThirtieth.alpha = 1.0
+            default: print("error")
             }
-            else
-            {
-                lblThirtieth.alpha = 1.0
-                ThirtiethPlusOutlet.alpha = 1.0
-                ThirtiethMinusOutlet.alpha = 1.0
-            }
-        }
-        else if (field == 3)
-        {
-            print("showing no additional fields")
-        }
-        else if (field < 3)
-        {
-            //error -> incorrect field
-            print("error with field parameter: " + String(field))
         }
     }
     
