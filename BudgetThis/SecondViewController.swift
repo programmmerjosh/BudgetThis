@@ -20,7 +20,7 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     var limitLength = 12
     var mod:Int = 0
     
-    var Segment:Bool = false
+    var Segment:Bool = true
     var tempFN:Int = 0
     
     struct Gvars
@@ -196,16 +196,11 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         
         alphaOne(on: false)
         endRenaming()
-        hideRequiredFields(numOfFields: 0, side: "right_textfields", justLastField: false)
-        hideRequiredFields(numOfFields: Arraylimit, side: "right_buttons_4+", justLastField: false)
-        hideRequiredFields(numOfFields: Arraylimit, side: "right_buttons_3-", justLastField: false)
-        hideRequiredFields(numOfFields: Arraylimit, side: "left_labels_4+", justLastField: false)
-        hideRequiredFields(numOfFields: Arraylimit, side: "left_labels_3-", justLastField: false)
+        hideRequiredFields(numOfFields: Arraylimit, side: "right_buttons", justLastField: false)
+        hideRequiredFields(numOfFields: Arraylimit, side: "left_labels", justLastField: false)
+        hideRequiredFields(numOfFields: 1, side: "right_textfields", justLastField: false)
         showFields(field: Arraylimit)
-        
-        txtFirst.alpha = 0
-        txtSecond.alpha = 0
-        txtThird.alpha = 0
+        Segment = false
         updateTotalDisplays()
     }
     
@@ -1113,10 +1108,9 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
             self.txtFN.text = ""
             UIView.animate(withDuration: 0.3, animations: {
                 self.alphaOne(on: true)
-                self.hideRequiredFields(numOfFields: self.Arraylimit + 1, side: "left_labels_4+", justLastField: false)
-                self.hideRequiredFields(numOfFields: 0, side: "right_textfields", justLastField: false)
-                self.hideRequiredFields(numOfFields: 3, side: "right_buttons_4+", justLastField: false)
-                self.hideRequiredFields(numOfFields: 3, side: "right_buttons_3-", justLastField: false)
+                self.hideRequiredFields(numOfFields: self.Arraylimit + 1, side: "left_labels", justLastField: false)
+                self.hideRequiredFields(numOfFields: 1, side: "right_textfields", justLastField: false)
+                self.hideRequiredFields(numOfFields: 1, side: "right_buttons", justLastField: false)
             })
         }
     }
@@ -1133,9 +1127,9 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
             deleteLastFieldCreated(autoNumber: String(numData - 1))
             
             UIView.animate(withDuration: 0.6, animations: {
-                self.hideRequiredFields(numOfFields: numData, side: "left_labels_4+", justLastField: true)
+                self.hideRequiredFields(numOfFields: numData, side: "left_labels", justLastField: true)
                 self.hideRequiredFields(numOfFields: numData, side: "right_textfields", justLastField: true)
-                self.hideRequiredFields(numOfFields: numData, side: "right_buttons_4+", justLastField: true)
+                self.hideRequiredFields(numOfFields: numData, side: "right_buttons", justLastField: true)
                 self.moveBlankLabel(direction: "Up", sizeConstraint: sizeConstraint)
             })
         }
@@ -1776,12 +1770,15 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     @IBAction func firstSegmentChanged(_ sender: UISegmentedControl) {
         
         mod = mod + 1
-        switch mod % 2 {
+        let num:Int = calcNumOfDataOriginal()
+        switch (mod % 2) {
         case 1:
-            ExecuteSegmentTwo()
+            hideRequiredFields(numOfFields: 1, side: "right_buttons", justLastField: false)
+            showFields(field: num)
             Segment = true
         default:
-            ExecuteSegmentOne()
+            hideRequiredFields(numOfFields: 1, side: "right_textfields", justLastField: false)
+            showFields(field: num)
             Segment = false
         }
     }
@@ -2956,20 +2953,18 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     
     func showFields(field: Int)
     {
-        lbl1.alpha = 1.0
-        lbl2.alpha = 1.0
-        lbl3.alpha = 1.0
-        
-        var i:Int = field
-        let limit = 3
-        while (i > limit) {
+        var i:Int = 1
+        let limit = field + 1
+        while (i < limit) {
             switch Segment {
-            case true:
-                txtFirst.alpha = 1.0
-                txtSecond.alpha = 1.0
-                txtThird.alpha = 1.0
-                
+            case false:
                 switch i {
+                case 1: txtFirst.alpha = 1.0
+                lbl1.alpha = 1.0
+                case 2: txtSecond.alpha = 1.0
+                lbl2.alpha = 1.0
+                case 3: txtThird.alpha = 1.0
+                lbl3.alpha = 1.0
                 case 4: txtFourth.alpha = 1.0
                 lbl4.alpha = 1.0
                 case 5: txtFifth.alpha = 1.0
@@ -3026,143 +3021,175 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
                 lbl30.alpha = 1.0
                 default: print("error")
                 }
-            default:
+            case true:
+                switch i {
+                case 1: lbl1.alpha = 1.0
                 lblFirst.alpha = 1.0
                 firstPlusOutlet.alpha = 1.0
                 firstMinusOutlet.alpha = 1.0
+                case 2: lbl1.alpha = 1.0
                 lblSecond.alpha = 1.0
                 secondPlusOutlet.alpha = 1.0
                 secondMinusOutlet.alpha = 1.0
+                case 3: lbl3.alpha = 1.0
                 lblThird.alpha = 1.0
                 thirdPlusOutlet.alpha = 1.0
                 thirdMinusOutlet.alpha = 1.0
-                
-                switch i {
-                case 4: lblFourth.alpha = 1.0
+                case 4: lbl4.alpha = 1.0
+                lblFourth.alpha = 1.0
                 FourthPlusOutlet.alpha = 1.0
                 FourthMinusOutlet.alpha = 1.0
                 lbl4.alpha = 1.0
-                case 5: lblFifth.alpha = 1.0
+                case 5: lbl5.alpha = 1.0
+                lblFifth.alpha = 1.0
                 FifthPlusOutlet.alpha = 1.0
                 FifthMinusOutlet.alpha = 1.0
                 lbl5.alpha = 1.0
-                case 6: lblSixth.alpha = 1.0
+                case 6: lbl6.alpha = 1.0
+                lblSixth.alpha = 1.0
                 SixthPlusOutlet.alpha = 1.0
                 SixthMinusOutlet.alpha = 1.0
                 lbl6.alpha = 1.0
-                case 7: lblSeventh.alpha = 1.0
+                case 7: lbl7.alpha = 1.0
+                lblSeventh.alpha = 1.0
                 SeventhPlusOutlet.alpha = 1.0
                 SeventhMinusOutlet.alpha = 1.0
                 lbl7.alpha = 1.0
-                case 8: lblEighth.alpha = 1.0
+                case 8: lbl8.alpha = 1.0
+                lblEighth.alpha = 1.0
                 EighthPlusOutlet.alpha = 1.0
                 EighthMinusOutlet.alpha = 1.0
                 lbl8.alpha = 1.0
-                case 9: lblNineth.alpha = 1.0
+                case 9: lbl9.alpha = 1.0
+                lblNineth.alpha = 1.0
                 NinethPlusOutlet.alpha = 1.0
                 NinethMinusOutlet.alpha = 1.0
                 lbl9.alpha = 1.0
-                case 10: lblTenth.alpha = 1.0
+                case 10: lbl10.alpha = 1.0
+                lblTenth.alpha = 1.0
                 TenthPlusOutlet.alpha = 1.0
                 TenthMinusOutlet.alpha = 1.0
                 lbl10.alpha = 1.0
-                case 11: lblEleventh.alpha = 1.0
+                case 11: lbl11.alpha = 1.0
+                lblEleventh.alpha = 1.0
                 EleventhPlusOutlet.alpha = 1.0
                 EleventhMinusOutlet.alpha = 1.0
                 lbl11.alpha = 1.0
-                case 12: lblTwelfth.alpha = 1.0
+                case 12: lbl12.alpha = 1.0
+                lblTwelfth.alpha = 1.0
                 TwelfthPlusOutlet.alpha = 1.0
                 TwelfthMinusOutlet.alpha = 1.0
                 lbl12.alpha = 1.0
-                case 13: lblThirteenth.alpha = 1.0
+                case 13: lbl13.alpha = 1.0
+                lblThirteenth.alpha = 1.0
                 ThirteenthPlusOutlet.alpha = 1.0
                 ThirteenthMinusOutlet.alpha = 1.0
                 lbl13.alpha = 1.0
-                case 14: lblFourteenth.alpha = 1.0
+                case 14: lbl14.alpha = 1.0
+                lblFourteenth.alpha = 1.0
                 FourteenthPlusOutlet.alpha = 1.0
                 FourteenthMinusOutlet.alpha = 1.0
                 lbl14.alpha = 1.0
-                case 15: lblFifteenth.alpha = 1.0
+                case 15: lbl15.alpha = 1.0
+                lblFifteenth.alpha = 1.0
                 FifteenthPlusOutlet.alpha = 1.0
                 FifteenthMinusOutlet.alpha = 1.0
                 lbl15.alpha = 1.0
-                case 16: lblSixteenth.alpha = 1.0
+                case 16: lbl16.alpha = 1.0
+                lblSixteenth.alpha = 1.0
                 SixteenthPlusOutlet.alpha = 1.0
                 SixteenthMinusOutlet.alpha = 1.0
                 lbl16.alpha = 1.0
-                case 17: lblSeventeenth.alpha = 1.0
+                case 17: lbl17.alpha = 1.0
+                lblSeventeenth.alpha = 1.0
                 SeventeenthPlusOutlet.alpha = 1.0
                 SeventeenthMinusOutlet.alpha = 1.0
                 lbl17.alpha = 1.0
-                case 18: lblEighteenth.alpha = 1.0
+                case 18: lbl18.alpha = 1.0
+                lblEighteenth.alpha = 1.0
                 EighteenthPlusOutlet.alpha = 1.0
                 EighteenthMinusOutlet.alpha = 1.0
                 lbl18.alpha = 1.0
-                case 19: lblNineteenth.alpha = 1.0
+                case 19: lbl19.alpha = 1.0
+                lblNineteenth.alpha = 1.0
                 NineteenthPlusOutlet.alpha = 1.0
                 NineteenthMinusOutlet.alpha = 1.0
                 lbl19.alpha = 1.0
-                case 20: lblTwentieth.alpha = 1.0
+                case 20: lbl20.alpha = 1.0
+                lblTwentieth.alpha = 1.0
                 TwentiethPlusOutlet.alpha = 1.0
                 TwentiethMinusOutlet.alpha = 1.0
                 lbl20.alpha = 1.0
-                case 21: lblTwentyFirst.alpha = 1.0
+                case 21: lbl21.alpha = 1.0
+                lblTwentyFirst.alpha = 1.0
                 TwentyFirstPlusOutlet.alpha = 1.0
                 TwentyFirstMinusOutlet.alpha = 1.0
                 lbl21.alpha = 1.0
-                case 22: lblTwentySecond.alpha = 1.0
+                case 22: lbl22.alpha = 1.0
+                lblTwentySecond.alpha = 1.0
                 TwentySecondPlusOutlet.alpha = 1.0
                 TwentySecondMinusOutlet.alpha = 1.0
                 lbl22.alpha = 1.0
-                case 23: lblTwentyThird.alpha = 1.0
+                case 23: lbl23.alpha = 1.0
+                lblTwentyThird.alpha = 1.0
                 TwentyThirdPlusOutlet.alpha = 1.0
                 TwentyThirdMinusOutlet.alpha = 1.0
                 lbl23.alpha = 1.0
-                case 24: lblTwentyFourth.alpha = 1.0
+                case 24: lbl24.alpha = 1.0
+                lblTwentyFourth.alpha = 1.0
                 TwentyFourthPlusOutlet.alpha = 1.0
                 TwentyFourthMinusOutlet.alpha = 1.0
                 lbl24.alpha = 1.0
-                case 25: lblTwentyFifth.alpha = 1.0
+                case 25: lbl25.alpha = 1.0
+                lblTwentyFifth.alpha = 1.0
                 TwentyFifthPlusOutlet.alpha = 1.0
                 TwentyFifthMinusOutlet.alpha = 1.0
                 lbl25.alpha = 1.0
-                case 26: lblTwentySixth.alpha = 1.0
+                case 26: lbl26.alpha = 1.0
+                lblTwentySixth.alpha = 1.0
                 TwentySixthPlusOutlet.alpha = 1.0
                 TwentySixthMinusOutlet.alpha = 1.0
                 lbl26.alpha = 1.0
-                case 27: lblTwentySeventh.alpha = 1.0
+                case 27: lbl27.alpha = 1.0
+                lblTwentySeventh.alpha = 1.0
                 TwentySeventhPlusOutlet.alpha = 1.0
                 TwentySeventhMinusOutlet.alpha = 1.0
                 lbl27.alpha = 1.0
-                case 28: lblTwentyEighth.alpha = 1.0
+                case 28: lbl28.alpha = 1.0
+                lblTwentyEighth.alpha = 1.0
                 TwentyEighthPlusOutlet.alpha = 1.0
                 TwentyEighthMinusOutlet.alpha = 1.0
                 lbl28.alpha = 1.0
-                case 29: lblTwentyNineth.alpha = 1.0
+                case 29: lbl29.alpha = 1.0
+                lblTwentyNineth.alpha = 1.0
                 TwentyNinethPlusOutlet.alpha = 1.0
                 TwentyNinethMinusOutlet.alpha = 1.0
                 lbl29.alpha = 1.0
-                case 30: lblThirtieth.alpha = 1.0
+                case 30: lbl30.alpha = 1.0
+                lblThirtieth.alpha = 1.0
                 ThirtiethPlusOutlet.alpha = 1.0
                 ThirtiethMinusOutlet.alpha = 1.0
                 lbl30.alpha = 1.0
                 default: print("error")
                 }
             }
-            i -= 1
+            i += 1
         }
     }
     
     func hideRequiredFields(numOfFields: Int, side: String, justLastField: Bool)
     {
         var i:Int = numOfFields
-        var limit:Int = 30
+        var limit:Int = 31
         if (justLastField) { limit = (i + 1) }
         
         switch side {
-        case "left_labels_4+":
+        case "left_labels":
             while (i < limit) {
                 switch i {
+                case 1: lbl1.alpha = 0.0
+                case 2: lbl2.alpha = 0.0
+                case 3: lbl3.alpha = 0.0
                 case 4: lbl4.alpha = 0.0
                 case 5: lbl5.alpha = 0.0
                 case 6: lbl6.alpha = 0.0
@@ -3231,9 +3258,18 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
                 }
                 i += 1
             }
-        case "right_buttons_4+":
+        case "right_buttons":
             while (i < limit) {
                 switch i {
+                case 1: lblFirst.alpha = 0.0
+                firstPlusOutlet.alpha = 0.0
+                firstMinusOutlet.alpha = 0.0
+                case 2: lblSecond.alpha = 0.0
+                secondPlusOutlet.alpha = 0.0
+                secondMinusOutlet.alpha = 0.0
+                case 3: lblThird.alpha = 0.0
+                thirdPlusOutlet.alpha = 0.0
+                thirdMinusOutlet.alpha = 0.0
                 case 4: lblFourth.alpha = 0.0
                 FourthPlusOutlet.alpha = 0.0
                 FourthMinusOutlet.alpha = 0.0
@@ -3319,492 +3355,8 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
                 }
                 i += 1
             }
-        case "left_labels_3-":
-            lbl1.alpha = 0.0
-            lbl2.alpha = 0.0
-            lbl3.alpha = 0.0
-        case "right_buttons_3-":
-            lblFirst.alpha = 0.0
-            lblSecond.alpha = 0.0
-            lblThird.alpha = 0.0
-            firstPlusOutlet.alpha = 0.0
-            secondPlusOutlet.alpha = 0.0
-            thirdPlusOutlet.alpha = 0.0
-            firstMinusOutlet.alpha = 0.0
-            secondMinusOutlet.alpha = 0.0
-            thirdMinusOutlet.alpha = 0.0
         default:
             print("error")
-        }
-    }
-
-    // 100% WORKING CORRECTLY
-    func ExecuteSegmentTwo()
-    {
-        txtFirst.alpha = 1.0
-        lblFirst.alpha = 0.0
-        firstPlusOutlet.alpha = 0.0
-        firstMinusOutlet.alpha = 0.0
-        
-        txtSecond.alpha = 1.0
-        lblSecond.alpha = 0.0
-        secondPlusOutlet.alpha = 0.0
-        secondMinusOutlet.alpha = 0.0
-        
-        txtThird.alpha = 1.0
-        lblThird.alpha = 0.0
-        thirdPlusOutlet.alpha = 0.0
-        thirdMinusOutlet.alpha = 0.0
-        
-        if (lbl4.alpha == 1.0)
-        {
-            txtFourth.alpha = 1.0
-            lblFourth.alpha = 0.0
-            FourthPlusOutlet.alpha = 0.0
-            FourthMinusOutlet.alpha = 0.0
-        }
-        
-        if (lbl5.alpha == 1.0)
-        {
-            txtFifth.alpha = 1.0
-            lblFifth.alpha = 0.0
-            FifthPlusOutlet.alpha = 0.0
-            FifthMinusOutlet.alpha = 0.0
-        }
-        
-        if (lbl6.alpha == 1.0)
-        {
-            txtSixth.alpha = 1.0
-            lblSixth.alpha = 0.0
-            SixthPlusOutlet.alpha = 0.0
-            SixthMinusOutlet.alpha = 0.0
-        }
-        
-        if (lbl7.alpha == 1.0)
-        {
-            txtSeventh.alpha = 1.0
-            lblSeventh.alpha = 0.0
-            SeventhPlusOutlet.alpha = 0.0
-            SeventhMinusOutlet.alpha = 0.0
-        }
-        
-        if (lbl8.alpha == 1.0)
-        {
-            txtEighth.alpha = 1.0
-            lblEighth.alpha = 0.0
-            EighthPlusOutlet.alpha = 0.0
-            EighthMinusOutlet.alpha = 0.0
-        }
-        
-        if (lbl9.alpha == 1.0)
-        {
-            txtNineth.alpha = 1.0
-            lblNineth.alpha = 0.0
-            NinethPlusOutlet.alpha = 0.0
-            NinethMinusOutlet.alpha = 0.0
-        }
-        
-        if (lbl10.alpha == 1.0)
-        {
-            txtTenth.alpha = 1.0
-            lblTenth.alpha = 0.0
-            TenthPlusOutlet.alpha = 0.0
-            TenthMinusOutlet.alpha = 0.0
-        }
-        
-        if (lbl11.alpha == 1.0)
-        {
-            txtEleventh.alpha = 1.0
-            lblEleventh.alpha = 0.0
-            EleventhPlusOutlet.alpha = 0.0
-            EleventhMinusOutlet.alpha = 0.0
-        }
-        
-        if (lbl12.alpha == 1.0)
-        {
-            txtTwelfth.alpha = 1.0
-            lblTwelfth.alpha = 0.0
-            TwelfthPlusOutlet.alpha = 0.0
-            TwelfthMinusOutlet.alpha = 0.0
-        }
-        
-        if (lbl13.alpha == 1.0)
-        {
-            txtThirteenth.alpha = 1.0
-            lblThirteenth.alpha = 0.0
-            ThirteenthPlusOutlet.alpha = 0.0
-            ThirteenthMinusOutlet.alpha = 0.0
-        }
-        
-        if (lbl14.alpha == 1.0)
-        {
-            txtFourteenth.alpha = 1.0
-            lblFourteenth.alpha = 0.0
-            FourteenthPlusOutlet.alpha = 0.0
-            FourteenthMinusOutlet.alpha = 0.0
-        }
-        
-        if (lbl15.alpha == 1.0)
-        {
-            txtFifteenth.alpha = 1.0
-            lblFifteenth.alpha = 0.0
-            FifteenthPlusOutlet.alpha = 0.0
-            FifteenthMinusOutlet.alpha = 0.0
-        }
-        
-        if (lbl16.alpha == 1.0)
-        {
-            txtSixteenth.alpha = 1.0
-            lblSixteenth.alpha = 0.0
-            SixteenthPlusOutlet.alpha = 0.0
-            SixteenthMinusOutlet.alpha = 0.0
-        }
-        
-        if (lbl17.alpha == 1.0)
-        {
-            txtSeventeenth.alpha = 1.0
-            lblSeventeenth.alpha = 0.0
-            SeventeenthPlusOutlet.alpha = 0.0
-            SeventeenthMinusOutlet.alpha = 0.0
-        }
-        
-        if (lbl18.alpha == 1.0)
-        {
-            txtEighteenth.alpha = 1.0
-            lblEighteenth.alpha = 0.0
-            EighteenthPlusOutlet.alpha = 0.0
-            EighteenthMinusOutlet.alpha = 0.0
-        }
-        
-        if (lbl19.alpha == 1.0)
-        {
-            txtNineteenth.alpha = 1.0
-            lblNineteenth.alpha = 0.0
-            NineteenthPlusOutlet.alpha = 0.0
-            NineteenthMinusOutlet.alpha = 0.0
-        }
-        
-        if (lbl20.alpha == 1.0)
-        {
-            txtTwentieth.alpha = 1.0
-            lblTwentieth.alpha = 0.0
-            TwentiethPlusOutlet.alpha = 0.0
-            TwentiethMinusOutlet.alpha = 0.0
-        }
-        
-        if (lbl21.alpha == 1.0)
-        {
-            txtTwentyFirst.alpha = 1.0
-            lblTwentyFirst.alpha = 0.0
-            TwentyFirstPlusOutlet.alpha = 0.0
-            TwentyFirstMinusOutlet.alpha = 0.0
-        }
-        
-        if (lbl22.alpha == 1.0)
-        {
-            txtTwentySecond.alpha = 1.0
-            lblTwentySecond.alpha = 0.0
-            TwentySecondPlusOutlet.alpha = 0.0
-            TwentySecondMinusOutlet.alpha = 0.0
-        }
-        
-        if (lbl23.alpha == 1.0)
-        {
-            txtTwentyThird.alpha = 1.0
-            lblTwentyThird.alpha = 0.0
-            TwentyThirdPlusOutlet.alpha = 0.0
-            TwentyThirdMinusOutlet.alpha = 0.0
-        }
-        
-        if (lbl24.alpha == 1.0)
-        {
-            txtTwentyFourth.alpha = 1.0
-            lblTwentyFourth.alpha = 0.0
-            TwentyFourthPlusOutlet.alpha = 0.0
-            TwentyFourthMinusOutlet.alpha = 0.0
-        }
-        
-        if (lbl25.alpha == 1.0)
-        {
-            txtTwentyFifth.alpha = 1.0
-            lblTwentyFifth.alpha = 0.0
-            TwentyFifthPlusOutlet.alpha = 0.0
-            TwentyFifthMinusOutlet.alpha = 0.0
-        }
-        
-        if (lbl26.alpha == 1.0)
-        {
-            txtTwentySixth.alpha = 1.0
-            lblTwentySixth.alpha = 0.0
-            TwentySixthPlusOutlet.alpha = 0.0
-            TwentySixthMinusOutlet.alpha = 0.0
-        }
-        
-        if (lbl27.alpha == 1.0)
-        {
-            txtTwentySeventh.alpha = 1.0
-            lblTwentySeventh.alpha = 0.0
-            TwentySeventhPlusOutlet.alpha = 0.0
-            TwentySeventhMinusOutlet.alpha = 0.0
-        }
-        
-        if (lbl28.alpha == 1.0)
-        {
-            txtTwentyEighth.alpha = 1.0
-            lblTwentyEighth.alpha = 0.0
-            TwentyEighthPlusOutlet.alpha = 0.0
-            TwentyEighthMinusOutlet.alpha = 0.0
-        }
-        
-        if (lbl29.alpha == 1.0)
-        {
-            txtTwentyNineth.alpha = 1.0
-            lblTwentyNineth.alpha = 0.0
-            TwentyNinethPlusOutlet.alpha = 0.0
-            TwentyNinethMinusOutlet.alpha = 0.0
-        }
-        
-        if (lbl30.alpha == 1.0)
-        {
-            txtThirtieth.alpha = 1.0
-            lblThirtieth.alpha = 0.0
-            ThirtiethPlusOutlet.alpha = 0.0
-            ThirtiethMinusOutlet.alpha = 0.0
-        }
-    }
-    
-    // 100% WORKING CORRECTLY
-    func ExecuteSegmentOne()
-    {
-        txtFirst.alpha = 0.0
-        lblFirst.alpha = 1.0
-        firstPlusOutlet.alpha = 1.0
-        firstMinusOutlet.alpha = 1.0
-        
-        txtSecond.alpha = 0.0
-        lblSecond.alpha = 1.0
-        secondPlusOutlet.alpha = 1.0
-        secondMinusOutlet.alpha = 1.0
-        
-        txtThird.alpha = 0.0
-        lblThird.alpha = 1.0
-        thirdPlusOutlet.alpha = 1.0
-        thirdMinusOutlet.alpha = 1.0
-        
-        if (lbl4.alpha == 1.0)
-        {
-            txtFourth.alpha = 0.0
-            lblFourth.alpha = 1.0
-            FourthPlusOutlet.alpha = 1.0
-            FourthMinusOutlet.alpha = 1.0
-        }
-        
-        if (lbl5.alpha == 1.0)
-        {
-            txtFifth.alpha = 0.0
-            lblFifth.alpha = 1.0
-            FifthPlusOutlet.alpha = 1.0
-            FifthMinusOutlet.alpha = 1.0
-        }
-        
-        if (lbl6.alpha == 1.0)
-        {
-            txtSixth.alpha = 0.0
-            lblSixth.alpha = 1.0
-            SixthPlusOutlet.alpha = 1.0
-            SixthMinusOutlet.alpha = 1.0
-        }
-        
-        if (lbl7.alpha == 1.0)
-        {
-            txtSeventh.alpha = 0.0
-            lblSeventh.alpha = 1.0
-            SeventhPlusOutlet.alpha = 1.0
-            SeventhMinusOutlet.alpha = 1.0
-        }
-        
-        if (lbl8.alpha == 1.0)
-        {
-            txtEighth.alpha = 0.0
-            lblEighth.alpha = 1.0
-            EighthPlusOutlet.alpha = 1.0
-            EighthMinusOutlet.alpha = 1.0
-        }
-        
-        if (lbl9.alpha == 1.0)
-        {
-            txtNineth.alpha = 0.0
-            lblNineth.alpha = 1.0
-            NinethPlusOutlet.alpha = 1.0
-            NinethMinusOutlet.alpha = 1.0
-        }
-        
-        if (lbl10.alpha == 1.0)
-        {
-            txtTenth.alpha = 0.0
-            lblTenth.alpha = 1.0
-            TenthPlusOutlet.alpha = 1.0
-            TenthMinusOutlet.alpha = 1.0
-        }
-        
-        if (lbl11.alpha == 1.0)
-        {
-            txtEleventh.alpha = 0.0
-            lblEleventh.alpha = 1.0
-            EleventhPlusOutlet.alpha = 1.0
-            EleventhMinusOutlet.alpha = 1.0
-        }
-        
-        if (lbl12.alpha == 1.0)
-        {
-            txtTwelfth.alpha = 0.0
-            lblTwelfth.alpha = 1.0
-            TwelfthPlusOutlet.alpha = 1.0
-            TwelfthMinusOutlet.alpha = 1.0
-        }
-        
-        if (lbl13.alpha == 1.0)
-        {
-            txtThirteenth.alpha = 0.0
-            lblThirteenth.alpha = 1.0
-            ThirteenthPlusOutlet.alpha = 1.0
-            ThirteenthMinusOutlet.alpha = 1.0
-        }
-        
-        if (lbl14.alpha == 1.0)
-        {
-            txtFourteenth.alpha = 0.0
-            lblFourteenth.alpha = 1.0
-            FourteenthPlusOutlet.alpha = 1.0
-            FourteenthMinusOutlet.alpha = 1.0
-        }
-        
-        if (lbl15.alpha == 1.0)
-        {
-            txtFifteenth.alpha = 0.0
-            lblFifteenth.alpha = 1.0
-            FifteenthPlusOutlet.alpha = 1.0
-            FifteenthMinusOutlet.alpha = 1.0
-        }
-        
-        if (lbl16.alpha == 1.0)
-        {
-            txtSixteenth.alpha = 0.0
-            lblSixteenth.alpha = 1.0
-            SixteenthPlusOutlet.alpha = 1.0
-            SixteenthMinusOutlet.alpha = 1.0
-        }
-        
-        if (lbl17.alpha == 1.0)
-        {
-            txtSeventeenth.alpha = 0.0
-            lblSeventeenth.alpha = 1.0
-            SeventeenthPlusOutlet.alpha = 1.0
-            SeventeenthMinusOutlet.alpha = 1.0
-        }
-        
-        if (lbl18.alpha == 1.0)
-        {
-            txtEighteenth.alpha = 0.0
-            lblEighteenth.alpha = 1.0
-            EighteenthPlusOutlet.alpha = 1.0
-            EighteenthMinusOutlet.alpha = 1.0
-        }
-        
-        if (lbl19.alpha == 1.0)
-        {
-            txtNineteenth.alpha = 0.0
-            lblNineteenth.alpha = 1.0
-            NineteenthPlusOutlet.alpha = 1.0
-            NineteenthMinusOutlet.alpha = 1.0
-        }
-        
-        if (lbl20.alpha == 1.0)
-        {
-            txtTwentieth.alpha = 0.0
-            lblTwentieth.alpha = 1.0
-            TwentiethPlusOutlet.alpha = 1.0
-            TwentiethMinusOutlet.alpha = 1.0
-        }
-        
-        if (lbl21.alpha == 1.0)
-        {
-            txtTwentyFirst.alpha = 0.0
-            lblTwentyFirst.alpha = 1.0
-            TwentyFirstPlusOutlet.alpha = 1.0
-            TwentyFirstMinusOutlet.alpha = 1.0
-        }
-        
-        if (lbl22.alpha == 1.0)
-        {
-            txtTwentySecond.alpha = 0.0
-            lblTwentySecond.alpha = 1.0
-            TwentySecondPlusOutlet.alpha = 1.0
-            TwentySecondMinusOutlet.alpha = 1.0
-        }
-        
-        if (lbl23.alpha == 1.0)
-        {
-            txtTwentyThird.alpha = 0.0
-            lblTwentyThird.alpha = 1.0
-            TwentyThirdPlusOutlet.alpha = 1.0
-            TwentyThirdMinusOutlet.alpha = 1.0
-        }
-        
-        if (lbl24.alpha == 1.0)
-        {
-            txtTwentyFourth.alpha = 0.0
-            lblTwentyFourth.alpha = 1.0
-            TwentyFourthPlusOutlet.alpha = 1.0
-            TwentyFourthMinusOutlet.alpha = 1.0
-        }
-        
-        if (lbl25.alpha == 1.0)
-        {
-            txtTwentyFifth.alpha = 0.0
-            lblTwentyFifth.alpha = 1.0
-            TwentyFifthPlusOutlet.alpha = 1.0
-            TwentyFifthMinusOutlet.alpha = 1.0
-        }
-        
-        if (lbl26.alpha == 1.0)
-        {
-            txtTwentySixth.alpha = 0.0
-            lblTwentySixth.alpha = 1.0
-            TwentySixthPlusOutlet.alpha = 1.0
-            TwentySixthMinusOutlet.alpha = 1.0
-        }
-        
-        if (lbl27.alpha == 1.0)
-        {
-            txtTwentySeventh.alpha = 0.0
-            lblTwentySeventh.alpha = 1.0
-            TwentySeventhPlusOutlet.alpha = 1.0
-            TwentySeventhMinusOutlet.alpha = 1.0
-        }
-        
-        if (lbl28.alpha == 1.0)
-        {
-            txtTwentyEighth.alpha = 0.0
-            lblTwentyEighth.alpha = 1.0
-            TwentyEighthPlusOutlet.alpha = 1.0
-            TwentyEighthMinusOutlet.alpha = 1.0
-        }
-        
-        if (lbl29.alpha == 1.0)
-        {
-            txtTwentyNineth.alpha = 0.0
-            lblTwentyNineth.alpha = 1.0
-            TwentyNinethPlusOutlet.alpha = 1.0
-            TwentyNinethMinusOutlet.alpha = 1.0
-        }
-        
-        if (lbl30.alpha == 1.0)
-        {
-            txtThirtieth.alpha = 0.0
-            lblThirtieth.alpha = 1.0
-            ThirtiethPlusOutlet.alpha = 1.0
-            ThirtiethMinusOutlet.alpha = 1.0
         }
     }
     
@@ -3940,11 +3492,9 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
             }
             i -= 1
         }
-        hideRequiredFields(numOfFields: num, side: "right_buttons_4+", justLastField: false)
-        hideRequiredFields(numOfFields: num, side: "right_buttons_3-", justLastField: false)
-        hideRequiredFields(numOfFields: num, side: "left_labels_4+", justLastField: false)
-        hideRequiredFields(numOfFields: num, side: "left_labels_3-", justLastField: false)
-        hideRequiredFields(numOfFields: 0, side: "right_textfields", justLastField: false)
+        hideRequiredFields(numOfFields: 1, side: "right_buttons", justLastField: false)
+        hideRequiredFields(numOfFields: num, side: "left_labels", justLastField: false)
+        hideRequiredFields(numOfFields: 1, side: "right_textfields", justLastField: false)
     }
     
     public func amountOrPercentChangeInArray(name:String) {
