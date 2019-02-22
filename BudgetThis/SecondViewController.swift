@@ -11,7 +11,7 @@ import CoreData
 
 class SecondViewController: UIViewController, UITextFieldDelegate {
 
-    // variables
+    // global vars
     var nameArray = [String()]
     var tempIncome:Double = 5000
     var Arraylimit:Int = 0
@@ -19,12 +19,8 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     var limitLength = 12
     var mod:Int = 0
     
-    struct Gvars
-    {
-        static var blanklabelHeight:Int = 12
-    }
+    struct Gvars { static var blanklabelHeight:Int = 12 }
     
-    // percentage label outlets
     @IBOutlet var lblTotal: UILabel!
     @IBOutlet var lblFirst: UILabel!
     @IBOutlet var lblSecond: UILabel!
@@ -179,10 +175,7 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         textDelegates()
         
         // check for first run
-        if (FirstViewController.stR.firstRun == true)
-        {
-            addInitialFieldsToDatabase()
-        }
+        if (FirstViewController.stR.firstRun == true) { addInitialFieldsToDatabase() }
         
         // calc num of data
         Arraylimit = calcNumOfDataOriginal()
@@ -287,7 +280,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         txtRnm29.resignFirstResponder()
         txtRnm30.resignFirstResponder()
         txtFN.resignFirstResponder()
-        
         return true
     }
     
@@ -326,7 +318,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     @IBAction func cancelButAction(_ sender: UIButton) {
         
         Arraylimit = calcNumOfDataOriginal()
-        
         UIView.animate(withDuration: 0.6, animations: {
             self.alphaOne(on: false)
             self.showFields(field: self.Arraylimit)
@@ -335,8 +326,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         txtFN.resignFirstResponder()
     }
     
-    
-    // button outlets
     @IBOutlet var firstPlusOutlet: UIButton!
     @IBOutlet var secondPlusOutlet: UIButton!
     @IBOutlet var thirdPlusOutlet: UIButton!
@@ -1153,583 +1142,71 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         addIncomeAmount(incomeAmount: tempIncome)
         updateTotalDisplays()
     }
-    @IBAction func FirstEdited(_ sender: UITextField) {
-        
-        limitLength = 12
-        var field = userInputAmountInTextField(sender: sender.text!)
-        switch field {
-        case "":
-            txtFirst.text = ""
-            lblFirst.text = "0.0%"
-        default:
-            field = userInputAmountInTextField(sender: field)
-            fieldAmountChange(autoNumber: "0", newAmount: validDouble(double: field))
-            insertGlobalsToDatabase()
-            lblFirst.text = String(Double(round(100*global.percent)/100)) + "%"
-        }
-        amountOrPercentChangeInArray(name: global.name)
-    }
-    @IBAction func SecondEdited(_ sender: UITextField) {
-        
-        limitLength = 12
-        var field = userInputAmountInTextField(sender: sender.text!)
-        switch field {
-        case "":
-            txtSecond.text = ""
-            lblSecond.text = "0.0%"
-        default:
-            field = userInputAmountInTextField(sender: field)
-            fieldAmountChange(autoNumber: "1", newAmount: validDouble(double: field))
-            insertGlobalsToDatabase()
-            lblSecond.text = String(Double(round(100*global.percent)/100)) + "%"
-        }
-        amountOrPercentChangeInArray(name: global.name)
-    }
-    @IBAction func ThirdEdited(_ sender: UITextField) {
-        
-        limitLength = 12
-        var field = userInputAmountInTextField(sender: sender.text!)
-        switch field {
-        case "":
-            txtThird.text = ""
-            lblThird.text = "0.0%"
-        default:
-            field = userInputAmountInTextField(sender: field)
-            fieldAmountChange(autoNumber: "2", newAmount: validDouble(double: field))
-            insertGlobalsToDatabase()
-            lblThird.text = String(Double(round(100*global.percent)/100)) + "%"
-        }
-        amountOrPercentChangeInArray(name: global.name)
-    }
-    @IBAction func FourthEdited(_ sender: UITextField) {
     
-        limitLength = 12
-        var field = userInputAmountInTextField(sender: sender.text!)
-        switch field {
-        case "":
-            txtFourth.text = ""
-            lblFourth.text = "0.0%"
-        default:
-            field = userInputAmountInTextField(sender: field)
-            fieldAmountChange(autoNumber: "3", newAmount: validDouble(double: field))
-            insertGlobalsToDatabase()
-            lblFourth.text = String(Double(round(100*global.percent)/100)) + "%"
-        }
-        amountOrPercentChangeInArray(name: global.name)
-    }
-    @IBAction func FifthEdited(_ sender: UITextField) {
-        
-        limitLength = 12
-        var field = userInputAmountInTextField(sender: sender.text!)
-        switch field {
-        case "":
-            txtFifth.text = ""
-            lblFifth.text = "0.0%"
-        default:
-            field = userInputAmountInTextField(sender: field)
-            fieldAmountChange(autoNumber: "4", newAmount: validDouble(double: field))
-            insertGlobalsToDatabase()
-            lblFifth.text = String(Double(round(100*global.percent)/100)) + "%"
-        }
-        amountOrPercentChangeInArray(name: global.name)
-    }
-    @IBAction func SixthEdited(_ sender: UITextField) {
-        
-        limitLength = 12
-        var field = userInputAmountInTextField(sender: sender.text!)
-        switch field {
-        case "":
-            txtSixth.text = ""
-            lblSixth.text = "0.0%"
-        default:
-            field = userInputAmountInTextField(sender: field)
-            fieldAmountChange(autoNumber: "5", newAmount: validDouble(double: field))
-            insertGlobalsToDatabase()
-            lblSixth.text = String(Double(round(100*global.percent)/100)) + "%"
-        }
-        amountOrPercentChangeInArray(name: global.name)
-    }
-    @IBAction func SeventhEdited(_ sender: UITextField) {
-        
-        limitLength = 12
-        var field = userInputAmountInTextField(sender: sender.text!)
-        switch field {
-        case "":
-            txtSeventh.text = ""
-            lblSeventh.text = "0.0%"
-        default:
-            field = userInputAmountInTextField(sender: field)
-            fieldAmountChange(autoNumber: "6", newAmount: validDouble(double: field))
-            insertGlobalsToDatabase()
-            lblSeventh.text = String(Double(round(100*global.percent)/100)) + "%"
-        }
-        amountOrPercentChangeInArray(name: global.name)
-    }
-    @IBAction func EighthEdited(_ sender: UITextField) {
-        
-        limitLength = 12
-        var field = userInputAmountInTextField(sender: sender.text!)
-        switch field {
-        case "":
-            txtEighth.text = ""
-            lblEighth.text = "0.0%"
-        default:
-            field = userInputAmountInTextField(sender: field)
-            fieldAmountChange(autoNumber: "7", newAmount: validDouble(double: field))
-            insertGlobalsToDatabase()
-            lblEighth.text = String(Double(round(100*global.percent)/100)) + "%"
-        }
-        amountOrPercentChangeInArray(name: global.name)
-    }
-    @IBAction func NinethEdited(_ sender: UITextField) {
-        
-        limitLength = 12
-        var field = userInputAmountInTextField(sender: sender.text!)
-        switch field {
-        case "":
-            txtNineth.text = ""
-            lblNineth.text = "0.0%"
-        default:
-            field = userInputAmountInTextField(sender: field)
-            fieldAmountChange(autoNumber: "8", newAmount: validDouble(double: field))
-            insertGlobalsToDatabase()
-            lblNineth.text = String(Double(round(100*global.percent)/100)) + "%"
-        }
-        amountOrPercentChangeInArray(name: global.name)
-    }
-    @IBAction func TenthEdited(_ sender: UITextField) {
-        
-        limitLength = 12
-        var field = userInputAmountInTextField(sender: sender.text!)
-        switch field {
-        case "":
-            txtTenth.text = ""
-            lblTenth.text = "0.0%"
-        default:
-            field = userInputAmountInTextField(sender: field)
-            fieldAmountChange(autoNumber: "9", newAmount: validDouble(double: field))
-            insertGlobalsToDatabase()
-            lblTenth.text = String(Double(round(100*global.percent)/100)) + "%"
-        }
-        amountOrPercentChangeInArray(name: global.name)
-    }
-    @IBAction func EleventhEdited(_ sender: UITextField) {
-        
-        limitLength = 12
-        var field = userInputAmountInTextField(sender: sender.text!)
-        switch field {
-        case "":
-            txtEleventh.text = ""
-            lblEleventh.text = "0.0%"
-        default:
-            field = userInputAmountInTextField(sender: field)
-            fieldAmountChange(autoNumber: "10", newAmount: validDouble(double: field))
-            insertGlobalsToDatabase()
-            lblEleventh.text = String(Double(round(100*global.percent)/100)) + "%"
-        }
-        amountOrPercentChangeInArray(name: global.name)
-    }
-    @IBAction func TwelfthEdited(_ sender: UITextField) {
-        
-        limitLength = 12
-        var field = userInputAmountInTextField(sender: sender.text!)
-        switch field {
-        case "":
-            txtTwelfth.text = ""
-            lblTwelfth.text = "0.0%"
-        default:
-            field = userInputAmountInTextField(sender: field)
-            fieldAmountChange(autoNumber: "11", newAmount: validDouble(double: field))
-            insertGlobalsToDatabase()
-            lblTwelfth.text = String(Double(round(100*global.percent)/100)) + "%"
-        }
-        amountOrPercentChangeInArray(name: global.name)
-    }
-    @IBAction func ThirteenthEdited(_ sender: UITextField) {
-        
-        limitLength = 12
-        var field = userInputAmountInTextField(sender: sender.text!)
-        switch field {
-        case "":
-            txtThirteenth.text = ""
-            lblThirteenth.text = "0.0%"
-        default:
-            field = userInputAmountInTextField(sender: field)
-            fieldAmountChange(autoNumber: "12", newAmount: validDouble(double: field))
-            insertGlobalsToDatabase()
-            lblThirteenth.text = String(Double(round(100*global.percent)/100)) + "%"
-        }
-        amountOrPercentChangeInArray(name: global.name)
-    }
-    @IBAction func FourteenthEdited(_ sender: UITextField) {
-        
-        limitLength = 12
-        var field = userInputAmountInTextField(sender: sender.text!)
-        switch field {
-        case "":
-            txtFourteenth.text = ""
-            lblFourteenth.text = "0.0%"
-        default:
-            field = userInputAmountInTextField(sender: field)
-            fieldAmountChange(autoNumber: "13", newAmount: validDouble(double: field))
-            insertGlobalsToDatabase()
-            lblFourteenth.text = String(Double(round(100*global.percent)/100)) + "%"
-        }
-        amountOrPercentChangeInArray(name: global.name)
-    }
-    @IBAction func FifteenthEdited(_ sender: UITextField) {
-        
-        limitLength = 12
-        var field = userInputAmountInTextField(sender: sender.text!)
-        switch field {
-        case "":
-            txtFifteenth.text = ""
-            lblFifteenth.text = "0.0%"
-        default:
-            field = userInputAmountInTextField(sender: field)
-            fieldAmountChange(autoNumber: "14", newAmount: validDouble(double: field))
-            insertGlobalsToDatabase()
-            lblFifteenth.text = String(Double(round(100*global.percent)/100)) + "%"
-        }
-        amountOrPercentChangeInArray(name: global.name)
-    }
-    @IBAction func SixteenthEdited(_ sender: UITextField) {
-        
-        limitLength = 12
-        var field = userInputAmountInTextField(sender: sender.text!)
-        switch field {
-        case "":
-            txtSixteenth.text = ""
-            lblSixteenth.text = "0.0%"
-        default:
-            field = userInputAmountInTextField(sender: field)
-            fieldAmountChange(autoNumber: "15", newAmount: validDouble(double: field))
-            insertGlobalsToDatabase()
-            lblSixteenth.text = String(Double(round(100*global.percent)/100)) + "%"
-        }
-        amountOrPercentChangeInArray(name: global.name)
-    }
-    @IBAction func SeventeenthEdited(_ sender: UITextField) {
-        
-        limitLength = 12
-        var field = userInputAmountInTextField(sender: sender.text!)
-        switch field {
-        case "":
-            txtSeventeenth.text = ""
-            lblSeventeenth.text = "0.0%"
-        default:
-            field = userInputAmountInTextField(sender: field)
-            fieldAmountChange(autoNumber: "16", newAmount: validDouble(double: field))
-            insertGlobalsToDatabase()
-            lblSeventeenth.text = String(Double(round(100*global.percent)/100)) + "%"
-        }
-        amountOrPercentChangeInArray(name: global.name)
-    }
-    @IBAction func EighteenthEdited(_ sender: UITextField) {
-        
-        limitLength = 12
-        var field = userInputAmountInTextField(sender: sender.text!)
-        switch field {
-        case "":
-            txtEighteenth.text = ""
-            lblEighteenth.text = "0.0%"
-        default:
-            field = userInputAmountInTextField(sender: field)
-            fieldAmountChange(autoNumber: "17", newAmount: validDouble(double: field))
-            insertGlobalsToDatabase()
-            lblEighteenth.text = String(Double(round(100*global.percent)/100)) + "%"
-        }
-        amountOrPercentChangeInArray(name: global.name)
-    }
-    @IBAction func NineteenthEdited(_ sender: UITextField) {
-        
-        limitLength = 12
-        var field = userInputAmountInTextField(sender: sender.text!)
-        switch field {
-        case "":
-            txtNineteenth.text = ""
-            lblNineteenth.text = "0.0%"
-        default:
-            field = userInputAmountInTextField(sender: field)
-            fieldAmountChange(autoNumber: "18", newAmount: validDouble(double: field))
-            insertGlobalsToDatabase()
-            lblNineteenth.text = String(Double(round(100*global.percent)/100)) + "%"
-        }
-        amountOrPercentChangeInArray(name: global.name)
-    }
-    @IBAction func TwentiethEdited(_ sender: UITextField) {
-        
-        limitLength = 12
-        var field = userInputAmountInTextField(sender: sender.text!)
-        switch field {
-        case "":
-            txtTwentieth.text = ""
-            lblTwentieth.text = "0.0%"
-        default:
-            field = userInputAmountInTextField(sender: field)
-            fieldAmountChange(autoNumber: "19", newAmount: validDouble(double: field))
-            insertGlobalsToDatabase()
-            lblTwentieth.text = String(Double(round(100*global.percent)/100)) + "%"
-        }
-        amountOrPercentChangeInArray(name: global.name)
-    }
-    @IBAction func TwentyFirst(_ sender: UITextField) {
-        
-        limitLength = 12
-        var field = userInputAmountInTextField(sender: sender.text!)
-        switch field {
-        case "":
-            txtTwentyFirst.text = ""
-            lblTwentyFirst.text = "0.0%"
-        default:
-            field = userInputAmountInTextField(sender: field)
-            fieldAmountChange(autoNumber: "20", newAmount: validDouble(double: field))
-            insertGlobalsToDatabase()
-            lblTwentyFirst.text = String(Double(round(100*global.percent)/100)) + "%"
-        }
-        amountOrPercentChangeInArray(name: global.name)
-    }
-    @IBAction func TwentySecondEdited(_ sender: UITextField) {
-        
-        limitLength = 12
-        var field = userInputAmountInTextField(sender: sender.text!)
-        switch field {
-        case "":
-            txtTwentySecond.text = ""
-            lblTwentySecond.text = "0.0%"
-        default:
-            field = userInputAmountInTextField(sender: field)
-            fieldAmountChange(autoNumber: "21", newAmount: validDouble(double: field))
-            insertGlobalsToDatabase()
-            lblTwentySecond.text = String(Double(round(100*global.percent)/100)) + "%"
-        }
-        amountOrPercentChangeInArray(name: global.name)
-    }
-    @IBAction func TwentyThirdEdited(_ sender: UITextField) {
-        
-        limitLength = 12
-        var field = userInputAmountInTextField(sender: sender.text!)
-        switch field {
-        case "":
-            txtTwentyThird.text = ""
-            lblTwentyThird.text = "0.0%"
-        default:
-            field = userInputAmountInTextField(sender: field)
-            fieldAmountChange(autoNumber: "22", newAmount: validDouble(double: field))
-            insertGlobalsToDatabase()
-            lblTwentyThird.text = String(Double(round(100*global.percent)/100)) + "%"
-        }
-        amountOrPercentChangeInArray(name: global.name)
-    }
-    @IBAction func TwentyFourthEdited(_ sender: UITextField) {
-        
-        limitLength = 12
-        var field = userInputAmountInTextField(sender: sender.text!)
-        switch field {
-        case "":
-            txtTwentyFourth.text = ""
-            lblTwentyFourth.text = "0.0%"
-        default:
-            field = userInputAmountInTextField(sender: field)
-            fieldAmountChange(autoNumber: "23", newAmount: validDouble(double: field))
-            insertGlobalsToDatabase()
-            lblTwentyFourth.text = String(Double(round(100*global.percent)/100)) + "%"
-        }
-        amountOrPercentChangeInArray(name: global.name)
-    }
-    @IBAction func TwentyFifthEdited(_ sender: UITextField) {
-        
-        limitLength = 12
-        var field = userInputAmountInTextField(sender: sender.text!)
-        switch field {
-        case "":
-            txtTwentyFifth.text = ""
-            lblTwentyFifth.text = "0.0%"
-        default:
-            field = userInputAmountInTextField(sender: field)
-            fieldAmountChange(autoNumber: "24", newAmount: validDouble(double: field))
-            insertGlobalsToDatabase()
-            lblTwentyFifth.text = String(Double(round(100*global.percent)/100)) + "%"
-        }
-        amountOrPercentChangeInArray(name: global.name)
-    }
-    @IBAction func TwentySixthEdited(_ sender: UITextField) {
-        
-        limitLength = 12
-        var field = userInputAmountInTextField(sender: sender.text!)
-        switch field {
-        case "":
-            txtTwentySixth.text = ""
-            lblTwentySixth.text = "0.0%"
-        default:
-            field = userInputAmountInTextField(sender: field)
-            fieldAmountChange(autoNumber: "25", newAmount: validDouble(double: field))
-            insertGlobalsToDatabase()
-            lblTwentySixth.text = String(Double(round(100*global.percent)/100)) + "%"
-        }
-        amountOrPercentChangeInArray(name: global.name)
-    }
-    @IBAction func TwentySeventhEdited(_ sender: UITextField) {
-        
-        limitLength = 12
-        var field = userInputAmountInTextField(sender: sender.text!)
-        switch field {
-        case "":
-            txtTwentySeventh.text = ""
-            lblTwentySeventh.text = "0.0%"
-        default:
-            field = userInputAmountInTextField(sender: field)
-            fieldAmountChange(autoNumber: "26", newAmount: validDouble(double: field))
-            insertGlobalsToDatabase()
-            lblTwentySeventh.text = String(Double(round(100*global.percent)/100)) + "%"
-        }
-        amountOrPercentChangeInArray(name: global.name)
-    }
-    @IBAction func TwentyEighthEdited(_ sender: UITextField) {
-        
-        limitLength = 12
-        var field = userInputAmountInTextField(sender: sender.text!)
-        switch field {
-        case "":
-            txtTwentyEighth.text = ""
-            lblTwentyEighth.text = "0.0%"
-        default:
-            field = userInputAmountInTextField(sender: field)
-            fieldAmountChange(autoNumber: "27", newAmount: validDouble(double: field))
-            insertGlobalsToDatabase()
-            lblTwentyEighth.text = String(Double(round(100*global.percent)/100)) + "%"
-        }
-        amountOrPercentChangeInArray(name: global.name)
-    }
-    @IBAction func TwentyNinethEdited(_ sender: UITextField) {
-        
-        limitLength = 12
-        var field = userInputAmountInTextField(sender: sender.text!)
-        switch field {
-        case "":
-            txtTwentyNineth.text = ""
-            lblTwentyNineth.text = "0.0%"
-        default:
-            field = userInputAmountInTextField(sender: field)
-            fieldAmountChange(autoNumber: "28", newAmount: validDouble(double: field))
-            insertGlobalsToDatabase()
-            lblTwentyNineth.text = String(Double(round(100*global.percent)/100)) + "%"
-        }
-        amountOrPercentChangeInArray(name: global.name)
-    }
-    @IBAction func ThirtiethEdited(_ sender: UITextField) {
-        
-        limitLength = 12
-        var field = userInputAmountInTextField(sender: sender.text!)
-        switch field {
-        case "":
-            txtThirtieth.text = ""
-            lblThirtieth.text = "0.0%"
-        default:
-            field = userInputAmountInTextField(sender: field)
-            fieldAmountChange(autoNumber: "29", newAmount: validDouble(double: field))
-            insertGlobalsToDatabase()
-            lblThirtieth.text = String(Double(round(100*global.percent)/100)) + "%"
-        }
-        amountOrPercentChangeInArray(name: global.name)
-    }
+    @IBAction func FirstEdited(_ sender: UITextField) {limitLength = 12; editedAmountTextField(which: 1, amount: sender.text!)}
+    @IBAction func SecondEdited(_ sender: UITextField) {limitLength = 12; editedAmountTextField(which: 2, amount: sender.text!)}
+    @IBAction func ThirdEdited(_ sender: UITextField) {limitLength = 12; editedAmountTextField(which: 3, amount: sender.text!)}
+    @IBAction func FourthEdited(_ sender: UITextField) {limitLength = 12; editedAmountTextField(which: 4, amount: sender.text!)}
+    @IBAction func FifthEdited(_ sender: UITextField) {limitLength = 12; editedAmountTextField(which: 5, amount: sender.text!)}
+    @IBAction func SixthEdited(_ sender: UITextField) {limitLength = 12; editedAmountTextField(which: 6, amount: sender.text!)}
+    @IBAction func SeventhEdited(_ sender: UITextField) {limitLength = 12; editedAmountTextField(which: 7, amount: sender.text!)}
+    @IBAction func EighthEdited(_ sender: UITextField) {limitLength = 12; editedAmountTextField(which: 8, amount: sender.text!)}
+    @IBAction func NinethEdited(_ sender: UITextField) {limitLength = 12; editedAmountTextField(which: 9, amount: sender.text!)}
+    @IBAction func TenthEdited(_ sender: UITextField) {limitLength = 12; editedAmountTextField(which: 10, amount: sender.text!)}
+    @IBAction func EleventhEdited(_ sender: UITextField) {limitLength = 12; editedAmountTextField(which: 11, amount: sender.text!)}
+    @IBAction func TwelfthEdited(_ sender: UITextField) {limitLength = 12; editedAmountTextField(which: 12, amount: sender.text!)}
+    @IBAction func ThirteenthEdited(_ sender: UITextField) {limitLength = 12; editedAmountTextField(which: 13, amount: sender.text!)}
+    @IBAction func FourteenthEdited(_ sender: UITextField) {limitLength = 12; editedAmountTextField(which: 14, amount: sender.text!)}
+    @IBAction func FifteenthEdited(_ sender: UITextField) {limitLength = 12; editedAmountTextField(which: 15, amount: sender.text!)}
+    @IBAction func SixteenthEdited(_ sender: UITextField) {limitLength = 12; editedAmountTextField(which: 16, amount: sender.text!)}
+    @IBAction func SeventeenthEdited(_ sender: UITextField) {limitLength = 12; editedAmountTextField(which: 17, amount: sender.text!)}
+    @IBAction func EighteenthEdited(_ sender: UITextField) {limitLength = 12; editedAmountTextField(which: 18, amount: sender.text!)}
+    @IBAction func NineteenthEdited(_ sender: UITextField) {limitLength = 12; editedAmountTextField(which: 19, amount: sender.text!)}
+    @IBAction func TwentiethEdited(_ sender: UITextField) {limitLength = 12; editedAmountTextField(which: 20, amount: sender.text!)}
+    @IBAction func TwentyFirst(_ sender: UITextField) {limitLength = 12; editedAmountTextField(which: 21, amount: sender.text!)}
+    @IBAction func TwentySecondEdited(_ sender: UITextField) {limitLength = 12; editedAmountTextField(which: 22, amount: sender.text!)}
+    @IBAction func TwentyThirdEdited(_ sender: UITextField) {limitLength = 12; editedAmountTextField(which: 23, amount: sender.text!)}
+    @IBAction func TwentyFourthEdited(_ sender: UITextField) {limitLength = 12; editedAmountTextField(which: 24, amount: sender.text!)}
+    @IBAction func TwentyFifthEdited(_ sender: UITextField) {limitLength = 12; editedAmountTextField(which: 25, amount: sender.text!)}
+    @IBAction func TwentySixthEdited(_ sender: UITextField) {limitLength = 12; editedAmountTextField(which: 26, amount: sender.text!)}
+    @IBAction func TwentySeventhEdited(_ sender: UITextField) {limitLength = 12; editedAmountTextField(which: 27, amount: sender.text!)}
+    @IBAction func TwentyEighthEdited(_ sender: UITextField) {limitLength = 12; editedAmountTextField(which: 28, amount: sender.text!)}
+    @IBAction func TwentyNinethEdited(_ sender: UITextField) {limitLength = 12; editedAmountTextField(which: 29, amount: sender.text!)}
+    @IBAction func ThirtiethEdited(_ sender: UITextField) {limitLength = 12; editedAmountTextField(which: 30, amount: sender.text!)}
     
-    @IBAction func txt1AmountClicked(_ sender: UITextField) {
-        if (txtFirst.text == "0.0") { txtFirst.text = "" }
-    }
-    @IBAction func txt2AmountClicked(_ sender: UITextField) {
-        if (txtSecond.text == "0.0") { txtSecond.text = "" }
-    }
-    @IBAction func txt3AmountClicked(_ sender: UITextField) {
-        if (txtThird.text == "0.0") { txtThird.text = "" }
-    }
-    @IBAction func txt4AmountClicked(_ sender: UITextField) {
-        if (txtFourth.text == "0.0") { txtFourth.text = "" }
-    }
-    @IBAction func txt5AmountClicked(_ sender: UITextField) {
-        if (txtFifth.text == "0.0") { txtFifth.text = "" }
-    }
-    @IBAction func txt6AmountClicked(_ sender: UITextField) {
-        if (txtSixth.text == "0.0") { txtSixth.text = "" }
-    }
-    @IBAction func txt7AmountClicked(_ sender: UITextField) {
-        if (txtSeventh.text == "0.0") { txtSeventh.text = "" }
-    }
-    @IBAction func txt8AmountClicked(_ sender: UITextField) {
-        if (txtEighth.text == "0.0") { txtEighth.text = "" }
-    }
-    @IBAction func txt9AmountClicked(_ sender: UITextField) {
-        if (txtNineth.text == "0.0") { txtNineth.text = "" }
-    }
-    @IBAction func txt10AmountClicked(_ sender: UITextField) {
-        if (txtTenth.text == "0.0") { txtTenth.text = "" }
-    }
-    @IBAction func txt11AmountClicked(_ sender: UITextField) {
-        if (txtEleventh.text == "0.0") { txtEleventh.text = "" }
-    }
-    @IBAction func txt12AmountClicked(_ sender: UITextField) {
-        if (txtTwelfth.text == "0.0") { txtTwelfth.text = "" }
-    }
-    @IBAction func txt13AmountClicked(_ sender: UITextField) {
-        if (txtThirteenth.text == "0.0") { txtThirteenth.text = "" }
-    }
-    @IBAction func txt14AmountClicked(_ sender: UITextField) {
-        if (txtFourteenth.text == "0.0") { txtFourteenth.text = "" }
-    }
-    @IBAction func txt15AmountClicked(_ sender: UITextField) {
-        if (txtFifteenth.text == "0.0") { txtFifteenth.text = "" }
-    }
-    @IBAction func txt16AmountClicked(_ sender: UITextField) {
-        if (txtSixteenth.text == "0.0") { txtSixteenth.text = "" }
-    }
-    @IBAction func txt17AmountClicked(_ sender: UITextField) {
-        if (txtSeventeenth.text == "0.0") { txtSeventeenth.text = "" }
-    }
-    @IBAction func txt18AmountClicked(_ sender: UITextField) {
-        if (txtEighteenth.text == "0.0") { txtEighteenth.text = "" }
-    }
-    @IBAction func txt19AmountClicked(_ sender: UITextField) {
-        if (txtNineteenth.text == "0.0") { txtNineteenth.text = "" }
-    }
-    @IBAction func txt20AmountClicked(_ sender: UITextField) {
-        if (txtTwentieth.text == "0.0") { txtTwentieth.text = "" }
-    }
-    @IBAction func txt21AmountClicked(_ sender: UITextField) {
-        if (txtTwentyFirst.text == "0.0") { txtTwentyFirst.text = "" }
-    }
-    @IBAction func txt22AmountClicked(_ sender: UITextField) {
-        if (txtTwentySecond.text == "0.0") { txtTwentySecond.text = "" }
-    }
-    @IBAction func txt23AmountClicked(_ sender: UITextField) {
-        if (txtTwentyThird.text == "0.0") { txtTwentyThird.text = "" }
-    }
-    @IBAction func txt24AmountClicked(_ sender: UITextField) {
-        if (txtTwentyFourth.text == "0.0") { txtTwentyFourth.text = "" }
-    }
-    @IBAction func txt25AmountClicked(_ sender: UITextField) {
-        if (txtTwentyFifth.text == "0.0") { txtTwentyFifth.text = "" }
-    }
-    @IBAction func txt26AmountClicked(_ sender: UITextField) {
-        if (txtTwentySixth.text == "0.0") { txtTwentySixth.text = "" }
-    }
-    @IBAction func txt27AmountClicked(_ sender: UITextField) {
-        if (txtTwentySeventh.text == "0.0") { txtTwentySeventh.text = "" }
-    }
-    @IBAction func txt28AmountClicked(_ sender: UITextField) {
-        if (txtTwentyEighth.text == "0.0") { txtTwentyEighth.text = "" }
-    }
-    @IBAction func txt29AmountClicked(_ sender: UITextField) {
-        if (txtTwentyNineth.text == "0.0") { txtTwentyNineth.text = "" }
-    }
-    @IBAction func txt30AmountClicked(_ sender: UITextField) {
-        if (txtThirtieth.text == "0.0") { txtThirtieth.text = "" }
-    }
+    @IBAction func txt1AmountClicked(_ sender: UITextField) { if (txtFirst.text == "0.0") { txtFirst.text = "" } }
+    @IBAction func txt2AmountClicked(_ sender: UITextField) { if (txtSecond.text == "0.0") { txtSecond.text = "" } }
+    @IBAction func txt3AmountClicked(_ sender: UITextField) { if (txtThird.text == "0.0") { txtThird.text = "" } }
+    @IBAction func txt4AmountClicked(_ sender: UITextField) { if (txtFourth.text == "0.0") { txtFourth.text = "" } }
+    @IBAction func txt5AmountClicked(_ sender: UITextField) { if (txtFifth.text == "0.0") { txtFifth.text = "" } }
+    @IBAction func txt6AmountClicked(_ sender: UITextField) { if (txtSixth.text == "0.0") { txtSixth.text = "" } }
+    @IBAction func txt7AmountClicked(_ sender: UITextField) { if (txtSeventh.text == "0.0") { txtSeventh.text = "" } }
+    @IBAction func txt8AmountClicked(_ sender: UITextField) { if (txtEighth.text == "0.0") { txtEighth.text = "" } }
+    @IBAction func txt9AmountClicked(_ sender: UITextField) { if (txtNineth.text == "0.0") { txtNineth.text = "" } }
+    @IBAction func txt10AmountClicked(_ sender: UITextField) { if (txtTenth.text == "0.0") { txtTenth.text = "" } }
+    @IBAction func txt11AmountClicked(_ sender: UITextField) { if (txtEleventh.text == "0.0") { txtEleventh.text = "" } }
+    @IBAction func txt12AmountClicked(_ sender: UITextField) { if (txtTwelfth.text == "0.0") { txtTwelfth.text = "" } }
+    @IBAction func txt13AmountClicked(_ sender: UITextField) { if (txtThirteenth.text == "0.0") { txtThirteenth.text = "" } }
+    @IBAction func txt14AmountClicked(_ sender: UITextField) { if (txtFourteenth.text == "0.0") { txtFourteenth.text = "" } }
+    @IBAction func txt15AmountClicked(_ sender: UITextField) { if (txtFifteenth.text == "0.0") { txtFifteenth.text = "" } }
+    @IBAction func txt16AmountClicked(_ sender: UITextField) { if (txtSixteenth.text == "0.0") { txtSixteenth.text = "" } }
+    @IBAction func txt17AmountClicked(_ sender: UITextField) { if (txtSeventeenth.text == "0.0") { txtSeventeenth.text = "" } }
+    @IBAction func txt18AmountClicked(_ sender: UITextField) { if (txtEighteenth.text == "0.0") { txtEighteenth.text = "" } }
+    @IBAction func txt19AmountClicked(_ sender: UITextField) { if (txtNineteenth.text == "0.0") { txtNineteenth.text = "" } }
+    @IBAction func txt20AmountClicked(_ sender: UITextField) { if (txtTwentieth.text == "0.0") { txtTwentieth.text = "" } }
+    @IBAction func txt21AmountClicked(_ sender: UITextField) { if (txtTwentyFirst.text == "0.0") { txtTwentyFirst.text = "" } }
+    @IBAction func txt22AmountClicked(_ sender: UITextField) { if (txtTwentySecond.text == "0.0") { txtTwentySecond.text = "" } }
+    @IBAction func txt23AmountClicked(_ sender: UITextField) { if (txtTwentyThird.text == "0.0") { txtTwentyThird.text = "" } }
+    @IBAction func txt24AmountClicked(_ sender: UITextField) { if (txtTwentyFourth.text == "0.0") { txtTwentyFourth.text = "" } }
+    @IBAction func txt25AmountClicked(_ sender: UITextField) { if (txtTwentyFifth.text == "0.0") { txtTwentyFifth.text = "" } }
+    @IBAction func txt26AmountClicked(_ sender: UITextField) { if (txtTwentySixth.text == "0.0") { txtTwentySixth.text = "" } }
+    @IBAction func txt27AmountClicked(_ sender: UITextField) { if (txtTwentySeventh.text == "0.0") { txtTwentySeventh.text = "" } }
+    @IBAction func txt28AmountClicked(_ sender: UITextField) { if (txtTwentyEighth.text == "0.0") { txtTwentyEighth.text = "" } }
+    @IBAction func txt29AmountClicked(_ sender: UITextField) { if (txtTwentyNineth.text == "0.0") { txtTwentyNineth.text = "" } }
+    @IBAction func txt30AmountClicked(_ sender: UITextField) { if (txtThirtieth.text == "0.0") { txtThirtieth.text = "" } }
     
-    @IBAction func EditedNewFieldName(_ sender: UITextField) {
-        
-        limitLength = 25
-        txtFN.adjustsFontSizeToFitWidth = true
-    }
+    @IBAction func EditedNewFieldName(_ sender: UITextField) { limitLength = 25; txtFN.adjustsFontSizeToFitWidth = true }
+    
     @IBAction func Editedr1(_ sender: UITextField) {limitLength = 25}
     @IBAction func Editedr2(_ sender: UITextField) {limitLength = 25}
     @IBAction func Editedr3(_ sender: UITextField) {limitLength = 25}
@@ -1769,11 +1246,10 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         switch (mod % 2) {
         case 1:
             hideRequiredFields(numOfFields: 1, side: "right_buttons", justLastField: false)
-            showFields(field: num)
         default:
             hideRequiredFields(numOfFields: 1, side: "right_textfields", justLastField: false)
-            showFields(field: num)
         }
+        showFields(field: num)
     }
     
     @IBAction func hideOpenKeyboard(_ sender: UIButton) {
@@ -2518,225 +1994,85 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     // compares potential new name to old name and then calles another func to rename it in database
     public func nameChangeAddToDatabase() {
         
-        var tempName:String = String()
-        var old:String = String()
+        var i:Int = calcNumOfDataOriginal()
+        let limit:Int = 0
         
-        if ((txtRnm1.alpha == 1) && (txtRnm1.text != lbl1.text))
-        {
-            tempName = txtRnm1.text!
-            old = lbl1.text!
-            rename(newName: tempName, oldName: old)
-        }
-        if ((txtRnm2.alpha == 1) && (txtRnm2.text != lbl2.text))
-        {
-            tempName = txtRnm2.text!
-            old = lbl2.text!
-            rename(newName: tempName, oldName: old)
-        }
-        if ((txtRnm3.alpha == 1) && (txtRnm3.text != lbl3.text))
-        {
-            tempName = txtRnm3.text!
-            old = lbl3.text!
-            rename(newName: tempName, oldName: old)
-        }
-        if ((txtRnm4.alpha == 1) && (txtRnm4.text != lbl4.text))
-        {
-            tempName = txtRnm4.text!
-            old = lbl4.text!
-            rename(newName: tempName, oldName: old)
-        }
-        if ((txtRnm5.alpha == 1) && (txtRnm5.text != lbl5.text))
-        {
-            tempName = txtRnm5.text!
-            old = lbl5.text!
-            rename(newName: tempName, oldName: old)
-        }
-        if ((txtRnm6.alpha == 1) && (txtRnm6.text != lbl6.text))
-        {
-            tempName = txtRnm6.text!
-            old = lbl6.text!
-            rename(newName: tempName, oldName: old)
-        }
-        if ((txtRnm7.alpha == 1) && (txtRnm7.text != lbl7.text))
-        {
-            tempName = txtRnm7.text!
-            old = lbl7.text!
-            rename(newName: tempName, oldName: old)
-        }
-        if ((txtRnm8.alpha == 1) && (txtRnm8.text != lbl8.text))
-        {
-            tempName = txtRnm8.text!
-            old = lbl8.text!
-            rename(newName: tempName, oldName: old)
-        }
-        if ((txtRnm9.alpha == 1) && (txtRnm9.text != lbl9.text))
-        {
-            tempName = txtRnm9.text!
-            old = lbl9.text!
-            rename(newName: tempName, oldName: old)
-        }
-        if ((txtRnm10.alpha == 1) && (txtRnm10.text != lbl10.text))
-        {
-            tempName = txtRnm10.text!
-            old = lbl10.text!
-            rename(newName: tempName, oldName: old)
-        }
-        if ((txtRnm11.alpha == 1) && (txtRnm11.text != lbl11.text))
-        {
-            tempName = txtRnm11.text!
-            old = lbl11.text!
-            rename(newName: tempName, oldName: old)
-        }
-        if ((txtRnm12.alpha == 1) && (txtRnm12.text != lbl12.text))
-        {
-            tempName = txtRnm12.text!
-            old = lbl12.text!
-            rename(newName: tempName, oldName: old)
-        }
-        if ((txtRnm13.alpha == 1) && (txtRnm13.text != lbl13.text))
-        {
-            tempName = txtRnm13.text!
-            old = lbl13.text!
-            rename(newName: tempName, oldName: old)
-        }
-        if ((txtRnm14.alpha == 1) && (txtRnm14.text != lbl14.text))
-        {
-            tempName = txtRnm14.text!
-            old = lbl14.text!
-            rename(newName: tempName, oldName: old)
-        }
-        if ((txtRnm15.alpha == 1) && (txtRnm15.text != lbl15.text))
-        {
-            tempName = txtRnm15.text!
-            old = lbl15.text!
-            rename(newName: tempName, oldName: old)
-        }
-        if ((txtRnm16.alpha == 1) && (txtRnm16.text != lbl16.text))
-        {
-            tempName = txtRnm16.text!
-            old = lbl16.text!
-            rename(newName: tempName, oldName: old)
-        }
-        if ((txtRnm17.alpha == 1) && (txtRnm17.text != lbl17.text))
-        {
-            tempName = txtRnm17.text!
-            old = lbl17.text!
-            rename(newName: tempName, oldName: old)
-        }
-        if ((txtRnm18.alpha == 1) && (txtRnm18.text != lbl18.text))
-        {
-            tempName = txtRnm18.text!
-            old = lbl18.text!
-            rename(newName: tempName, oldName: old)
-        }
-        if ((txtRnm19.alpha == 1) && (txtRnm19.text != lbl19.text))
-        {
-            tempName = txtRnm19.text!
-            old = lbl19.text!
-            rename(newName: tempName, oldName: old)
-        }
-        if ((txtRnm20.alpha == 1) && (txtRnm20.text != lbl20.text))
-        {
-            tempName = txtRnm20.text!
-            old = lbl20.text!
-            rename(newName: tempName, oldName: old)
-        }
-        if ((txtRnm21.alpha == 1) && (txtRnm21.text != lbl21.text))
-        {
-            tempName = txtRnm21.text!
-            old = lbl21.text!
-            rename(newName: tempName, oldName: old)
-        }
-        if ((txtRnm22.alpha == 1) && (txtRnm22.text != lbl22.text))
-        {
-            tempName = txtRnm22.text!
-            old = lbl22.text!
-            rename(newName: tempName, oldName: old)
-        }
-        if ((txtRnm23.alpha == 1) && (txtRnm23.text != lbl23.text))
-        {
-            tempName = txtRnm23.text!
-            old = lbl23.text!
-            rename(newName: tempName, oldName: old)
-        }
-        if ((txtRnm24.alpha == 1) && (txtRnm24.text != lbl24.text))
-        {
-            tempName = txtRnm24.text!
-            old = lbl24.text!
-            rename(newName: tempName, oldName: old)
-        }
-        if ((txtRnm25.alpha == 1) && (txtRnm25.text != lbl25.text))
-        {
-            tempName = txtRnm25.text!
-            old = lbl25.text!
-            rename(newName: tempName, oldName: old)
-        }
-        if ((txtRnm26.alpha == 1) && (txtRnm26.text != lbl26.text))
-        {
-            tempName = txtRnm26.text!
-            old = lbl26.text!
-            rename(newName: tempName, oldName: old)
-        }
-        if ((txtRnm27.alpha == 1) && (txtRnm27.text != lbl27.text))
-        {
-            tempName = txtRnm27.text!
-            old = lbl27.text!
-            rename(newName: tempName, oldName: old)
-        }
-        if ((txtRnm28.alpha == 1) && (txtRnm28.text != lbl28.text))
-        {
-            tempName = txtRnm28.text!
-            old = lbl28.text!
-            rename(newName: tempName, oldName: old)
-        }
-        if ((txtRnm29.alpha == 1) && (txtRnm29.text != lbl29.text))
-        {
-            tempName = txtRnm29.text!
-            old = lbl29.text!
-            rename(newName: tempName, oldName: old)
-        }
-        if ((txtRnm30.alpha == 1) && (txtRnm30.text != lbl30.text))
-        {
-            tempName = txtRnm30.text!
-            old = lbl30.text!
-            rename(newName: tempName, oldName: old)
+        while (i > limit) {
+            switch i {
+            case 1: rename(old: lbl1.text!, new: txtRnm1.text!)
+            case 2: rename(old: lbl2.text!, new: txtRnm2.text!)
+            case 3: rename(old: lbl3.text!, new: txtRnm3.text!)
+            case 4: rename(old: lbl4.text!, new: txtRnm4.text!)
+            case 5: rename(old: lbl5.text!, new: txtRnm5.text!)
+            case 6: rename(old: lbl6.text!, new: txtRnm6.text!)
+            case 7: rename(old: lbl7.text!, new: txtRnm7.text!)
+            case 8: rename(old: lbl8.text!, new: txtRnm8.text!)
+            case 9: rename(old: lbl9.text!, new: txtRnm9.text!)
+            case 10: rename(old: lbl10.text!, new: txtRnm10.text!)
+            case 11: rename(old: lbl11.text!, new: txtRnm11.text!)
+            case 12: rename(old: lbl12.text!, new: txtRnm12.text!)
+            case 13: rename(old: lbl13.text!, new: txtRnm13.text!)
+            case 14: rename(old: lbl14.text!, new: txtRnm14.text!)
+            case 15: rename(old: lbl15.text!, new: txtRnm15.text!)
+            case 16: rename(old: lbl16.text!, new: txtRnm16.text!)
+            case 17: rename(old: lbl17.text!, new: txtRnm17.text!)
+            case 18: rename(old: lbl18.text!, new: txtRnm18.text!)
+            case 19: rename(old: lbl19.text!, new: txtRnm19.text!)
+            case 20: rename(old: lbl20.text!, new: txtRnm20.text!)
+            case 21: rename(old: lbl21.text!, new: txtRnm21.text!)
+            case 22: rename(old: lbl22.text!, new: txtRnm22.text!)
+            case 23: rename(old: lbl23.text!, new: txtRnm23.text!)
+            case 24: rename(old: lbl24.text!, new: txtRnm24.text!)
+            case 25: rename(old: lbl25.text!, new: txtRnm25.text!)
+            case 26: rename(old: lbl26.text!, new: txtRnm26.text!)
+            case 27: rename(old: lbl27.text!, new: txtRnm27.text!)
+            case 28: rename(old: lbl28.text!, new: txtRnm28.text!)
+            case 29: rename(old: lbl29.text!, new: txtRnm29.text!)
+            case 30: rename(old: lbl30.text!, new: txtRnm30.text!)
+            default: print("end")
+            }
+            i -= 1
         }
     }
     
     // fetches current data from old field name, stores values in vars, deletes it from database and adds new values to database
-    public func rename(newName: String, oldName: String) {
+    public func rename(old: String, new: String) {
         
-        var name:String = String()
-        var amount:Double = 0
-        var percent:Double = 0
-        var autoNumber:String = String()
-        
-        let predicate = NSPredicate(format: "name = %@", oldName)
-        let retrieve = NSFetchRequest<NSFetchRequestResult>(entityName: "Original")
-        retrieve.predicate = predicate
-        
-        do {
-            let searchResults = try DatabaseController.getContext().fetch(retrieve)
+        if (new != old)
+        {
+            var name:String = String()
+            var amount:Double = 0
+            var percent:Double = 0
+            var autoNumber:String = String()
             
-            for result in searchResults as! [Original] {
-                amount = result.amount
-                percent = result.percent
-                autoNumber = result.autoNumber!
-                name = newName
-                DatabaseController.getContext().delete(result)
+            let predicate = NSPredicate(format: "name = %@", old)
+            let retrieve = NSFetchRequest<NSFetchRequestResult>(entityName: "Original")
+            retrieve.predicate = predicate
+            
+            do {
+                let searchResults = try DatabaseController.getContext().fetch(retrieve)
+                
+                for result in searchResults as! [Original] {
+                    amount = result.amount
+                    percent = result.percent
+                    autoNumber = result.autoNumber!
+                    name = new
+                    DatabaseController.getContext().delete(result)
+                }
             }
+            catch {
+                print("Error! \(error)")
+            }
+            DatabaseController.saveContext()
+            
+            let add:Original = NSEntityDescription.insertNewObject(forEntityName: "Original", into: DatabaseController.getContext()) as! Original
+            add.name = name
+            add.amount = amount
+            add.percent = percent
+            add.autoNumber = autoNumber
+            DatabaseController.saveContext()
+            
         }
-        catch {
-            print("Error! \(error)")
-        }
-        DatabaseController.saveContext()
-        
-        let add:Original = NSEntityDescription.insertNewObject(forEntityName: "Original", into: DatabaseController.getContext()) as! Original
-        add.name = name
-        add.amount = amount
-        add.percent = percent
-        add.autoNumber = autoNumber
-        DatabaseController.saveContext()
     }
     
     // tests app if it's been used before
@@ -3548,6 +2884,144 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
             }
             i -= 1
         }
+    }
+    
+    public func editedAmountTextField(which:Int, amount:String) {
+        
+        var field = userInputAmountInTextField(sender: amount)
+        switch field {
+        case "":
+            switch which {
+            case 1: txtFirst.text = ""
+            lblFirst.text = "0.0%"
+            case 2: txtSecond.text = ""
+            lblSecond.text = "0.0%"
+            case 3: txtThird.text = ""
+            lblThird.text = "0.0%"
+            case 4: txtFourth.text = ""
+            lblFourth.text = "0.0%"
+            case 5: txtFifth.text = ""
+            lblFifth.text = "0.0%"
+            case 6: txtSixth.text = ""
+            lblSixth.text = "0.0%"
+            case 7: txtSeventh.text = ""
+            lblSeventh.text = "0.0%"
+            case 8: txtEighth.text = ""
+            lblEighth.text = "0.0%"
+            case 9: txtNineth.text = ""
+            lblNineth.text = "0.0%"
+            case 10: txtTenth.text = ""
+            lblTenth.text = "0.0%"
+            case 11: txtEleventh.text = ""
+            lblEleventh.text = "0.0%"
+            case 12: txtTwelfth.text = ""
+            lblTwelfth.text = "0.0%"
+            case 13: txtThirteenth.text = ""
+            lblThirteenth.text = "0.0%"
+            case 14: txtFourteenth.text = ""
+            lblFourteenth.text = "0.0%"
+            case 15: txtFifteenth.text = ""
+            lblFifteenth.text = "0.0%"
+            case 16: txtSixteenth.text = ""
+            lblSixteenth.text = "0.0%"
+            case 17: txtSeventeenth.text = ""
+            lblSeventeenth.text = "0.0%"
+            case 18: txtEighteenth.text = ""
+            lblEighteenth.text = "0.0%"
+            case 19: txtNineteenth.text = ""
+            lblNineteenth.text = "0.0%"
+            case 20: txtTwentieth.text = ""
+            lblTwentieth.text = "0.0%"
+            case 21: txtTwentyFirst.text = ""
+            lblTwentyFirst.text = "0.0%"
+            case 22: txtTwentySecond.text = ""
+            lblTwentySecond.text = "0.0%"
+            case 23: txtTwentyThird.text = ""
+            lblTwentyThird.text = "0.0%"
+            case 24: txtTwentyFourth.text = ""
+            lblTwentyFourth.text = "0.0%"
+            case 25: txtTwentyFifth.text = ""
+            lblTwentyFifth.text = "0.0%"
+            case 26: txtTwentySixth.text = ""
+            lblTwentySixth.text = "0.0%"
+            case 27: txtTwentySeventh.text = ""
+            lblTwentySeventh.text = "0.0%"
+            case 28: txtTwentyEighth.text = ""
+            lblTwentyEighth.text = "0.0%"
+            case 29: txtTwentyNineth.text = ""
+            lblTwentyNineth.text = "0.0%"
+            case 30: txtThirtieth.text = ""
+            lblThirtieth.text = "0.0%"
+            default: print("end")
+            }
+        default:
+            field = userInputAmountInTextField(sender: field)
+            switch which {
+            case 1: fieldAmountChange(autoNumber: "0", newAmount: validDouble(double: field))
+            lblFirst.text = String(Double(round(100*global.percent)/100)) + "%"
+            case 2: fieldAmountChange(autoNumber: "1", newAmount: validDouble(double: field))
+            lblSecond.text = String(Double(round(100*global.percent)/100)) + "%"
+            case 3: fieldAmountChange(autoNumber: "2", newAmount: validDouble(double: field))
+            lblThird.text = String(Double(round(100*global.percent)/100)) + "%"
+            case 4: fieldAmountChange(autoNumber: "3", newAmount: validDouble(double: field))
+            lblFourth.text = String(Double(round(100*global.percent)/100)) + "%"
+            case 5: fieldAmountChange(autoNumber: "4", newAmount: validDouble(double: field))
+            lblFifth.text = String(Double(round(100*global.percent)/100)) + "%"
+            case 6: fieldAmountChange(autoNumber: "5", newAmount: validDouble(double: field))
+            lblSixth.text = String(Double(round(100*global.percent)/100)) + "%"
+            case 7: fieldAmountChange(autoNumber: "6", newAmount: validDouble(double: field))
+            lblSeventh.text = String(Double(round(100*global.percent)/100)) + "%"
+            case 8: fieldAmountChange(autoNumber: "7", newAmount: validDouble(double: field))
+            lblEighth.text = String(Double(round(100*global.percent)/100)) + "%"
+            case 9: fieldAmountChange(autoNumber: "8", newAmount: validDouble(double: field))
+            lblNineth.text = String(Double(round(100*global.percent)/100)) + "%"
+            case 10: fieldAmountChange(autoNumber: "9", newAmount: validDouble(double: field))
+            lblTenth.text = String(Double(round(100*global.percent)/100)) + "%"
+            case 11: fieldAmountChange(autoNumber: "10", newAmount: validDouble(double: field))
+            lblEleventh.text = String(Double(round(100*global.percent)/100)) + "%"
+            case 12: fieldAmountChange(autoNumber: "11", newAmount: validDouble(double: field))
+            lblTwelfth.text = String(Double(round(100*global.percent)/100)) + "%"
+            case 13: fieldAmountChange(autoNumber: "12", newAmount: validDouble(double: field))
+            lblThirteenth.text = String(Double(round(100*global.percent)/100)) + "%"
+            case 14: fieldAmountChange(autoNumber: "13", newAmount: validDouble(double: field))
+            lblFourteenth.text = String(Double(round(100*global.percent)/100)) + "%"
+            case 15: fieldAmountChange(autoNumber: "14", newAmount: validDouble(double: field))
+            lblFifteenth.text = String(Double(round(100*global.percent)/100)) + "%"
+            case 16: fieldAmountChange(autoNumber: "15", newAmount: validDouble(double: field))
+            lblSixteenth.text = String(Double(round(100*global.percent)/100)) + "%"
+            case 17: fieldAmountChange(autoNumber: "16", newAmount: validDouble(double: field))
+            lblSeventeenth.text = String(Double(round(100*global.percent)/100)) + "%"
+            case 18: fieldAmountChange(autoNumber: "17", newAmount: validDouble(double: field))
+            lblEighteenth.text = String(Double(round(100*global.percent)/100)) + "%"
+            case 19: fieldAmountChange(autoNumber: "18", newAmount: validDouble(double: field))
+            lblNineteenth.text = String(Double(round(100*global.percent)/100)) + "%"
+            case 20: fieldAmountChange(autoNumber: "19", newAmount: validDouble(double: field))
+            lblTwentieth.text = String(Double(round(100*global.percent)/100)) + "%"
+            case 21: fieldAmountChange(autoNumber: "20", newAmount: validDouble(double: field))
+            lblTwentyFirst.text = String(Double(round(100*global.percent)/100)) + "%"
+            case 22: fieldAmountChange(autoNumber: "21", newAmount: validDouble(double: field))
+            lblTwentySecond.text = String(Double(round(100*global.percent)/100)) + "%"
+            case 23: fieldAmountChange(autoNumber: "22", newAmount: validDouble(double: field))
+            lblTwentyThird.text = String(Double(round(100*global.percent)/100)) + "%"
+            case 24: fieldAmountChange(autoNumber: "23", newAmount: validDouble(double: field))
+            lblTwentyFourth.text = String(Double(round(100*global.percent)/100)) + "%"
+            case 25: fieldAmountChange(autoNumber: "24", newAmount: validDouble(double: field))
+            lblTwentyFifth.text = String(Double(round(100*global.percent)/100)) + "%"
+            case 26: fieldAmountChange(autoNumber: "25", newAmount: validDouble(double: field))
+            lblTwentySixth.text = String(Double(round(100*global.percent)/100)) + "%"
+            case 27: fieldAmountChange(autoNumber: "26", newAmount: validDouble(double: field))
+            lblTwentySeventh.text = String(Double(round(100*global.percent)/100)) + "%"
+            case 28: fieldAmountChange(autoNumber: "27", newAmount: validDouble(double: field))
+            lblTwentyEighth.text = String(Double(round(100*global.percent)/100)) + "%"
+            case 29: fieldAmountChange(autoNumber: "28", newAmount: validDouble(double: field))
+            lblTwentyNineth.text = String(Double(round(100*global.percent)/100)) + "%"
+            case 30: fieldAmountChange(autoNumber: "29", newAmount: validDouble(double: field))
+            lblThirtieth.text = String(Double(round(100*global.percent)/100)) + "%"
+            default: print("end")
+            }
+            insertGlobalsToDatabase()
+        }
+        amountOrPercentChangeInArray(name: global.name)
     }
     
     public func newNameInArray(old:String, new:String) {
