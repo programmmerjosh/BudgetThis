@@ -16,12 +16,8 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     var tempIncome:Double = 5000
     var Arraylimit:Int = 0
     var bLabel:Bool = true
-    
     var limitLength = 12
     var mod:Int = 0
-    
-    var Segment:Bool = true
-    var tempFN:Int = 0
     
     struct Gvars
     {
@@ -200,7 +196,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         hideRequiredFields(numOfFields: Arraylimit, side: "left_labels", justLastField: false)
         hideRequiredFields(numOfFields: 1, side: "right_textfields", justLastField: false)
         showFields(field: Arraylimit)
-        Segment = false
         updateTotalDisplays()
     }
     
@@ -1775,11 +1770,9 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         case 1:
             hideRequiredFields(numOfFields: 1, side: "right_buttons", justLastField: false)
             showFields(field: num)
-            Segment = true
         default:
             hideRequiredFields(numOfFields: 1, side: "right_textfields", justLastField: false)
             showFields(field: num)
-            Segment = false
         }
     }
     
@@ -2956,8 +2949,8 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         var i:Int = 1
         let limit = field + 1
         while (i < limit) {
-            switch Segment {
-            case false:
+            switch (mod % 2) {
+            case 1:
                 switch i {
                 case 1: txtFirst.alpha = 1.0
                 lbl1.alpha = 1.0
@@ -3021,7 +3014,7 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
                 lbl30.alpha = 1.0
                 default: print("error")
                 }
-            case true:
+            default:
                 switch i {
                 case 1: lbl1.alpha = 1.0
                 lblFirst.alpha = 1.0
@@ -3516,188 +3509,44 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     
     public func nameChangeToArray() {
         
-        var newFieldName:String = String()
-        var oldFieldName:String = String()
+        var i:Int = calcNumOfDataOriginal()
+        let limit:Int = 0
         
-        if ((txtRnm1.alpha == 1) && (txtRnm1.text != "") && (txtRnm1.text != lbl1.text))
-        {
-            newFieldName = txtRnm1.text!
-            oldFieldName = lbl1.text!
-            newNameInArray(old: oldFieldName, new: newFieldName)
-        }
-        if ((txtRnm2.alpha == 1) && (txtRnm2.text != "") && (txtRnm2.text != lbl2.text))
-        {
-            newFieldName = txtRnm2.text!
-            oldFieldName = lbl2.text!
-            newNameInArray(old: oldFieldName, new: newFieldName)
-        }
-        if ((txtRnm3.alpha == 1) && (txtRnm3.text != "") && (txtRnm3.text != lbl3.text))
-        {
-            newFieldName = txtRnm3.text!
-            oldFieldName = lbl3.text!
-            newNameInArray(old: oldFieldName, new: newFieldName)
-        }
-        if ((txtRnm4.alpha == 1) && (txtRnm4.text != "") && (txtRnm4.text != lbl4.text))
-        {
-            newFieldName = txtRnm4.text!
-            oldFieldName = lbl4.text!
-            newNameInArray(old: oldFieldName, new: newFieldName)
-        }
-        if ((txtRnm5.alpha == 1) && (txtRnm5.text != "") && (txtRnm5.text != lbl5.text))
-        {
-            newFieldName = txtRnm5.text!
-            oldFieldName = lbl5.text!
-            newNameInArray(old: oldFieldName, new: newFieldName)
-        }
-        if ((txtRnm6.alpha == 1) && (txtRnm6.text != "") && (txtRnm6.text != lbl6.text))
-        {
-            newFieldName = txtRnm6.text!
-            oldFieldName = lbl6.text!
-            newNameInArray(old: oldFieldName, new: newFieldName)
-        }
-        if ((txtRnm7.alpha == 1) && (txtRnm7.text != "") && (txtRnm7.text != lbl7.text))
-        {
-            newFieldName = txtRnm7.text!
-            oldFieldName = lbl7.text!
-            newNameInArray(old: oldFieldName, new: newFieldName)
-        }
-        if ((txtRnm8.alpha == 1) && (txtRnm8.text != "") && (txtRnm8.text != lbl8.text))
-        {
-            newFieldName = txtRnm8.text!
-            oldFieldName = lbl8.text!
-            newNameInArray(old: oldFieldName, new: newFieldName)
-        }
-        if ((txtRnm9.alpha == 1) && (txtRnm9.text != "") && (txtRnm9.text != lbl9.text))
-        {
-            newFieldName = txtRnm9.text!
-            oldFieldName = lbl9.text!
-            newNameInArray(old: oldFieldName, new: newFieldName)
-        }
-        if ((txtRnm10.alpha == 1) && (txtRnm10.text != "") && (txtRnm10.text != lbl10.text))
-        {
-            newFieldName = txtRnm10.text!
-            oldFieldName = lbl10.text!
-            newNameInArray(old: oldFieldName, new: newFieldName)
-        }
-        if ((txtRnm11.alpha == 1) && (txtRnm11.text != "") && (txtRnm11.text != lbl11.text))
-        {
-            newFieldName = txtRnm11.text!
-            oldFieldName = lbl11.text!
-            newNameInArray(old: oldFieldName, new: newFieldName)
-        }
-        if ((txtRnm12.alpha == 1) && (txtRnm12.text != "") && (txtRnm12.text != lbl12.text))
-        {
-            newFieldName = txtRnm12.text!
-            oldFieldName = lbl12.text!
-            newNameInArray(old: oldFieldName, new: newFieldName)
-        }
-        if ((txtRnm13.alpha == 1) && (txtRnm13.text != "") && (txtRnm13.text != lbl13.text))
-        {
-            newFieldName = txtRnm13.text!
-            oldFieldName = lbl13.text!
-            newNameInArray(old: oldFieldName, new: newFieldName)
-        }
-        if ((txtRnm14.alpha == 1) && (txtRnm14.text != "") && (txtRnm14.text != lbl14.text))
-        {
-            newFieldName = txtRnm14.text!
-            oldFieldName = lbl14.text!
-            newNameInArray(old: oldFieldName, new: newFieldName)
-        }
-        if ((txtRnm15.alpha == 1) && (txtRnm15.text != "") && (txtRnm15.text != lbl15.text))
-        {
-            newFieldName = txtRnm15.text!
-            oldFieldName = lbl15.text!
-            newNameInArray(old: oldFieldName, new: newFieldName)
-        }
-        if ((txtRnm16.alpha == 1) && (txtRnm16.text != "") && (txtRnm16.text != lbl16.text))
-        {
-            newFieldName = txtRnm16.text!
-            oldFieldName = lbl16.text!
-            newNameInArray(old: oldFieldName, new: newFieldName)
-        }
-        if ((txtRnm17.alpha == 1) && (txtRnm17.text != "") && (txtRnm17.text != lbl17.text))
-        {
-            newFieldName = txtRnm17.text!
-            oldFieldName = lbl17.text!
-            newNameInArray(old: oldFieldName, new: newFieldName)
-        }
-        if ((txtRnm18.alpha == 1) && (txtRnm18.text != "") && (txtRnm18.text != lbl18.text))
-        {
-            newFieldName = txtRnm18.text!
-            oldFieldName = lbl18.text!
-            newNameInArray(old: oldFieldName, new: newFieldName)
-        }
-        if ((txtRnm19.alpha == 1) && (txtRnm19.text != "") && (txtRnm19.text != lbl19.text))
-        {
-            newFieldName = txtRnm19.text!
-            oldFieldName = lbl19.text!
-            newNameInArray(old: oldFieldName, new: newFieldName)
-        }
-        if ((txtRnm20.alpha == 1) && (txtRnm20.text != "") && (txtRnm20.text != lbl20.text))
-        {
-            newFieldName = txtRnm20.text!
-            oldFieldName = lbl20.text!
-            newNameInArray(old: oldFieldName, new: newFieldName)
-        }
-        if ((txtRnm21.alpha == 1) && (txtRnm21.text != "") && (txtRnm21.text != lbl21.text))
-        {
-            newFieldName = txtRnm21.text!
-            oldFieldName = lbl21.text!
-            newNameInArray(old: oldFieldName, new: newFieldName)
-        }
-        if ((txtRnm22.alpha == 1) && (txtRnm22.text != "") && (txtRnm22.text != lbl22.text))
-        {
-            newFieldName = txtRnm22.text!
-            oldFieldName = lbl22.text!
-            newNameInArray(old: oldFieldName, new: newFieldName)
-        }
-        if ((txtRnm23.alpha == 1) && (txtRnm23.text != "") && (txtRnm23.text != lbl23.text))
-        {
-            newFieldName = txtRnm23.text!
-            oldFieldName = lbl23.text!
-            newNameInArray(old: oldFieldName, new: newFieldName)
-        }
-        if ((txtRnm24.alpha == 1) && (txtRnm24.text != "") && (txtRnm24.text != lbl24.text))
-        {
-            newFieldName = txtRnm24.text!
-            oldFieldName = lbl24.text!
-            newNameInArray(old: oldFieldName, new: newFieldName)
-        }
-        if ((txtRnm25.alpha == 1) && (txtRnm25.text != "") && (txtRnm25.text != lbl25.text))
-        {
-            newFieldName = txtRnm25.text!
-            oldFieldName = lbl25.text!
-            newNameInArray(old: oldFieldName, new: newFieldName)
-        }
-        if ((txtRnm26.alpha == 1) && (txtRnm26.text != "") && (txtRnm26.text != lbl26.text))
-        {
-            newFieldName = txtRnm26.text!
-            oldFieldName = lbl26.text!
-            newNameInArray(old: oldFieldName, new: newFieldName)
-        }
-        if ((txtRnm27.alpha == 1) && (txtRnm27.text != "") && (txtRnm27.text != lbl27.text))
-        {
-            newFieldName = txtRnm27.text!
-            oldFieldName = lbl27.text!
-            newNameInArray(old: oldFieldName, new: newFieldName)
-        }
-        if ((txtRnm28.alpha == 1) && (txtRnm28.text != "") && (txtRnm28.text != lbl28.text))
-        {
-            newFieldName = txtRnm28.text!
-            oldFieldName = lbl28.text!
-            newNameInArray(old: oldFieldName, new: newFieldName)
-        }
-        if ((txtRnm29.alpha == 1) && (txtRnm29.text != "") && (txtRnm29.text != lbl29.text))
-        {
-            newFieldName = txtRnm29.text!
-            oldFieldName = lbl29.text!
-            newNameInArray(old: oldFieldName, new: newFieldName)
-        }
-        if ((txtRnm30.alpha == 1) && (txtRnm30.text != "") && (txtRnm30.text != lbl30.text))
-        {
-            newFieldName = txtRnm30.text!
-            oldFieldName = lbl30.text!
-            newNameInArray(old: oldFieldName, new: newFieldName)
+        while (i > limit) {
+            switch i {
+            case 1: newNameInArray(old: lbl1.text!, new: txtRnm1.text!)
+            case 2: newNameInArray(old: lbl2.text!, new: txtRnm2.text!)
+            case 3: newNameInArray(old: lbl3.text!, new: txtRnm3.text!)
+            case 4: newNameInArray(old: lbl4.text!, new: txtRnm4.text!)
+            case 5: newNameInArray(old: lbl5.text!, new: txtRnm5.text!)
+            case 6: newNameInArray(old: lbl6.text!, new: txtRnm6.text!)
+            case 7: newNameInArray(old: lbl7.text!, new: txtRnm7.text!)
+            case 8: newNameInArray(old: lbl8.text!, new: txtRnm8.text!)
+            case 9: newNameInArray(old: lbl9.text!, new: txtRnm9.text!)
+            case 10: newNameInArray(old: lbl10.text!, new: txtRnm10.text!)
+            case 11: newNameInArray(old: lbl11.text!, new: txtRnm11.text!)
+            case 12: newNameInArray(old: lbl12.text!, new: txtRnm12.text!)
+            case 13: newNameInArray(old: lbl13.text!, new: txtRnm13.text!)
+            case 14: newNameInArray(old: lbl14.text!, new: txtRnm14.text!)
+            case 15: newNameInArray(old: lbl15.text!, new: txtRnm15.text!)
+            case 16: newNameInArray(old: lbl16.text!, new: txtRnm16.text!)
+            case 17: newNameInArray(old: lbl17.text!, new: txtRnm17.text!)
+            case 18: newNameInArray(old: lbl18.text!, new: txtRnm18.text!)
+            case 19: newNameInArray(old: lbl19.text!, new: txtRnm19.text!)
+            case 20: newNameInArray(old: lbl20.text!, new: txtRnm20.text!)
+            case 21: newNameInArray(old: lbl21.text!, new: txtRnm21.text!)
+            case 22: newNameInArray(old: lbl22.text!, new: txtRnm22.text!)
+            case 23: newNameInArray(old: lbl23.text!, new: txtRnm23.text!)
+            case 24: newNameInArray(old: lbl24.text!, new: txtRnm24.text!)
+            case 25: newNameInArray(old: lbl25.text!, new: txtRnm25.text!)
+            case 26: newNameInArray(old: lbl26.text!, new: txtRnm26.text!)
+            case 27: newNameInArray(old: lbl27.text!, new: txtRnm27.text!)
+            case 28: newNameInArray(old: lbl28.text!, new: txtRnm28.text!)
+            case 29: newNameInArray(old: lbl29.text!, new: txtRnm29.text!)
+            case 30: newNameInArray(old: lbl30.text!, new: txtRnm30.text!)
+            default: print("end")
+            }
+            i -= 1
         }
     }
     
@@ -3705,13 +3554,16 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         var i:Int = 0
         let limit = calcNumOfDataOriginal()
         
-        while (i < limit)
+        if (new != "" && new != old)
         {
-            if (FirstViewController.stR.fields[i] == old)
+            while (i < limit)
             {
-                FirstViewController.stR.fields[i] = new
+                if (FirstViewController.stR.fields[i] == old)
+                {
+                    FirstViewController.stR.fields[i] = new
+                }
+                i += 1
             }
-            i += 1
         }
     }
     
