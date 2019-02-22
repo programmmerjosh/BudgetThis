@@ -418,670 +418,67 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var blankLabelTopConstraint: NSLayoutConstraint!
     
     // adding a percentage to the first row
-    @IBAction func addFirst(_ sender: UIButton) {
-        
-        retrievepercent(autoNumber: "0")
-        addTopercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl1.text!
-        lblFirst.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtFirst.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
+    @IBAction func addFirst(_ sender: UIButton) { executeAddOrSubtract(which: 1, plus: true) }
     // subtracting a percentage from the first row
-    @IBAction func minusFirst(_ sender: UIButton) {
-        
-        retrievepercent(autoNumber: "0")
-        subtractFrompercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl1.text!
-        lblFirst.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtFirst.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    // adding a percentage to the second row
-    @IBAction func addSecond(_ sender: UIButton) {
-
-        retrievepercent(autoNumber: "1")
-        addTopercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl2.text!
-        lblSecond.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtSecond.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    // subtracting a percentage from the second row
-    @IBAction func minusSecond(_ sender: UIButton) {
-
-        retrievepercent(autoNumber: "1")
-        subtractFrompercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl2.text!
-        lblSecond.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtSecond.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    // adding a percentage to the third row
-    @IBAction func addThird(_ sender: UIButton) {
-        
-        retrievepercent(autoNumber: "2")
-        addTopercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl3.text!
-        lblThird.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtThird.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    // subtracting a percentage from the third row
-    @IBAction func minusThird(_ sender: UIButton) {
-        
-        retrievepercent(autoNumber: "2")
-        subtractFrompercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl3.text!
-        lblThird.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtThird.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func addFourth(_ sender: UIButton) {
-    
-        retrievepercent(autoNumber: "3")
-        addTopercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl4.text!
-        lblFourth.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtFourth.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func minusFourth(_ sender: UIButton) {
-
-        retrievepercent(autoNumber: "3")
-        subtractFrompercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl4.text!
-        lblFourth.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtFourth.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func addFifth(_ sender: UIButton) {
-
-        retrievepercent(autoNumber: "4")
-        addTopercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl5.text!
-        lblFifth.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtFifth.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func minusFifth(_ sender: UIButton) {
-
-        retrievepercent(autoNumber: "4")
-        subtractFrompercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl5.text!
-        lblFifth.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtFifth.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func addSixth(_ sender: UIButton) {
-        
-        retrievepercent(autoNumber: "5")
-        addTopercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl6.text!
-        lblSixth.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtSixth.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func minusSixth(_ sender: UIButton) {
-
-        retrievepercent(autoNumber: "5")
-        subtractFrompercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl6.text!
-        lblSixth.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtSixth.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func addSeventh(_ sender: UIButton) {
-
-        retrievepercent(autoNumber: "6")
-        addTopercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl7.text!
-        lblSeventh.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtSeventh.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func minusSeventh(_ sender: UIButton) {
-
-        retrievepercent(autoNumber: "6")
-        subtractFrompercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl7.text!
-        lblSeventh.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtSeventh.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func addEighth(_ sender: UIButton) {
-
-        retrievepercent(autoNumber: "7")
-        addTopercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl8.text!
-        lblEighth.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtEighth.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func minusEighth(_ sender: UIButton) {
-    
-        retrievepercent(autoNumber: "7")
-        subtractFrompercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl8.text!
-        lblEighth.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtEighth.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func addNineth(_ sender: UIButton) {
-    
-        retrievepercent(autoNumber: "8")
-        addTopercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl9.text!
-        lblNineth.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtNineth.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func minusNineth(_ sender: UIButton) {
-    
-        retrievepercent(autoNumber: "8")
-        subtractFrompercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl9.text!
-        lblNineth.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtNineth.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func addTenth(_ sender: UIButton) {
-
-        retrievepercent(autoNumber: "9")
-        addTopercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl10.text!
-        lblTenth.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtTenth.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func minusTenth(_ sender: UIButton) {
-
-        retrievepercent(autoNumber: "9")
-        subtractFrompercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl10.text!
-        lblTenth.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtTenth.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func addEleventh(_ sender: UIButton) {
-
-        retrievepercent(autoNumber: "10")
-        addTopercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl11.text!
-        lblEleventh.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtEleventh.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func minusEleventh(_ sender: UIButton) {
-    
-        retrievepercent(autoNumber: "10")
-        subtractFrompercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl11.text!
-        lblEleventh.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtEleventh.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func addTwelfth(_ sender: UIButton) {
-
-        retrievepercent(autoNumber: "11")
-        addTopercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl12.text!
-        lblTwelfth.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtTwelfth.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func minusTwelfth(_ sender: UIButton) {
-    
-        retrievepercent(autoNumber: "11")
-        subtractFrompercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl12.text!
-        lblTwelfth.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtTwelfth.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func addThirteenth(_ sender: UIButton) {
-
-        retrievepercent(autoNumber: "12")
-        addTopercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl13.text!
-        lblThirteenth.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtThirteenth.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func minusThirteenth(_ sender: UIButton) {
-    
-        retrievepercent(autoNumber: "12")
-        subtractFrompercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl13.text!
-        lblThirteenth.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtThirteenth.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func addFourteenth(_ sender: UIButton) {
-    
-        retrievepercent(autoNumber: "13")
-        addTopercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl14.text!
-        lblFourteenth.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtFourteenth.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func minusFourteenth(_ sender: UIButton) {
-
-        retrievepercent(autoNumber: "13")
-        subtractFrompercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl14.text!
-        lblFourteenth.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtFourteenth.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func addFifteenth(_ sender: UIButton) {
-    
-        retrievepercent(autoNumber: "14")
-        addTopercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl15.text!
-        lblFifteenth.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtFifteenth.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func minusFifteenth(_ sender: UIButton) {
-
-        retrievepercent(autoNumber: "14")
-        subtractFrompercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl15.text!
-        lblFifteenth.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtFifteenth.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func addSixteenth(_ sender: UIButton) {
-    
-        retrievepercent(autoNumber: "15")
-        addTopercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl16.text!
-        lblSixteenth.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtSixteenth.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func minusSixteenth(_ sender: UIButton) {
-
-        retrievepercent(autoNumber: "15")
-        subtractFrompercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl16.text!
-        lblSixteenth.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtSixteenth.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func addSeventeenth(_ sender: UIButton) {
-
-        retrievepercent(autoNumber: "16")
-        addTopercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl17.text!
-        lblSeventeenth.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtSeventeenth.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func minusSeventeenth(_ sender: UIButton) {
-    
-        retrievepercent(autoNumber: "16")
-        subtractFrompercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl17.text!
-        lblSeventeenth.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtSeventeenth.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func addEighteenth(_ sender: UIButton) {
-
-        retrievepercent(autoNumber: "17")
-        addTopercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl18.text!
-        lblEighteenth.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtEighteenth.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func minusEighteenth(_ sender: UIButton) {
-    
-        retrievepercent(autoNumber: "17")
-        subtractFrompercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl18.text!
-        lblEighteenth.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtEighteenth.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func addNineteenth(_ sender: UIButton) {
-
-        retrievepercent(autoNumber: "18")
-        addTopercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl19.text!
-        lblNineteenth.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtNineteenth.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func minusNineteenth(_ sender: UIButton) {
-    
-        retrievepercent(autoNumber: "18")
-        subtractFrompercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl19.text!
-        lblNineteenth.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtNineteenth.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func addTwentieth(_ sender: UIButton) {
-
-        retrievepercent(autoNumber: "19")
-        addTopercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl20.text!
-        lblTwentieth.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtTwentieth.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func minusTwentieth(_ sender: UIButton) {
-    
-        retrievepercent(autoNumber: "19")
-        subtractFrompercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl20.text!
-        lblTwentieth.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtTwentieth.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func addTwentyfirst(_ sender: UIButton) {
-
-        retrievepercent(autoNumber: "20")
-        addTopercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl21.text!
-        lblTwentyFirst.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtTwentyFirst.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func minusTwentyfirst(_ sender: UIButton) {
-
-        retrievepercent(autoNumber: "20")
-        subtractFrompercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl21.text!
-        lblTwentyFirst.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtTwentyFirst.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func addTwentysecond(_ sender: UIButton) {
-    
-        retrievepercent(autoNumber: "21")
-        addTopercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl22.text!
-        lblTwentySecond.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtTwentySecond.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func minusTwentysecond(_ sender: UIButton) {
-    
-        retrievepercent(autoNumber: "21")
-        subtractFrompercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl22.text!
-        lblTwentySecond.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtTwentySecond.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func addTwentythird(_ sender: UIButton) {
-
-        retrievepercent(autoNumber: "22")
-        addTopercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl23.text!
-        lblTwentyThird.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtTwentyThird.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func minusTwentythird(_ sender: UIButton) {
-
-        retrievepercent(autoNumber: "22")
-        subtractFrompercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl23.text!
-        lblTwentyThird.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtTwentyThird.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func addTwentyfourth(_ sender: UIButton) {
-    
-        retrievepercent(autoNumber: "23")
-        addTopercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl24.text!
-        lblTwentyFourth.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtTwentyFourth.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func minusTwentyfourth(_ sender: UIButton) {
-
-        retrievepercent(autoNumber: "23")
-        subtractFrompercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl24.text!
-        lblTwentyFourth.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtTwentyFourth.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func addTwentyfifth(_ sender: UIButton) {
-
-        retrievepercent(autoNumber: "24")
-        addTopercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl25.text!
-        lblTwentyFifth.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtTwentyFifth.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func minusTwentyfifth(_ sender: UIButton) {
-
-        retrievepercent(autoNumber: "24")
-        subtractFrompercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl25.text!
-        lblTwentyFifth.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtTwentyFifth.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func addTwentysixth(_ sender: UIButton) {
-
-        retrievepercent(autoNumber: "25")
-        addTopercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl26.text!
-        lblTwentySixth.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtTwentySixth.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func minusTwentysixth(_ sender: UIButton) {
-
-        retrievepercent(autoNumber: "25")
-        subtractFrompercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl26.text!
-        lblTwentySixth.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtTwentySixth.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func addTwentyseventh(_ sender: UIButton) {
-
-        retrievepercent(autoNumber: "26")
-        addTopercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl27.text!
-        lblTwentySeventh.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtTwentySeventh.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func minusTwentyseventh(_ sender: UIButton) {
-
-        retrievepercent(autoNumber: "26")
-        subtractFrompercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl27.text!
-        lblTwentySeventh.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtTwentySeventh.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func addTwentyeighth(_ sender: UIButton) {
-
-        retrievepercent(autoNumber: "27")
-        addTopercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl28.text!
-        lblTwentyEighth.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtTwentyEighth.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func minusTwentyeighth(_ sender: UIButton) {
-
-        retrievepercent(autoNumber: "27")
-        subtractFrompercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl28.text!
-        lblTwentyEighth.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtTwentyEighth.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func addTwentynineth(_ sender: UIButton) {
-
-        retrievepercent(autoNumber: "28")
-        addTopercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl29.text!
-        lblTwentyNineth.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtTwentyNineth.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func minusTwentynineth(_ sender: UIButton) {
-
-        retrievepercent(autoNumber: "28")
-        subtractFrompercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl29.text!
-        lblTwentyNineth.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtTwentyNineth.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func addThirtieth(_ sender: UIButton) {
-
-        retrievepercent(autoNumber: "29")
-        addTopercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl30.text!
-        lblThirtieth.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtThirtieth.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
-    
-    @IBAction func minusThirtieth(_ sender: UIButton) {
-    
-        retrievepercent(autoNumber: "29")
-        subtractFrompercent()
-        amountOrPercentChangeInArray(name: global.name)
-        global.name = lbl30.text!
-        lblThirtieth.text = String(Double(round(100*global.percent)/100)) + "%"
-        txtThirtieth.text = String(Double(round(100*global.amount)/100))
-        updateTotalDisplays()
-    }
+    @IBAction func minusFirst(_ sender: UIButton) { executeAddOrSubtract(which: 1, plus: false) }
+    @IBAction func addSecond(_ sender: UIButton) { executeAddOrSubtract(which: 2, plus: true) }
+    @IBAction func minusSecond(_ sender: UIButton) { executeAddOrSubtract(which: 2, plus: false) }
+    @IBAction func addThird(_ sender: UIButton) { executeAddOrSubtract(which: 3, plus: true) }
+    @IBAction func minusThird(_ sender: UIButton) { executeAddOrSubtract(which: 3, plus: false) }
+    @IBAction func addFourth(_ sender: UIButton) { executeAddOrSubtract(which: 4, plus: true) }
+    @IBAction func minusFourth(_ sender: UIButton) { executeAddOrSubtract(which: 4, plus: false) }
+    @IBAction func addFifth(_ sender: UIButton) { executeAddOrSubtract(which: 5, plus: true) }
+    @IBAction func minusFifth(_ sender: UIButton) { executeAddOrSubtract(which: 5, plus: false) }
+    @IBAction func addSixth(_ sender: UIButton) { executeAddOrSubtract(which: 6, plus: true) }
+    @IBAction func minusSixth(_ sender: UIButton) { executeAddOrSubtract(which: 6, plus: false) }
+    @IBAction func addSeventh(_ sender: UIButton) { executeAddOrSubtract(which: 7, plus: true) }
+    @IBAction func minusSeventh(_ sender: UIButton) { executeAddOrSubtract(which: 7, plus: false) }
+    @IBAction func addEighth(_ sender: UIButton) { executeAddOrSubtract(which: 8, plus: true) }
+    @IBAction func minusEighth(_ sender: UIButton) { executeAddOrSubtract(which: 8, plus: false) }
+    @IBAction func addNineth(_ sender: UIButton) { executeAddOrSubtract(which: 9, plus: true) }
+    @IBAction func minusNineth(_ sender: UIButton) { executeAddOrSubtract(which: 9, plus: false) }
+    @IBAction func addTenth(_ sender: UIButton) { executeAddOrSubtract(which: 10, plus: true) }
+    @IBAction func minusTenth(_ sender: UIButton) { executeAddOrSubtract(which: 10, plus: false) }
+    @IBAction func addEleventh(_ sender: UIButton) { executeAddOrSubtract(which: 11, plus: true) }
+    @IBAction func minusEleventh(_ sender: UIButton) { executeAddOrSubtract(which: 11, plus: false) }
+    @IBAction func addTwelfth(_ sender: UIButton) { executeAddOrSubtract(which: 12, plus: true) }
+    @IBAction func minusTwelfth(_ sender: UIButton) { executeAddOrSubtract(which: 12, plus: false) }
+    @IBAction func addThirteenth(_ sender: UIButton) { executeAddOrSubtract(which: 13, plus: true) }
+    @IBAction func minusThirteenth(_ sender: UIButton) { executeAddOrSubtract(which: 13, plus: false) }
+    @IBAction func addFourteenth(_ sender: UIButton) { executeAddOrSubtract(which: 14, plus: true) }
+    @IBAction func minusFourteenth(_ sender: UIButton) { executeAddOrSubtract(which: 14, plus: false) }
+    @IBAction func addFifteenth(_ sender: UIButton) { executeAddOrSubtract(which: 15, plus: true) }
+    @IBAction func minusFifteenth(_ sender: UIButton) { executeAddOrSubtract(which: 15, plus: false) }
+    @IBAction func addSixteenth(_ sender: UIButton) { executeAddOrSubtract(which: 16, plus: true) }
+    @IBAction func minusSixteenth(_ sender: UIButton) { executeAddOrSubtract(which: 16, plus: false) }
+    @IBAction func addSeventeenth(_ sender: UIButton) { executeAddOrSubtract(which: 17, plus: true) }
+    @IBAction func minusSeventeenth(_ sender: UIButton) { executeAddOrSubtract(which: 17, plus: false) }
+    @IBAction func addEighteenth(_ sender: UIButton) { executeAddOrSubtract(which: 18, plus: true) }
+    @IBAction func minusEighteenth(_ sender: UIButton) { executeAddOrSubtract(which: 18, plus: false) }
+    @IBAction func addNineteenth(_ sender: UIButton) { executeAddOrSubtract(which: 19, plus: true) }
+    @IBAction func minusNineteenth(_ sender: UIButton) { executeAddOrSubtract(which: 19, plus: false) }
+    @IBAction func addTwentieth(_ sender: UIButton) { executeAddOrSubtract(which: 20, plus: true) }
+    @IBAction func minusTwentieth(_ sender: UIButton) { executeAddOrSubtract(which: 20, plus: false) }
+    @IBAction func addTwentyfirst(_ sender: UIButton) { executeAddOrSubtract(which: 21, plus: true) }
+    @IBAction func minusTwentyfirst(_ sender: UIButton) { executeAddOrSubtract(which: 21, plus: false) }
+    @IBAction func addTwentysecond(_ sender: UIButton) { executeAddOrSubtract(which: 22, plus: true) }
+    @IBAction func minusTwentysecond(_ sender: UIButton) { executeAddOrSubtract(which: 22, plus: false) }
+    @IBAction func addTwentythird(_ sender: UIButton) { executeAddOrSubtract(which: 23, plus: true) }
+    @IBAction func minusTwentythird(_ sender: UIButton) { executeAddOrSubtract(which: 23, plus: false) }
+    @IBAction func addTwentyfourth(_ sender: UIButton) { executeAddOrSubtract(which: 24, plus: true) }
+    @IBAction func minusTwentyfourth(_ sender: UIButton) { executeAddOrSubtract(which: 24, plus: false) }
+    @IBAction func addTwentyfifth(_ sender: UIButton) { executeAddOrSubtract(which: 25, plus: true) }
+    @IBAction func minusTwentyfifth(_ sender: UIButton) { executeAddOrSubtract(which: 25, plus: false) }
+    @IBAction func addTwentysixth(_ sender: UIButton) { executeAddOrSubtract(which: 26, plus: true) }
+    @IBAction func minusTwentysixth(_ sender: UIButton) { executeAddOrSubtract(which: 26, plus: false) }
+    @IBAction func addTwentyseventh(_ sender: UIButton) { executeAddOrSubtract(which: 27, plus: true) }
+    @IBAction func minusTwentyseventh(_ sender: UIButton) { executeAddOrSubtract(which: 27, plus: false) }
+    @IBAction func addTwentyeighth(_ sender: UIButton) { executeAddOrSubtract(which: 28, plus: true) }
+    @IBAction func minusTwentyeighth(_ sender: UIButton) { executeAddOrSubtract(which: 28, plus: false) }
+    @IBAction func addTwentynineth(_ sender: UIButton) { executeAddOrSubtract(which: 29, plus: true) }
+    @IBAction func minusTwentynineth(_ sender: UIButton) { executeAddOrSubtract(which: 29, plus: false) }
+    @IBAction func addThirtieth(_ sender: UIButton) { executeAddOrSubtract(which: 30, plus: true) }
+    @IBAction func minusThirtieth(_ sender: UIButton) { executeAddOrSubtract(which: 30, plus: false) }
     
     @IBAction func AddNewFieldButtonAction(_ sender: UIButton) {
         
@@ -1133,10 +530,7 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         limitLength = 12
         let input:String = txtTotal.text!
         let income:Double = validDouble(double: input)
-        if (income == 0)
-        {
-            txtTotal.text = ""
-        }
+        if (income == 0) { txtTotal.text = "" }
         tempIncome = income
         incomeChange()
         addIncomeAmount(incomeAmount: tempIncome)
@@ -1603,6 +997,144 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         if (txtTwentyNineth.text != "") { totalAmounts = totalAmounts + validDouble(double: txtTwentyNineth.text!) }
         if (txtThirtieth.text != "") { totalAmounts = totalAmounts + validDouble(double: txtThirtieth.text!) }
         return totalAmounts
+    }
+    
+    public func executeAddOrSubtract(which:Int, plus:Bool) {
+        
+        switch which {
+        case 1: retrievepercent(autoNumber: "0")
+        case 2: retrievepercent(autoNumber: "1")
+        case 3: retrievepercent(autoNumber: "2")
+        case 4: retrievepercent(autoNumber: "3")
+        case 5: retrievepercent(autoNumber: "4")
+        case 6: retrievepercent(autoNumber: "5")
+        case 7: retrievepercent(autoNumber: "6")
+        case 8: retrievepercent(autoNumber: "7")
+        case 9: retrievepercent(autoNumber: "8")
+        case 10: retrievepercent(autoNumber: "9")
+        case 11: retrievepercent(autoNumber: "10")
+        case 12: retrievepercent(autoNumber: "11")
+        case 13: retrievepercent(autoNumber: "12")
+        case 14: retrievepercent(autoNumber: "13")
+        case 15: retrievepercent(autoNumber: "14")
+        case 16: retrievepercent(autoNumber: "15")
+        case 17: retrievepercent(autoNumber: "16")
+        case 18: retrievepercent(autoNumber: "17")
+        case 19: retrievepercent(autoNumber: "18")
+        case 20: retrievepercent(autoNumber: "19")
+        case 21: retrievepercent(autoNumber: "20")
+        case 22: retrievepercent(autoNumber: "21")
+        case 23: retrievepercent(autoNumber: "22")
+        case 24: retrievepercent(autoNumber: "23")
+        case 25: retrievepercent(autoNumber: "24")
+        case 26: retrievepercent(autoNumber: "25")
+        case 27: retrievepercent(autoNumber: "26")
+        case 28: retrievepercent(autoNumber: "27")
+        case 29: retrievepercent(autoNumber: "28")
+        case 30: retrievepercent(autoNumber: "29")
+        default: print("end")
+        }
+        
+        switch plus {
+        case true: addTopercent()
+        case false: subtractFrompercent()
+        }
+        
+        switch which {
+        case 1: global.name = lbl1.text!
+        lblFirst.text = String(Double(round(100*global.percent)/100)) + "%"
+        txtFirst.text = String(Double(round(100*global.amount)/100))
+        case 2: global.name = lbl2.text!
+        lblSecond.text = String(Double(round(100*global.percent)/100)) + "%"
+        txtSecond.text = String(Double(round(100*global.amount)/100))
+        case 3: global.name = lbl3.text!
+        lblThird.text = String(Double(round(100*global.percent)/100)) + "%"
+        txtThird.text = String(Double(round(100*global.amount)/100))
+        case 4: global.name = lbl4.text!
+        lblFourth.text = String(Double(round(100*global.percent)/100)) + "%"
+        txtFourth.text = String(Double(round(100*global.amount)/100))
+        case 5: global.name = lbl5.text!
+        lblFifth.text = String(Double(round(100*global.percent)/100)) + "%"
+        txtFifth.text = String(Double(round(100*global.amount)/100))
+        case 6: global.name = lbl6.text!
+        lblSixth.text = String(Double(round(100*global.percent)/100)) + "%"
+        txtSixth.text = String(Double(round(100*global.amount)/100))
+        case 7: global.name = lbl7.text!
+        lblSeventh.text = String(Double(round(100*global.percent)/100)) + "%"
+        txtSeventh.text = String(Double(round(100*global.amount)/100))
+        case 8: global.name = lbl8.text!
+        lblEighth.text = String(Double(round(100*global.percent)/100)) + "%"
+        txtEighth.text = String(Double(round(100*global.amount)/100))
+        case 9: global.name = lbl9.text!
+        lblNineth.text = String(Double(round(100*global.percent)/100)) + "%"
+        txtNineth.text = String(Double(round(100*global.amount)/100))
+        case 10: global.name = lbl10.text!
+        lblTenth.text = String(Double(round(100*global.percent)/100)) + "%"
+        txtTenth.text = String(Double(round(100*global.amount)/100))
+        case 11: global.name = lbl11.text!
+        lblEleventh.text = String(Double(round(100*global.percent)/100)) + "%"
+        txtEleventh.text = String(Double(round(100*global.amount)/100))
+        case 12: global.name = lbl12.text!
+        lblTwelfth.text = String(Double(round(100*global.percent)/100)) + "%"
+        txtTwelfth.text = String(Double(round(100*global.amount)/100))
+        case 13: global.name = lbl13.text!
+        lblThirteenth.text = String(Double(round(100*global.percent)/100)) + "%"
+        txtThirteenth.text = String(Double(round(100*global.amount)/100))
+        case 14: global.name = lbl14.text!
+        lblFourteenth.text = String(Double(round(100*global.percent)/100)) + "%"
+        txtFourteenth.text = String(Double(round(100*global.amount)/100))
+        case 15: global.name = lbl15.text!
+        lblFifteenth.text = String(Double(round(100*global.percent)/100)) + "%"
+        txtFifteenth.text = String(Double(round(100*global.amount)/100))
+        case 16: global.name = lbl16.text!
+        lblSixteenth.text = String(Double(round(100*global.percent)/100)) + "%"
+        txtSixteenth.text = String(Double(round(100*global.amount)/100))
+        case 17: global.name = lbl17.text!
+        lblSeventeenth.text = String(Double(round(100*global.percent)/100)) + "%"
+        txtSeventeenth.text = String(Double(round(100*global.amount)/100))
+        case 18: global.name = lbl18.text!
+        lblEighteenth.text = String(Double(round(100*global.percent)/100)) + "%"
+        txtEighteenth.text = String(Double(round(100*global.amount)/100))
+        case 19: global.name = lbl19.text!
+        lblNineteenth.text = String(Double(round(100*global.percent)/100)) + "%"
+        txtNineteenth.text = String(Double(round(100*global.amount)/100))
+        case 20: global.name = lbl20.text!
+        lblTwentieth.text = String(Double(round(100*global.percent)/100)) + "%"
+        txtTwentieth.text = String(Double(round(100*global.amount)/100))
+        case 21: global.name = lbl21.text!
+        lblTwentyFirst.text = String(Double(round(100*global.percent)/100)) + "%"
+        txtTwentyFirst.text = String(Double(round(100*global.amount)/100))
+        case 22: global.name = lbl22.text!
+        lblTwentySecond.text = String(Double(round(100*global.percent)/100)) + "%"
+        txtTwentySecond.text = String(Double(round(100*global.amount)/100))
+        case 23: global.name = lbl23.text!
+        lblTwentyThird.text = String(Double(round(100*global.percent)/100)) + "%"
+        txtTwentyThird.text = String(Double(round(100*global.amount)/100))
+        case 24: global.name = lbl24.text!
+        lblTwentyFourth.text = String(Double(round(100*global.percent)/100)) + "%"
+        txtTwentyFourth.text = String(Double(round(100*global.amount)/100))
+        case 25: global.name = lbl25.text!
+        lblTwentyFifth.text = String(Double(round(100*global.percent)/100)) + "%"
+        txtTwentyFifth.text = String(Double(round(100*global.amount)/100))
+        case 26: global.name = lbl26.text!
+        lblTwentySixth.text = String(Double(round(100*global.percent)/100)) + "%"
+        txtTwentySixth.text = String(Double(round(100*global.amount)/100))
+        case 27: global.name = lbl27.text!
+        lblTwentySeventh.text = String(Double(round(100*global.percent)/100)) + "%"
+        txtTwentySeventh.text = String(Double(round(100*global.amount)/100))
+        case 28: global.name = lbl28.text!
+        lblTwentyEighth.text = String(Double(round(100*global.percent)/100)) + "%"
+        txtTwentyEighth.text = String(Double(round(100*global.amount)/100))
+        case 29: global.name = lbl29.text!
+        lblTwentyNineth.text = String(Double(round(100*global.percent)/100)) + "%"
+        txtTwentyNineth.text = String(Double(round(100*global.amount)/100))
+        case 30: global.name = lbl30.text!
+        lblThirtieth.text = String(Double(round(100*global.percent)/100)) + "%"
+        txtThirtieth.text = String(Double(round(100*global.amount)/100))
+        default: print("end")
+        }
+        amountOrPercentChangeInArray(name: global.name)
+        updateTotalDisplays()
     }
     
     // validate that input amount is a double and does not exceed available amount
