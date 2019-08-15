@@ -1,5 +1,5 @@
 //
-//  TableViewCellViewController.swift
+//  MainDisplayTableViewCell.swift
 //  BudgetThis
 //
 //  Created by Joshua on 2017/03/08.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-class TableViewCellViewController: UITableViewCell {
+class MainDisplayTableViewCell: UITableViewCell {
     
-    @IBOutlet var first: UILabel!
-    @IBOutlet var amounts: UILabel!
-    @IBOutlet weak var rightSideAmounts: UILabel!
+    @IBOutlet var name: UILabel!
+    @IBOutlet var assigned: UILabel!
+    @IBOutlet weak var remaining: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,5 +24,4 @@ class TableViewCellViewController: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
 }

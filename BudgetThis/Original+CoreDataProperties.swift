@@ -1,9 +1,10 @@
 //
 //  Original+CoreDataProperties.swift
-//  FineAnce
+//  BudgetThis
 //
-//  Created by admin on 23/08/2017.
-//  Copyright © 2017 Josh_Dog101. All rights reserved.
+//  Created by admin on 15/08/2019.
+//  Copyright © 2019 Josh_Dog101. All rights reserved.
+//
 //
 
 import Foundation
@@ -16,9 +17,9 @@ extension Original {
         return NSFetchRequest<Original>(entityName: "Original")
     }
 
-    @NSManaged public var name: String?
     @NSManaged public var amount: Double
-    @NSManaged public var percent: Double
     @NSManaged public var autoNumber: String?
+    @NSManaged public var name: String?
+    @NSManaged public var percent: Double
 
 }
