@@ -78,18 +78,6 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        FirstViewController.AppUtility.lockOrientation(.portrait)
-        // Or to rotate and lock
-        // AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
-        
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        // Don't forget to reset when view is being removed
-        FirstViewController.AppUtility.lockOrientation(.all)
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -143,11 +131,11 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
         do {
             let searchResults = try DatabaseController.getContext().fetch(fetchData)
             
-            for result in searchResults as! [FieldTransaction] {
-                fieldArray.append(result.fieldName!)
-                amountArray.append(String(result.amountUsed))
+            for result in searchResults as! [Transaction] {
+                fieldArray.append(result.envelopeName!)
+                amountArray.append(String(result.amount))
                 datesArray.append(String(result.timeAndDate!))
-                global.desc = result.transactionDesc!
+                global.desc = result.info!
             }
         }
         catch {

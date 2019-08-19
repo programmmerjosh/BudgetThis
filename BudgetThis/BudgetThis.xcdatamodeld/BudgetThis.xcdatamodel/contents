@@ -1,31 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17G8030" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Envelope" representedClassName="Envelope" syncable="YES" codeGenerationType="class">
+    <entity name="Envelope" representedClassName="Envelope" syncable="YES">
         <attribute name="assigned" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="spent" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
-    <entity name="FieldTotals" representedClassName="FieldTotals" syncable="YES">
-        <attribute name="fieldName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="totalAmount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-    </entity>
-    <entity name="FieldTransaction" representedClassName="FieldTransaction" syncable="YES">
-        <attribute name="amountUsed" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="fieldName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="monthCat" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="timeAndDate" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="transactionDesc" optional="YES" attributeType="String" syncable="YES"/>
-    </entity>
-    <entity name="Original" representedClassName="Original" syncable="YES">
+    <entity name="Transaction" representedClassName="Transaction" syncable="YES">
         <attribute name="amount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="autoNumber" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="percent" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="envelopeName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="info" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="month" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="timeAndDate" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="FieldTotals" positionX="-191" positionY="-18" width="128" height="75"/>
-        <element name="FieldTransaction" positionX="-191" positionY="-165" width="128" height="120"/>
-        <element name="Original" positionX="-360" positionY="-96" width="128" height="103"/>
-        <element name="Envelope" positionX="-425" positionY="-178" width="128" height="88"/>
+        <element name="Envelope" positionX="-425" positionY="-178" width="128" height="75"/>
+        <element name="Transaction" positionX="-191" positionY="-165" width="128" height="120"/>
     </elements>
 </model>

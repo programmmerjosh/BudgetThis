@@ -53,10 +53,10 @@ class TableViewCellViewController2: UITableViewCell {
         do {
             let searchResults = try DatabaseController.getContext().fetch(fetchData)
             
-            for result in searchResults as! [FieldTransaction] {
-                FourthViewController.global.desc = result.transactionDesc!
-                FourthViewController.global.cat = result.fieldName!
-                FourthViewController.global.amount = String(result.amountUsed)
+            for result in searchResults as! [Transaction] {
+                FourthViewController.global.desc = result.info!
+                FourthViewController.global.cat = result.envelopeName!
+                FourthViewController.global.amount = String(result.amount)
                 FourthViewController.global.date = result.timeAndDate!
             }
         }

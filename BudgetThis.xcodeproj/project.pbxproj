@@ -40,16 +40,11 @@
 		844FF4891F64292B00E1C52C /* SixthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844FF4881F64292B00E1C52C /* SixthViewController.swift */; };
 		847EF1BA1F2DBDEE00C9C437 /* BudgetThis.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 847EF1B81F2DBDEE00C9C437 /* BudgetThis.xcdatamodeld */; };
 		847EF1C01F2DC53A00C9C437 /* DatabaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847EF1BF1F2DC53A00C9C437 /* DatabaseController.swift */; };
+		84B46901230AF81A00089B59 /* Transaction+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B468FD230AF81A00089B59 /* Transaction+CoreDataClass.swift */; };
+		84B46902230AF81A00089B59 /* Transaction+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B468FE230AF81A00089B59 /* Transaction+CoreDataProperties.swift */; };
+		84B4690A230B270200089B59 /* Envelope+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B46909230B270200089B59 /* Envelope+CoreDataProperties.swift */; };
+		84B4690C230B274A00089B59 /* Envelope+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B4690B230B274A00089B59 /* Envelope+CoreDataClass.swift */; };
 		84C6B1561F3370B60036462F /* FifthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C6B1551F3370B60036462F /* FifthViewController.swift */; };
-		84F3219D2305E81000BACE09 /* FieldTotals+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F321952305E81000BACE09 /* FieldTotals+CoreDataClass.swift */; };
-		84F3219E2305E81000BACE09 /* FieldTotals+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F321962305E81000BACE09 /* FieldTotals+CoreDataProperties.swift */; };
-		84F3219F2305E81000BACE09 /* FieldTransaction+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F321972305E81000BACE09 /* FieldTransaction+CoreDataClass.swift */; };
-		84F321A02305E81000BACE09 /* FieldTransaction+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F321982305E81000BACE09 /* FieldTransaction+CoreDataProperties.swift */; };
-		84F321A12305E81000BACE09 /* Original+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F321992305E81000BACE09 /* Original+CoreDataClass.swift */; };
-		84F321A22305E81000BACE09 /* Original+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F3219A2305E81000BACE09 /* Original+CoreDataProperties.swift */; };
-		84F321A32305E81000BACE09 /* Envelope+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F3219B2305E81000BACE09 /* Envelope+CoreDataClass.swift */; };
-		84F321A42305E81000BACE09 /* Envelope+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F3219C2305E81000BACE09 /* Envelope+CoreDataProperties.swift */; };
-		84F321A62305F58000BACE09 /* ManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F321A52305F58000BACE09 /* ManagementViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,17 +112,12 @@
 		844FF4881F64292B00E1C52C /* SixthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SixthViewController.swift; sourceTree = "<group>"; };
 		847EF1B91F2DBDEE00C9C437 /* BudgetThis.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BudgetThis.xcdatamodel; sourceTree = "<group>"; };
 		847EF1BF1F2DC53A00C9C437 /* DatabaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseController.swift; sourceTree = "<group>"; };
+		84B468FD230AF81A00089B59 /* Transaction+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Transaction+CoreDataClass.swift"; path = "../Transaction+CoreDataClass.swift"; sourceTree = "<group>"; };
+		84B468FE230AF81A00089B59 /* Transaction+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Transaction+CoreDataProperties.swift"; path = "../Transaction+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		84B46909230B270200089B59 /* Envelope+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Envelope+CoreDataProperties.swift"; path = "../Envelope+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		84B4690B230B274A00089B59 /* Envelope+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Envelope+CoreDataClass.swift"; sourceTree = "<group>"; };
 		84C6B1551F3370B60036462F /* FifthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FifthViewController.swift; sourceTree = "<group>"; };
 		84D306001F8083BE00C03719 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/Info.plist; sourceTree = "<group>"; };
-		84F321952305E81000BACE09 /* FieldTotals+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FieldTotals+CoreDataClass.swift"; sourceTree = "<group>"; };
-		84F321962305E81000BACE09 /* FieldTotals+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FieldTotals+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		84F321972305E81000BACE09 /* FieldTransaction+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FieldTransaction+CoreDataClass.swift"; sourceTree = "<group>"; };
-		84F321982305E81000BACE09 /* FieldTransaction+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FieldTransaction+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		84F321992305E81000BACE09 /* Original+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Original+CoreDataClass.swift"; sourceTree = "<group>"; };
-		84F3219A2305E81000BACE09 /* Original+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Original+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		84F3219B2305E81000BACE09 /* Envelope+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Envelope+CoreDataClass.swift"; sourceTree = "<group>"; };
-		84F3219C2305E81000BACE09 /* Envelope+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Envelope+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		84F321A52305F58000BACE09 /* ManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagementViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,7 +193,6 @@
 				734DA3FF1E892C91002D8A18 /* Admob */,
 				73AC4AC91E70226900A1928A /* AppDelegate.swift */,
 				73AC4ACB1E70226900A1928A /* MainDisplayViewController.swift */,
-				84F321A52305F58000BACE09 /* ManagementViewController.swift */,
 				73AC4ACD1E70226900A1928A /* SecondViewController.swift */,
 				1F95E7A31EBB36A3001689B6 /* ThirdViewController.swift */,
 				1F95E7A51EBB36D3001689B6 /* FourthViewController.swift */,
@@ -247,14 +236,10 @@
 		847EF1B71F2DBD9900C9C437 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				84F321952305E81000BACE09 /* FieldTotals+CoreDataClass.swift */,
-				84F321962305E81000BACE09 /* FieldTotals+CoreDataProperties.swift */,
-				84F321972305E81000BACE09 /* FieldTransaction+CoreDataClass.swift */,
-				84F321982305E81000BACE09 /* FieldTransaction+CoreDataProperties.swift */,
-				84F321992305E81000BACE09 /* Original+CoreDataClass.swift */,
-				84F3219A2305E81000BACE09 /* Original+CoreDataProperties.swift */,
-				84F3219B2305E81000BACE09 /* Envelope+CoreDataClass.swift */,
-				84F3219C2305E81000BACE09 /* Envelope+CoreDataProperties.swift */,
+				84B4690B230B274A00089B59 /* Envelope+CoreDataClass.swift */,
+				84B46909230B270200089B59 /* Envelope+CoreDataProperties.swift */,
+				84B468FD230AF81A00089B59 /* Transaction+CoreDataClass.swift */,
+				84B468FE230AF81A00089B59 /* Transaction+CoreDataProperties.swift */,
 				847EF1B81F2DBDEE00C9C437 /* BudgetThis.xcdatamodeld */,
 				847EF1BF1F2DC53A00C9C437 /* DatabaseController.swift */,
 			);
@@ -418,27 +403,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				73AC4ACE1E70226900A1928A /* SecondViewController.swift in Sources */,
-				84F321A32305E81000BACE09 /* Envelope+CoreDataClass.swift in Sources */,
 				73AC4ACA1E70226900A1928A /* AppDelegate.swift in Sources */,
 				73AC4AFC1E702C1B00A1928A /* MainDisplayTableViewCell.swift in Sources */,
-				84F321A22305E81000BACE09 /* Original+CoreDataProperties.swift in Sources */,
+				84B46901230AF81A00089B59 /* Transaction+CoreDataClass.swift in Sources */,
 				1F95E7A41EBB36A3001689B6 /* ThirdViewController.swift in Sources */,
+				84B46902230AF81A00089B59 /* Transaction+CoreDataProperties.swift in Sources */,
 				84C6B1561F3370B60036462F /* FifthViewController.swift in Sources */,
-				84F3219E2305E81000BACE09 /* FieldTotals+CoreDataProperties.swift in Sources */,
 				847EF1BA1F2DBDEE00C9C437 /* BudgetThis.xcdatamodeld in Sources */,
 				1F95E7A61EBB36D3001689B6 /* FourthViewController.swift in Sources */,
+				84B4690C230B274A00089B59 /* Envelope+CoreDataClass.swift in Sources */,
 				73B7F35A1E8AADD6001E2F5C /* SplashScreenViewController.swift in Sources */,
-				84F321A62305F58000BACE09 /* ManagementViewController.swift in Sources */,
-				84F321A02305E81000BACE09 /* FieldTransaction+CoreDataProperties.swift in Sources */,
 				73AC4ACC1E70226900A1928A /* MainDisplayViewController.swift in Sources */,
-				84F321A42305E81000BACE09 /* Envelope+CoreDataProperties.swift in Sources */,
 				844FF4891F64292B00E1C52C /* SixthViewController.swift in Sources */,
 				737B709E1E8BCF7500870A21 /* PurchaseViewController.swift in Sources */,
 				84350B4B1F10F1DF00508135 /* TableViewCellViewController2.swift in Sources */,
-				84F3219F2305E81000BACE09 /* FieldTransaction+CoreDataClass.swift in Sources */,
 				847EF1C01F2DC53A00C9C437 /* DatabaseController.swift in Sources */,
-				84F321A12305E81000BACE09 /* Original+CoreDataClass.swift in Sources */,
-				84F3219D2305E81000BACE09 /* FieldTotals+CoreDataClass.swift in Sources */,
+				84B4690A230B270200089B59 /* Envelope+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

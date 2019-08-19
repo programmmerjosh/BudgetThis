@@ -1340,6 +1340,7 @@
         <image name="unnamed.png" width="170" height="170"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="UT1-6t-qKK"/>
         <segue reference="pI0-s1-s9e"/>
         <segue reference="53F-ib-aH2"/>
     </inferredMetricsTieBreakers>

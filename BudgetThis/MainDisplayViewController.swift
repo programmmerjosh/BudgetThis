@@ -45,7 +45,7 @@ class MainDisplayViewController: UIViewController, UITableViewDelegate, UITableV
             do {
                 let searchResults = try DatabaseController.getContext().fetch(fetchData)
                 
-                for result in searchResults as! [FieldTransaction] {
+                for result in searchResults as! [Transaction] {
                     DatabaseController.getContext().delete(result)
                 }
             }
@@ -108,7 +108,8 @@ class MainDisplayViewController: UIViewController, UITableViewDelegate, UITableV
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell             = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MainDisplayTableViewCell
-        let remaining:Double = arrEnvelope[indexPath.row].assigned - arrEnvelope[indexPath.row].spent
+        let remaining:Double = 0
+//        arrEnvelope[indexPath.row].assigned - arrEnvelope[indexPath.row].spent
         let temp:Double      = Double(cell.remaining.text!) != nil ? Double(cell.remaining.text!)! : 0
         
         cell.name.text       = arrEnvelope[indexPath.row].name
@@ -151,11 +152,11 @@ class MainDisplayViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "manage" {
-            let vc             = segue.destination as! ManagementViewController
-            let name           = String(self.arrEnvelope[arrayIndex].name!)
-            let assigned       = Double(self.arrEnvelope[arrayIndex].assigned)
-            vc.strTempName     = name
-            vc.dblTempAssigned = assigned
+//            let vc             = segue.destination as! ManagementViewController
+//            let name           = String(self.arrEnvelope[arrayIndex].name!)
+//            let assigned       = Double(self.arrEnvelope[arrayIndex].assigned)
+//            vc.strTempName     = name
+//            vc.dblTempAssigned = assigned
         }
     }
     
@@ -207,7 +208,7 @@ class MainDisplayViewController: UIViewController, UITableViewDelegate, UITableV
                 let addition:Envelope = NSEntityDescription.insertNewObject(forEntityName: String(describing: Envelope.self), into: DatabaseController.getContext()) as! Envelope
                 addition.name         = name
                 addition.assigned     = 0
-                addition.spent        = 0
+//                addition.spent        = 0
                 DatabaseController.saveContext()
                 arrEnvelope.append(addition)
             }

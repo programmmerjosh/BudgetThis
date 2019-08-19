@@ -88,12 +88,12 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     // deletes all data from original entity
     public func deleteData() {
         
-        let retrieve = NSFetchRequest<NSFetchRequestResult>(entityName: "Original")
+        let retrieve = NSFetchRequest<NSFetchRequestResult>(entityName: "Envelope")
         do
         {
             let searchResults = try DatabaseController.getContext().fetch(retrieve)
             
-            for result in searchResults as! [Original] {
+            for result in searchResults as! [Envelope] {
                 DatabaseController.getContext().delete(result)
             }
         }

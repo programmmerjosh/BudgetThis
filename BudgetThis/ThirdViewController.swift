@@ -80,7 +80,8 @@ class ThirdViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
         txtAmountOutlet.delegate = self
         txtDescriptionOutlet.delegate = self
         createPicker()
-        txtCategoryOutlet.text = FirstViewController.stR.fields[0]
+        txtCategoryOutlet.text = "0"
+//            MainDisplayViewController.arrEnvelope[0].name
         
         if let x = UserDefaults.standard.object(forKey: "TZ") as? String
         {
@@ -95,14 +96,6 @@ class ThirdViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        FirstViewController.AppUtility.lockOrientation(.portrait)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        // Don't forget to reset when view is being removed
-        FirstViewController.AppUtility.lockOrientation(.all)
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
@@ -125,13 +118,16 @@ class ThirdViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     }
     @available(iOS 2.0, *)
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return FirstViewController.stR.fields.count
+//        return MainDisplayViewController.arrEnvelope.count
+        return 0
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        txtCategoryOutlet.text = FirstViewController.stR.fields[row]
+        txtCategoryOutlet.text = "0"
+//        MainDisplayViewController.arrEnvelope[row]
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return FirstViewController.stR.fields[row]
+//        return MainDisplayViewController.arrEnvelope[row]
+        return "0"
     }
     
     public func createPicker()
@@ -171,19 +167,19 @@ class ThirdViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
             
             if (amount >= 0.01)
             {
-                let ft:FieldTransaction = NSEntityDescription.insertNewObject(forEntityName: "FieldTransaction", into: DatabaseController.getContext()) as! FieldTransaction
+                let addition:Transaction = NSEntityDescription.insertNewObject(forEntityName: "Transaction", into: DatabaseController.getContext()) as! Transaction
                 
-                ft.fieldName = category
-                ft.amountUsed = Double(round(100*amount)/100)
-                ft.timeAndDate = saveDate()
-                ft.monthCat = Int16(saveMonth())
+                addition.envelopeName = category
+                addition.amount = Double(round(100*amount)/100)
+                addition.timeAndDate = saveDate()
+                addition.month = Int16(saveMonth())
                 
                 let temp = ""
                 switch txtDescriptionOutlet.text {
                 case temp, nil:
-                    ft.transactionDesc = "/"
+                    addition.info = "/"
                 default:
-                    ft.transactionDesc = txtDescriptionOutlet.text!
+                    addition.info = txtDescriptionOutlet.text!
                 }
                 
                 DatabaseController.saveContext()
@@ -231,63 +227,63 @@ class ThirdViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     
     public func AddFieldTotalEditAndAddNewValueToDatabase(name: String, month: String)
     {
-        if ((name != "") && month == String(saveMonth()))
-        {
-            let predicate1 = NSPredicate(format: "fieldName = %@", name)
-            let predicate2 = NSPredicate(format: "monthCat = %@", month)
-            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [predicate1,predicate2])
-            let fetchData = NSFetchRequest<NSFetchRequestResult>(entityName: "FieldTransaction")
-            fetchData.predicate = predicateCompound
-            
-            var tempTotalAmount:Double = 0.0
-            
-            do {
-                let searchResults = try DatabaseController.getContext().fetch(fetchData)
-                
-                for result in searchResults as! [FieldTransaction] {
-                    tempTotalAmount = tempTotalAmount + result.amountUsed
-                    
-                    var j:Int = 0
-                    let limit = FirstViewController.stR.fields.count
-                    
-                    while (j < limit)
-                    {
-                        if (FirstViewController.stR.fields[j] == name)
-                        {
-                            FirstViewController.stR.totals[j] = String(Double(round(100*Double(tempTotalAmount))/100))
-                            j = limit
-                        }
-                        j += 1
-                    }
-                }
-            }
-            catch {
-                print("Error! \(error)")
-            }
-            
-            let NewPredicate = NSPredicate(format: "fieldName = %@", name)
-            let fetchNextData = NSFetchRequest<NSFetchRequestResult>(entityName: "FieldTotals")
-            fetchNextData.predicate = NewPredicate
-            
-            do {
-                let searchResults = try DatabaseController.getContext().fetch(fetchNextData)
-                
-                for result in searchResults as! [FieldTotals] {
-                    DatabaseController.getContext().delete(result)
-                }
-            }
-            catch {
-                print("Error! \(error)")
-            }
-            
-            // add new value
-            let ft:FieldTotals = NSEntityDescription.insertNewObject(forEntityName: "FieldTotals", into: DatabaseController.getContext()) as! FieldTotals
-            
-            ft.fieldName = name
-            ft.totalAmount = tempTotalAmount
-            
-            DatabaseController.saveContext()
-        }
+//        if ((name != "") && month == String(saveMonth()))
+//        {
+//            let predicate1 = NSPredicate(format: "fieldName = %@", name)
+//            let predicate2 = NSPredicate(format: "monthCat = %@", month)
+//            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [predicate1,predicate2])
+//            let fetchData = NSFetchRequest<NSFetchRequestResult>(entityName: "FieldTransaction")
+//            fetchData.predicate = predicateCompound
+//
+//            var tempTotalAmount:Double = 0.0
+//
+//            do {
+//                let searchResults = try DatabaseController.getContext().fetch(fetchData)
+//
+//                for result in searchResults as! [Transaction] {
+//                    tempTotalAmount = tempTotalAmount + result.amountUsed
+//
+//                    var j:Int = 0
+//                    let limit = FirstViewController.stR.fields.count
+//
+//                    while (j < limit)
+//                    {
+//                        if (FirstViewController.stR.fields[j] == name)
+//                        {
+//                            FirstViewController.stR.totals[j] = String(Double(round(100*Double(tempTotalAmount))/100))
+//                            j = limit
+//                        }
+//                        j += 1
+//                    }
+//                }
+//            }
+//            catch {
+//                print("Error! \(error)")
+//            }
+//
+//            let NewPredicate = NSPredicate(format: "fieldName = %@", name)
+//            let fetchNextData = NSFetchRequest<NSFetchRequestResult>(entityName: "FieldTotals")
+//            fetchNextData.predicate = NewPredicate
+//
+//            do {
+//                let searchResults = try DatabaseController.getContext().fetch(fetchNextData)
+//
+//                for result in searchResults as! [FieldTotals] {
+//                    DatabaseController.getContext().delete(result)
+//                }
+//            }
+//            catch {
+//                print("Error! \(error)")
+//            }
+//
+//            // add new value
+//            let ft:FieldTotals = NSEntityDescription.insertNewObject(forEntityName: "FieldTotals", into: DatabaseController.getContext()) as! FieldTotals
+//
+//            ft.fieldName = name
+//            ft.totalAmount = tempTotalAmount
+//
+//            DatabaseController.saveContext()
+//        }
     }
     
     public func showSuccessMessageBriefly()
@@ -314,30 +310,30 @@ class ThirdViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     
     public func refreshRemBal() {
         
-        var i:Int = 0
-        var keepGoing:Bool = true
-        
-        while (keepGoing)
-        {
-            keepGoing = false
-            let predicate = NSPredicate(format: "autoNumber = %@", String(i))
-            let fetchData = NSFetchRequest<NSFetchRequestResult>(entityName: "Original")
-            fetchData.predicate = predicate
-            
-            do {
-                let searchResults = try DatabaseController.getContext().fetch(fetchData)
-                
-                for result in searchResults as! [Original] {
-                    let temp:Double = Double(result.amount) - Double(FirstViewController.stR.totals[i])!
-                    FirstViewController.stR.amounts[i] = String(Double(round(100*Double(temp))/100))
-                    keepGoing = true
-                }
-            }
-            catch {
-                print("Error! \(error)")
-            }
-            i += 1
-        }
+//        var i:Int = 0
+//        var keepGoing:Bool = true
+//        
+//        while (keepGoing)
+//        {
+//            keepGoing = false
+//            let predicate = NSPredicate(format: "autoNumber = %@", String(i))
+//            let fetchData = NSFetchRequest<NSFetchRequestResult>(entityName: "Original")
+//            fetchData.predicate = predicate
+//            
+//            do {
+//                let searchResults = try DatabaseController.getContext().fetch(fetchData)
+//                
+//                for result in searchResults as! [Original] {
+//                    let temp:Double = Double(result.amount) - Double(FirstViewController.stR.totals[i])!
+//                    FirstViewController.stR.amounts[i] = String(Double(round(100*Double(temp))/100))
+//                    keepGoing = true
+//                }
+//            }
+//            catch {
+//                print("Error! \(error)")
+//            }
+//            i += 1
+//        }
     }
     
     struct global {
