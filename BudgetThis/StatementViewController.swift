@@ -1,5 +1,5 @@
 //
-//  FourthViewController.swift
+//  StatementViewController.swift
 //  BudgetThis
 //
 //  Created by Joshua Van Niekerk on 2017/05/04.
@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class StatementViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var myTableView: UITableView!
     @IBOutlet weak var greenArrow1: UIImageView!
@@ -87,7 +87,7 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellss", for: indexPath) as! TableViewCellViewController2
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellss", for: indexPath) as! StatementTableViewCell
 
         cell.cellButtonOutlet.setTitle(fieldArray[indexPath.row], for: UIControlState.normal)
         cell.amounts.text = amountArray[indexPath.row]

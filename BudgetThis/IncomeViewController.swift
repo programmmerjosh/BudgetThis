@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  IncomeViewController.swift
 //  BudgetThis
 //
 //  Created by Joshua on 2017/03/08.
@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class SecondViewController: UIViewController, UITextFieldDelegate {
+class IncomeViewController: UIViewController, UITextFieldDelegate {
 
     var tempIncome:Double = 5000
     var limitLength = 12

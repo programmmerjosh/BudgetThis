@@ -1,5 +1,5 @@
 //
-//  TableViewCellViewController2.swift
+//  StatementTableViewCell.swift
 //  BudgetThis
 //
 //  Created by admin on 08/07/2017.
@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class TableViewCellViewController2: UITableViewCell {
+class StatementTableViewCell: UITableViewCell {
 
     @IBOutlet var amounts: UILabel!
     @IBOutlet weak var cellButtonOutlet: UIButton!
@@ -54,10 +54,10 @@ class TableViewCellViewController2: UITableViewCell {
             let searchResults = try DatabaseController.getContext().fetch(fetchData)
             
             for result in searchResults as! [Transaction] {
-                FourthViewController.global.desc = result.info!
-                FourthViewController.global.cat = result.envelopeName!
-                FourthViewController.global.amount = String(result.amount)
-                FourthViewController.global.date = result.timeAndDate!
+                StatementViewController.global.desc = result.info!
+                StatementViewController.global.cat = result.envelopeName!
+                StatementViewController.global.amount = String(result.amount)
+                StatementViewController.global.date = result.timeAndDate!
             }
         }
         catch {

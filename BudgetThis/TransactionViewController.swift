@@ -1,5 +1,5 @@
 //
-//  ThirdViewController.swift
+//  TransactionViewController.swift
 //  BudgetThis
 //
 //  Created by Joshua Van Niekerk on 2017/05/04.
@@ -9,11 +9,11 @@
 import UIKit
 import CoreData
 
-class ThirdViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+class TransactionViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
     var limitLength = 12
     var picker = UIPickerView()
-    let secVC:SecondViewController = SecondViewController()
+    let vcIncome:IncomeViewController = IncomeViewController()
     
     @IBOutlet weak var txtAmountOutlet: UITextField!
     @IBOutlet var txtCategoryOutlet: UITextField!
@@ -29,7 +29,7 @@ class ThirdViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
         
         if (txtAmountOutlet.text != "")
         {
-            temp = secVC.validDouble(double: txtAmountOutlet.text!)
+            temp = vcIncome.validDouble(double: txtAmountOutlet.text!)
         }
         if (temp == 0)
         {
@@ -163,7 +163,7 @@ class ThirdViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
         {
             let category:String = txtCategoryOutlet.text!
             let temp:String = txtAmountOutlet.text!
-            let amount = secVC.validDouble(double: temp)
+            let amount = vcIncome.validDouble(double: temp)
             
             if (amount >= 0.01)
             {

@@ -1,5 +1,5 @@
 //
-//  FifthViewController.swift
+//  DetailsViewController.swift
 //  BudgetThis
 //
 //  Created by admin on 03/08/2017.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FifthViewController: UIViewController {
+class DetailsViewController: UIViewController {
 
     @IBOutlet weak var lblDescription: UILabel!
     @IBOutlet weak var lblCategory: UILabel!
@@ -19,10 +19,10 @@ class FifthViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        lblDescription.text = FourthViewController.global.desc
-        lblCategory.text = FourthViewController.global.cat
-        lblAmount.text = FourthViewController.global.amount
-        lblDate.text = FourthViewController.global.date
+//        lblDescription.text = IncomeViewController.global.desc
+//        lblCategory.text = TransactionViewController.global.cat
+//        lblAmount.text = TransactionViewController.global.amount
+//        lblDate.text = TransactionViewController.global.date
         
         lblDescription.adjustsFontSizeToFitWidth = true
         lblCategory.adjustsFontSizeToFitWidth = true

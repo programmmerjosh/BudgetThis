@@ -1,5 +1,5 @@
 //
-//  SixthViewController.swift
+//  TimezoneViewController.swift
 //  BudgetThis
 //
 //  Created by admin on 09/09/2017.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SixthViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class TimezoneViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
     @IBOutlet weak var myPickerView: UIPickerView!
     @IBOutlet weak var savedDisplayLabel: UILabel!
@@ -31,7 +31,7 @@ class SixthViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         if let x = UserDefaults.standard.object(forKey: "TZ") as? String
         {
             myTZ = Int(x)!
-            ThirdViewController.global.myTZ = Int(x)!
+//            TimezoneViewController.global.myTZ = Int(x)!
         }
         
         let row:Int = restorePickerSelection()
@@ -47,7 +47,7 @@ class SixthViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
         let temp:Int = TZValues[TZAnswer]
         UserDefaults.standard.set(String(temp), forKey: "TZ")
-        ThirdViewController.global.myTZ = temp
+//        TimezoneViewController.global.myTZ = temp
         
         showMessageBriefly()
     }
