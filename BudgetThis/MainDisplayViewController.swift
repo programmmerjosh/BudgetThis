@@ -12,93 +12,15 @@ import CoreData
 class MainDisplayViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var myTableView: UITableView!
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        RefreshData()
-        AppUtility.lockOrientation(.portrait)
-        // Or to rotate and lock
-        // AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        // Don't forget to reset when view is being removed
-        AppUtility.lockOrientation(.all)
-    }
-    
-    // // Remove transactions >= 4 months
-    public func deleteOldData() {
-        
-        let currentMonth = saveMonth()
-        
-        for i in 1...9
-        {
-            let monthHistory = (((currentMonth - 1) + i) % 12) + 1
-            let strNew:String = String(monthHistory)
-            
-            let predicate = NSPredicate(format: "monthCat = %@", strNew)
-            let fetchData = NSFetchRequest<NSFetchRequestResult>(entityName: "FieldTransaction")
-            fetchData.predicate = predicate
-            
-            do {
-                let searchResults = try DatabaseController.getContext().fetch(fetchData)
-                
-                for result in searchResults as! [Transaction] {
-                    DatabaseController.getContext().delete(result)
-                }
-            }
-            catch {
-                print("Error! \(error)")
-            }
-        }
-        DatabaseController.saveContext()
-    }
-    
-    public func saveMonth() -> Int {
-        
-        let dateFormatter = DateFormatter()
-        
-        // temporary seconds-from-GMT because will be different for different timezones
-        dateFormatter.timeZone = TimeZone.init(secondsFromGMT: ThirdViewController.global.myTZ)
-        dateFormatter.dateFormat = "MM"
-        
-        let now = NSDate()
-        let answer:String = dateFormatter.string(from: now as Date)
-        let number:Int = Int(answer)!
-        
-        return number
-    }
-    
-    struct AppUtility {
-        
-        static func lockOrientation(_ orientation: UIInterfaceOrientationMask) {
-            
-            if let delegate = UIApplication.shared.delegate as? AppDelegate {
-                delegate.orientationLock = orientation
-            }
-        }
-        
-        /// OPTIONAL Added method to adjust lock and rotate to the desired orientation
-        static func lockOrientation(_ orientation: UIInterfaceOrientationMask, andRotateTo rotateOrientation:UIInterfaceOrientation) {
-            
-            self.lockOrientation(orientation)
-            
-            UIDevice.current.setValue(rotateOrientation.rawValue, forKey: "orientation")
-        }
-    }
-    
-    //   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    
     @IBAction func addEnvelopeAction(_ sender: Any) {
         promptNewEnvelopeMessage()
     }
     
-    var arrEnvelope       :[Envelope]       = []
-    var ctrRefreshControl :UIRefreshControl = UIRefreshControl()
+    var arrEnvelope       :[Envelope]           = []
+    let vcIncome          :IncomeViewController = IncomeViewController()
+    var ctrRefreshControl :UIRefreshControl     = UIRefreshControl()
     var txtAlertInsertion :UITextField?
-    var arrayIndex        :Int              = 0
+    var arrayIndex        :Int                  = 0
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
@@ -108,13 +30,12 @@ class MainDisplayViewController: UIViewController, UITableViewDelegate, UITableV
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell             = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MainDisplayTableViewCell
-        let remaining:Double = 0
-//        arrEnvelope[indexPath.row].assigned - arrEnvelope[indexPath.row].spent
+        let remaining:Double = calcEnvelopeRemainingBal(envelopeName: arrEnvelope[indexPath.row].name!)
         let temp:Double      = Double(cell.remaining.text!) != nil ? Double(cell.remaining.text!)! : 0
         
         cell.name.text       = arrEnvelope[indexPath.row].name
-        cell.assigned.text   = String(Double(round(100*Double(arrEnvelope[indexPath.row].assigned))/100))
-        cell.remaining.text  = String(Double(round(100*Double(remaining))/100))
+        cell.assigned.text   = String(arrEnvelope[indexPath.row].assigned)
+        cell.remaining.text  = String(remaining)
         
         switch temp {
         case  0:
@@ -150,14 +71,14 @@ class MainDisplayViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "manage" {
-//            let vc             = segue.destination as! ManagementViewController
-//            let name           = String(self.arrEnvelope[arrayIndex].name!)
-//            let assigned       = Double(self.arrEnvelope[arrayIndex].assigned)
-//            vc.strTempName     = name
-//            vc.dblTempAssigned = assigned
-        }
+    @objc func RefreshData() {
+        myTableView.reloadData()
+        ctrRefreshControl.endRefreshing()
+    }
+    
+    func txtAlertInsertion(textfield: UITextField!) {
+        txtAlertInsertion              = textfield
+        txtAlertInsertion?.placeholder = "New Envelope Name"
     }
     
     override func viewDidLoad() {
@@ -166,17 +87,91 @@ class MainDisplayViewController: UIViewController, UITableViewDelegate, UITableV
         myTableView.delegate    = self
         myTableView.dataSource  = self
         
-        fetchData()
+        fetchEnvelopeData()
         ctrRefreshControl.addTarget(self, action: #selector(RefreshData), for: UIControlEvents.valueChanged)
         myTableView.refreshControl = ctrRefreshControl
     }
     
-    @objc func RefreshData() {
-        myTableView.reloadData()
-        ctrRefreshControl.endRefreshing()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        RefreshData()
+        AppUtility.lockOrientation(.portrait)
     }
     
-    func fetchData() {
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        AppUtility.lockOrientation(.all)
+    }
+    
+    struct AppUtility {
+        
+        static func lockOrientation(_ orientation: UIInterfaceOrientationMask) {
+            if let delegate = UIApplication.shared.delegate as? AppDelegate {
+                delegate.orientationLock = orientation
+            }
+        }
+        
+        /// OPTIONAL Added method to adjust lock and rotate to the desired orientation
+        static func lockOrientation(_ orientation: UIInterfaceOrientationMask, andRotateTo rotateOrientation:UIInterfaceOrientation) {
+            self.lockOrientation(orientation)
+            UIDevice.current.setValue(rotateOrientation.rawValue, forKey: "orientation")
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "manage" {
+            let vc         = segue.destination as! ManagementViewController
+            let name       = String(self.arrEnvelope[arrayIndex].name!)
+            let assigned   = Double(self.arrEnvelope[arrayIndex].assigned)
+            vc.strName     = name
+            vc.dblAssigned = assigned
+        }
+    }
+    
+    public func deleteOldData() {
+        
+        let currentMonth = saveMonth()
+        
+        for i in 1...9
+        {
+            let monthHistory :Int    = (((currentMonth - 1) + i) % 12) + 1
+            let strNew       :String = String(monthHistory)
+            
+            let predicate = NSPredicate(format: "month = %@", strNew)
+            let fetchData = NSFetchRequest<NSFetchRequestResult>(entityName: "Transaction")
+            fetchData.predicate = predicate
+            
+            do {
+                let searchResults = try DatabaseController.getContext().fetch(fetchData)
+                
+                for result in searchResults as! [Transaction] {
+                    DatabaseController.getContext().delete(result)
+                }
+            }
+            catch {
+                print("Error! \(error)")
+            }
+        }
+        DatabaseController.saveContext()
+    }
+    
+    public func saveMonth() -> Int {
+        
+        let dateFormatter = DateFormatter()
+        let TZ:Int = vcIncome.fetchValue(key: "TZ") == String() ? 0 : Int(vcIncome.fetchValue(key: "TZ"))!
+        
+        // temporary seconds-from-GMT because will be different for different timezones
+        dateFormatter.timeZone   = TimeZone.init(secondsFromGMT: TZ)
+        dateFormatter.dateFormat = "MM"
+        
+        let now            = NSDate()
+        let answer :String = dateFormatter.string(from: now as Date)
+        let number :Int    = Int(answer)!
+        
+        return number
+    }
+    
+    func fetchEnvelopeData() {
         let fetchData = NSFetchRequest<NSFetchRequestResult>(entityName: "Envelope")
         
         do {
@@ -208,7 +203,6 @@ class MainDisplayViewController: UIViewController, UITableViewDelegate, UITableV
                 let addition:Envelope = NSEntityDescription.insertNewObject(forEntityName: String(describing: Envelope.self), into: DatabaseController.getContext()) as! Envelope
                 addition.name         = name
                 addition.assigned     = 0
-//                addition.spent        = 0
                 DatabaseController.saveContext()
                 arrEnvelope.append(addition)
             }
@@ -216,11 +210,6 @@ class MainDisplayViewController: UIViewController, UITableViewDelegate, UITableV
         catch {
             print("Error! \(error)")
         }
-    }
-    
-    func txtAlertInsertion(textfield: UITextField!) {
-        txtAlertInsertion              = textfield
-        txtAlertInsertion?.placeholder = "New Envelope Name"
     }
     
     func deleteEnvelope(envelopeName: String) {
@@ -268,6 +257,35 @@ class MainDisplayViewController: UIViewController, UITableViewDelegate, UITableV
         }))
         
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    public func calcEnvelopeRemainingBal(envelopeName: String) -> Double {
+        
+        var spent    :Double        = 0
+        var assigned :Double        = 0
+        let fetchTransactionData    = NSFetchRequest<NSFetchRequestResult>(entityName: "Transaction")
+        let fetchEnvelopeData       = NSFetchRequest<NSFetchRequestResult>(entityName: "Envelope")
+        
+        do {
+            let transactionSearchResults = try DatabaseController.getContext().fetch(fetchTransactionData)
+            let envelopeSearchResults    = try DatabaseController.getContext().fetch(fetchEnvelopeData)
+            
+            for result in transactionSearchResults as! [Transaction] {
+                if result.envelopeName == envelopeName {
+                    spent += result.amount
+                }
+            }
+            
+            for result in envelopeSearchResults as! [Envelope] {
+                if result.name == envelopeName {
+                    assigned = result.assigned
+                }
+            }
+        }
+        catch {
+            print("Error! \(error)")
+        }
+        return round(100*Double(assigned - spent))/100
     }
 }
 
