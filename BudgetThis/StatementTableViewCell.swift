@@ -11,6 +11,7 @@ import CoreData
 
 class StatementTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var transaction: UILabel!
     @IBOutlet var amounts: UILabel!
     @IBOutlet weak var cellButtonOutlet: UIButton!
     @IBAction func cellButtonAction(_ sender: UIButton) {
@@ -54,10 +55,10 @@ class StatementTableViewCell: UITableViewCell {
             let searchResults = try DatabaseController.getContext().fetch(fetchData)
             
             for result in searchResults as! [Transaction] {
-                StatementViewController.global.desc = result.info!
-                StatementViewController.global.cat = result.envelopeName!
-                StatementViewController.global.amount = String(result.amount)
-                StatementViewController.global.date = result.timeAndDate!
+//                StatementViewController.global.desc = result.info!
+//                StatementViewController.global.cat = result.envelopeName!
+//                StatementViewController.global.amount = String(result.amount)
+//                StatementViewController.global.date = result.timeAndDate!
             }
         }
         catch {

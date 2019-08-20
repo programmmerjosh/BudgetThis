@@ -11,19 +11,20 @@ import CoreData
 
 class StatementViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet var myTableView: UITableView!
+    @IBOutlet var myTableView     : UITableView!
     @IBOutlet weak var greenArrow1: UIImageView!
     @IBOutlet weak var greenArrow2: UIImageView!
     @IBOutlet weak var greenArrow3: UIImageView!
     
-    var RefreshControl:UIRefreshControl = UIRefreshControl()
-    
-    var fieldArray = [String()]
-    var amountArray = [String()]
-    var datesArray = [String()]
+    var RefreshControl :UIRefreshControl          = UIRefreshControl()
+    let vcMainDisp     :MainDisplayViewController = MainDisplayViewController()
+    var arrayIndex     :Int                       = 0
+    var fieldArray                                = [String()]
+    var amountArray                               = [String()]
+    var datesArray                                = [String()]
+    var infoArray                                 = [String()]
     
     @IBAction func thisMonthAction(_ sender: UIButton) {
-        //month filtering is working!!
         monthFilter(monthsAgo: 0)
         RefreshData()
         greenArrow1.alpha = 1
@@ -46,27 +47,18 @@ class StatementViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     @IBAction func refreshButtonAction(_ sender: UIButton) {
         
-        if (greenArrow1.alpha == 1)
-        {
+        if (greenArrow1.alpha == 1) {
             monthFilter(monthsAgo: 0)
-        }
-        else if (greenArrow2.alpha == 1)
-        {
+        } else if (greenArrow2.alpha == 1) {
             monthFilter(monthsAgo: 1)
-        }
-        else if (greenArrow3.alpha == 1)
-        {
+        } else if (greenArrow3.alpha == 1) {
             monthFilter(monthsAgo: 2)
         }
-        
         RefreshData()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        
         RefreshControl.addTarget(self, action: #selector(RefreshData), for: UIControlEvents.valueChanged)
         myTableView.refreshControl = RefreshControl
         
@@ -76,27 +68,40 @@ class StatementViewController: UIViewController, UITableViewDelegate, UITableVie
         greenArrow3.alpha = 0
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        arrayIndex = indexPath.row
+        performSegue(withIdentifier: "details", sender: self)
     }
     
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return fieldArray.count
     }
     
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-    {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellss", for: indexPath) as! StatementTableViewCell
 
-        cell.cellButtonOutlet.setTitle(fieldArray[indexPath.row], for: UIControlState.normal)
-        cell.amounts.text = amountArray[indexPath.row]
-        cell.dates.text = datesArray[indexPath.row]
+        cell.transaction.text = fieldArray[indexPath.row]
+        cell.amounts.text     = amountArray[indexPath.row]
+        cell.dates.text       = datesArray[indexPath.row]
         
-        cell.cellButtonOutlet.titleLabel?.adjustsFontSizeToFitWidth = true
-        cell.amounts.adjustsFontSizeToFitWidth = true
+        cell.transaction.adjustsFontSizeToFitWidth = true
+        cell.amounts.adjustsFontSizeToFitWidth     = true
         
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "details" {
+            let vc                  = segue.destination as! DetailsViewController
+            vc.lblDescription.text  = infoArray[arrayIndex]
+            vc.lblCategory.text     = fieldArray[arrayIndex]
+            vc.lblAmount.text       = amountArray[arrayIndex]
+            vc.lblDate.text         = datesArray[arrayIndex]
+        }
     }
     
     @objc func RefreshData() {
@@ -106,11 +111,12 @@ class StatementViewController: UIViewController, UITableViewDelegate, UITableVie
     
     public func monthFilter(monthsAgo: Int) {
         
-        fieldArray = [String()]
+        fieldArray  = [String()]
         amountArray = [String()]
-        datesArray = [String()]
+        datesArray  = [String()]
+        infoArray   = [String()]
         
-        let currentMonth = saveMonth()
+        let currentMonth     = vcMainDisp.saveMonth()
         var filterNumber:Int = currentMonth - monthsAgo
         
         switch filterNumber {
@@ -124,8 +130,8 @@ class StatementViewController: UIViewController, UITableViewDelegate, UITableVie
         
         let strNew:String = String(filterNumber)
         
-        let predicate = NSPredicate(format: "monthCat = %@", strNew)
-        let fetchData = NSFetchRequest<NSFetchRequestResult>(entityName: "FieldTransaction")
+        let predicate = NSPredicate(format: "month = %@", strNew)
+        let fetchData = NSFetchRequest<NSFetchRequestResult>(entityName: "Transaction")
         fetchData.predicate = predicate
         
         do {
@@ -135,38 +141,11 @@ class StatementViewController: UIViewController, UITableViewDelegate, UITableVie
                 fieldArray.append(result.envelopeName!)
                 amountArray.append(String(result.amount))
                 datesArray.append(String(result.timeAndDate!))
-                global.desc = result.info!
+                infoArray.append(result.info!)
             }
         }
         catch {
             print("Error! \(error)")
         }
     }
-    
-    public func saveMonth() -> Int {
-        
-        let dateFormatter = DateFormatter()
-
-        // temporary seconds-from-GMT because will be different for different timezones
-        dateFormatter.timeZone = TimeZone.init(secondsFromGMT: 7200)
-        dateFormatter.dateFormat = "MM"
-
-        let now = NSDate()
-        let answer:String = dateFormatter.string(from: now as Date)
-        let number:Int = Int(answer)!
-        
-        return number
-    }
-    
-    struct global {
-        static var desc:String = "n/a"
-        static var cat:String = "n/a"
-        static var amount:String = "n/a"
-        static var date:String = "n/a"
-    }
-    
-    
-
-    
-
 }
