@@ -15,18 +15,21 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var lblAmount: UILabel!
     @IBOutlet weak var lblDate: UILabel!
     
+    var strDescription  :String = String()
+    var strEnvelopeName :String = String()
+    var strAmount       :String = String()
+    var strDate         :String = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-//        lblDescription.text = IncomeViewController.global.desc
-//        lblCategory.text = TransactionViewController.global.cat
-//        lblAmount.text = TransactionViewController.global.amount
-//        lblDate.text = TransactionViewController.global.date
+        lblDescription.text  = strDescription
+        lblCategory.text     = strEnvelopeName
+        lblAmount.text       = strAmount
+        lblDate.text         = strDate
         
         lblDescription.adjustsFontSizeToFitWidth = true
-        lblCategory.adjustsFontSizeToFitWidth = true
-        lblAmount.adjustsFontSizeToFitWidth = true
-        lblDate.adjustsFontSizeToFitWidth = true
+        lblCategory.adjustsFontSizeToFitWidth    = true
+        lblAmount.adjustsFontSizeToFitWidth      = true
+        lblDate.adjustsFontSizeToFitWidth        = true
     }
 }

@@ -16,13 +16,13 @@ class StatementViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var greenArrow2: UIImageView!
     @IBOutlet weak var greenArrow3: UIImageView!
     
-    var RefreshControl :UIRefreshControl          = UIRefreshControl()
-    let vcMainDisp     :MainDisplayViewController = MainDisplayViewController()
-    var arrayIndex     :Int                       = 0
-    var fieldArray                                = [String()]
-    var amountArray                               = [String()]
-    var datesArray                                = [String()]
-    var infoArray                                 = [String()]
+    var ctrRefreshControl :UIRefreshControl          = UIRefreshControl()
+    let vcMainDisp        :MainDisplayViewController = MainDisplayViewController()
+    var arrayIndex        :Int                       = 0
+    var nameArray                                    = [String()]
+    var amountArray                                  = [String()]
+    var datesArray                                   = [String()]
+    var infoArray                                    = [String()]
     
     @IBAction func thisMonthAction(_ sender: UIButton) {
         monthFilter(monthsAgo: 0)
@@ -59,8 +59,8 @@ class StatementViewController: UIViewController, UITableViewDelegate, UITableVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        RefreshControl.addTarget(self, action: #selector(RefreshData), for: UIControlEvents.valueChanged)
-        myTableView.refreshControl = RefreshControl
+        ctrRefreshControl.addTarget(self, action: #selector(RefreshData), for: UIControlEvents.valueChanged)
+        myTableView.refreshControl = ctrRefreshControl
         
         monthFilter(monthsAgo: 0)
         greenArrow1.alpha = 1
@@ -78,13 +78,13 @@ class StatementViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return fieldArray.count
+        return nameArray.count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellss", for: indexPath) as! StatementTableViewCell
 
-        cell.transaction.text = fieldArray[indexPath.row]
+        cell.transaction.text = nameArray[indexPath.row]
         cell.amounts.text     = amountArray[indexPath.row]
         cell.dates.text       = datesArray[indexPath.row]
         
@@ -96,22 +96,22 @@ class StatementViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "details" {
-            let vc                  = segue.destination as! DetailsViewController
-            vc.lblDescription.text  = infoArray[arrayIndex]
-            vc.lblCategory.text     = fieldArray[arrayIndex]
-            vc.lblAmount.text       = amountArray[arrayIndex]
-            vc.lblDate.text         = datesArray[arrayIndex]
+            let vc             = segue.destination as! DetailsViewController
+            vc.strDescription  = infoArray[arrayIndex]
+            vc.strEnvelopeName = nameArray[arrayIndex]
+            vc.strAmount       = amountArray[arrayIndex]
+            vc.strDate         = datesArray[arrayIndex]
         }
     }
     
     @objc func RefreshData() {
         myTableView.reloadData()
-        RefreshControl.endRefreshing()
+        ctrRefreshControl.endRefreshing()
     }
     
     public func monthFilter(monthsAgo: Int) {
         
-        fieldArray  = [String()]
+        nameArray   = [String()]
         amountArray = [String()]
         datesArray  = [String()]
         infoArray   = [String()]
@@ -138,7 +138,7 @@ class StatementViewController: UIViewController, UITableViewDelegate, UITableVie
             let searchResults = try DatabaseController.getContext().fetch(fetchData)
             
             for result in searchResults as! [Transaction] {
-                fieldArray.append(result.envelopeName!)
+                nameArray.append(result.envelopeName!)
                 amountArray.append(String(result.amount))
                 datesArray.append(String(result.timeAndDate!))
                 infoArray.append(result.info!)

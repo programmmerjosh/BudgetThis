@@ -16,36 +16,36 @@ class TransactionViewController: UIViewController, UITextFieldDelegate, UIPicker
     let vcIncome    :IncomeViewController      = IncomeViewController()
     let vcMainDisp  :MainDisplayViewController = MainDisplayViewController()
     
-    @IBOutlet weak var txtAmountOutlet      : UITextField!
-    @IBOutlet var txtCategoryOutlet         : UITextField!
-    @IBOutlet var txtDescriptionOutlet      : UITextField!
+    @IBOutlet weak var txtAmount            : UITextField!
+    @IBOutlet var txtEnvelope               : UITextField!
+    @IBOutlet var txtDescription            : UITextField!
     @IBOutlet weak var amountAddedMessage   : UILabel!
     @IBOutlet weak var invalidAmountMessage : UILabel!
     
-    @IBAction func txtAmountAction(_ sender: UITextField) {
+    @IBAction func AmountEdit(_ sender: UITextField) {
         limitLength = 12
-        let temp:Double = vcIncome.validDouble(double: txtAmountOutlet.text!)
-        if (temp == 0) { txtAmountOutlet.text = "" }
+        let temp:Double = vcIncome.validDouble(double: txtAmount.text!)
+        if (temp == 0) { txtAmount.text = "" }
     }
-    @IBAction func txtCategoryAction(_ sender: UITextField) {
-        self.txtCategoryOutlet.inputView = self.picker
+    @IBAction func pickerSelected(_ sender: UITextField) {
+        self.txtEnvelope.inputView = self.picker
     }
-    @IBAction func txtDescriptionAction(_ sender: UITextField) {
+    @IBAction func DescriptionSelected(_ sender: UITextField) {
         limitLength = 20
     }
     
     @IBAction func HideKeyboardAction(_ sender: UIButton) {
-        txtAmountOutlet.resignFirstResponder()
-        txtCategoryOutlet.resignFirstResponder()
-        txtDescriptionOutlet.resignFirstResponder()
+        txtAmount.resignFirstResponder()
+        txtEnvelope.resignFirstResponder()
+        txtDescription.resignFirstResponder()
     }
     @IBAction func submitAction(_ sender: UIButton) {
         AddTransaction()
-        txtAmountOutlet.text      = ""
-        txtDescriptionOutlet.text = ""
-        txtAmountOutlet.resignFirstResponder()
-        txtCategoryOutlet.resignFirstResponder()
-        txtDescriptionOutlet.resignFirstResponder()
+        txtAmount.text      = ""
+        txtDescription.text = ""
+        txtAmount.resignFirstResponder()
+        txtEnvelope.resignFirstResponder()
+        txtDescription.resignFirstResponder()
     }
     
     override func viewDidLoad() {
@@ -54,11 +54,11 @@ class TransactionViewController: UIViewController, UITextFieldDelegate, UIPicker
         amountAddedMessage.alpha   = 0
         invalidAmountMessage.alpha = 0
         
-        picker.delegate               = self
-        picker.dataSource             = self
-        txtAmountOutlet.delegate      = self
-        txtDescriptionOutlet.delegate = self
-        txtCategoryOutlet.text        = vcMainDisp.arrEnvelope[0].name
+        picker.delegate         = self
+        picker.dataSource       = self
+        txtAmount.delegate      = self
+        txtDescription.delegate = self
+        txtEnvelope.text        = vcMainDisp.arrEnvelope[0].name
         createPicker()
         
         if vcIncome.fetchValue(key: "TZ") == String() {
@@ -75,7 +75,7 @@ class TransactionViewController: UIViewController, UITextFieldDelegate, UIPicker
     
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // called when 'return' key pressed. return NO to ignore.
-        txtDescriptionOutlet.resignFirstResponder()
+        txtDescription.resignFirstResponder()
         return true
     }
     
@@ -89,7 +89,7 @@ class TransactionViewController: UIViewController, UITextFieldDelegate, UIPicker
         return vcMainDisp.arrEnvelope.count
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        txtCategoryOutlet.text = vcMainDisp.arrEnvelope[row].name!
+        txtEnvelope.text = vcMainDisp.arrEnvelope[row].name!
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return vcMainDisp.arrEnvelope[row].name!
@@ -103,8 +103,8 @@ class TransactionViewController: UIViewController, UITextFieldDelegate, UIPicker
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(endProcess))
         toolbar.setItems([doneButton], animated: false)
         
-        txtCategoryOutlet.inputAccessoryView = toolbar
-        txtCategoryOutlet.inputView          = picker
+        txtEnvelope.inputAccessoryView = toolbar
+        txtEnvelope.inputView          = picker
     }
     
     @objc public func endProcess() {
@@ -113,25 +113,24 @@ class TransactionViewController: UIViewController, UITextFieldDelegate, UIPicker
     
     public func AddTransaction() {
 
-        let category:String = txtCategoryOutlet.text!
-        let temp:String     = txtAmountOutlet.text!
-        let amount          = vcIncome.validDouble(double: temp)
+        let envelopeName:String = txtEnvelope.text!
+        let amount          = vcIncome.validDouble(double: String(txtAmount.text!))
         
         if (amount > 0) {
             do {
                 let addition:Transaction = NSEntityDescription.insertNewObject(forEntityName: "Transaction", into: DatabaseController.getContext()) as! Transaction
                 
-                addition.envelopeName = category
+                addition.envelopeName = envelopeName
                 addition.amount       = Double(round(100*amount)/100)
                 addition.timeAndDate  = saveDate()
                 addition.month        = Int16(vcMainDisp.saveMonth())
                 
                 let temp = ""
-                switch txtDescriptionOutlet.text {
+                switch txtDescription.text {
                 case temp, nil:
                     addition.info = "/"
                 default:
-                    addition.info = txtDescriptionOutlet.text!
+                    addition.info = txtDescription.text!
                 }
                 DatabaseController.saveContext()
                 showSuccessMessageBriefly()

@@ -11,7 +11,6 @@
 		1F95E7A61EBB36D3001689B6 /* StatementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F95E7A51EBB36D3001689B6 /* StatementViewController.swift */; };
 		734DA4021E892CFE002D8A18 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 734DA4001E892CFE002D8A18 /* GoogleMobileAds.framework */; };
 		734DA4031E892CFF002D8A18 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 734DA4001E892CFE002D8A18 /* GoogleMobileAds.framework */; };
-		73AC4ACA1E70226900A1928A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AC4AC91E70226900A1928A /* AppDelegate.swift */; };
 		73AC4ACC1E70226900A1928A /* MainDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AC4ACB1E70226900A1928A /* MainDisplayViewController.swift */; };
 		73AC4ACE1E70226900A1928A /* IncomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AC4ACD1E70226900A1928A /* IncomeViewController.swift */; };
 		73AC4AD11E70226900A1928A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73AC4ACF1E70226900A1928A /* Main.storyboard */; };
@@ -44,6 +43,7 @@
 		84B46902230AF81A00089B59 /* Transaction+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B468FE230AF81A00089B59 /* Transaction+CoreDataProperties.swift */; };
 		84B4690A230B270200089B59 /* Envelope+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B46909230B270200089B59 /* Envelope+CoreDataProperties.swift */; };
 		84B4690C230B274A00089B59 /* Envelope+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B4690B230B274A00089B59 /* Envelope+CoreDataClass.swift */; };
+		84C43E8F230D616D009662D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AC4AC91E70226900A1928A /* AppDelegate.swift */; };
 		84C6B1561F3370B60036462F /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C6B1551F3370B60036462F /* DetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -191,18 +191,18 @@
 				844434EE221C13E20019FB0D /* Images */,
 				847EF1B71F2DBD9900C9C437 /* CoreData */,
 				734DA3FF1E892C91002D8A18 /* Admob */,
-				84C6B1551F3370B60036462F /* DetailsViewController.swift */,
-				84350B4A1F10F1DF00508135 /* StatementTableViewCell.swift */,
-				73AC4ACF1E70226900A1928A /* Main.storyboard */,
 				73AC4AC91E70226900A1928A /* AppDelegate.swift */,
 				73AC4ACB1E70226900A1928A /* MainDisplayViewController.swift */,
-				73AC4AFB1E702C1B00A1928A /* MainDisplayTableViewCell.swift */,
 				84856FC0230B5365000897F0 /* ManagementViewController.swift */,
 				73AC4ACD1E70226900A1928A /* IncomeViewController.swift */,
 				1F95E7A31EBB36A3001689B6 /* TransactionViewController.swift */,
-				844FF4881F64292B00E1C52C /* TimezoneViewController.swift */,
 				1F95E7A51EBB36D3001689B6 /* StatementViewController.swift */,
+				84C6B1551F3370B60036462F /* DetailsViewController.swift */,
+				844FF4881F64292B00E1C52C /* TimezoneViewController.swift */,
+				73AC4AFB1E702C1B00A1928A /* MainDisplayTableViewCell.swift */,
+				84350B4A1F10F1DF00508135 /* StatementTableViewCell.swift */,
 				73B7F3591E8AADD6001E2F5C /* SplashScreenViewController.swift */,
+				73AC4ACF1E70226900A1928A /* Main.storyboard */,
 				73AC4AD21E70226900A1928A /* Assets.xcassets */,
 				73AC4AD41E70226900A1928A /* LaunchScreen.storyboard */,
 				84D306011F8083BE00C03719 /* Info.plist */,
@@ -240,8 +240,8 @@
 				84B46909230B270200089B59 /* Envelope+CoreDataProperties.swift */,
 				84B468FD230AF81A00089B59 /* Transaction+CoreDataClass.swift */,
 				84B468FE230AF81A00089B59 /* Transaction+CoreDataProperties.swift */,
-				847EF1B81F2DBDEE00C9C437 /* BudgetThis.xcdatamodeld */,
 				847EF1BF1F2DC53A00C9C437 /* DatabaseController.swift */,
+				847EF1B81F2DBDEE00C9C437 /* BudgetThis.xcdatamodeld */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -404,7 +404,6 @@
 			files = (
 				73AC4ACE1E70226900A1928A /* IncomeViewController.swift in Sources */,
 				84856FC1230B5365000897F0 /* ManagementViewController.swift in Sources */,
-				73AC4ACA1E70226900A1928A /* AppDelegate.swift in Sources */,
 				73AC4AFC1E702C1B00A1928A /* MainDisplayTableViewCell.swift in Sources */,
 				84B46901230AF81A00089B59 /* Transaction+CoreDataClass.swift in Sources */,
 				1F95E7A41EBB36A3001689B6 /* TransactionViewController.swift in Sources */,
@@ -418,6 +417,7 @@
 				844FF4891F64292B00E1C52C /* TimezoneViewController.swift in Sources */,
 				84350B4B1F10F1DF00508135 /* StatementTableViewCell.swift in Sources */,
 				847EF1C01F2DC53A00C9C437 /* DatabaseController.swift in Sources */,
+				84C43E8F230D616D009662D0 /* AppDelegate.swift in Sources */,
 				84B4690A230B270200089B59 /* Envelope+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

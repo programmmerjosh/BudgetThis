@@ -120,11 +120,11 @@ class MainDisplayViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "manage" {
-            let vc              = segue.destination as! ManagementViewController
-            let name            = String(self.arrEnvelope[arrayIndex].name!)
-            let assigned        = Double(self.arrEnvelope[arrayIndex].assigned)
-            vc.strNameFromSegue = name
-            vc.dblAssigned      = assigned
+            let vc       = segue.destination as! ManagementViewController
+            let name     = String(self.arrEnvelope[arrayIndex].name!)
+            let assigned = Double(self.arrEnvelope[arrayIndex].assigned)
+            vc.name      = name
+            vc.assigned  = assigned
         }
     }
     

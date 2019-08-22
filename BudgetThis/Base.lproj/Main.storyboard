@@ -57,8 +57,7 @@
                                 <rect key="frame" x="151" y="353" width="113" height="30"/>
                                 <state key="normal" title="Accept Changes"/>
                                 <connections>
-                                    <action selector="acceptChangesAction:" destination="kdo-Tt-fFf" eventType="touchUpInside" id="ySA-vo-DLF"/>
-                                    <action selector="applyChanges:" destination="kdo-Tt-fFf" eventType="touchUpInside" id="LVn-Fv-YCF"/>
+                                    <action selector="applyChanges:" destination="kdo-Tt-fFf" eventType="touchUpInside" id="xOn-OF-4tU"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -78,7 +77,6 @@
                     </view>
                     <connections>
                         <outlet property="txtAssigned" destination="nzg-9x-Y4Y" id="bJ7-Ik-KCN"/>
-                        <outlet property="txtRename" destination="30d-Ro-TUS" id="6iO-mM-Xrm"/>
                         <outlet property="txtRenameEnvelope" destination="30d-Ro-TUS" id="JE4-FC-Vd4"/>
                         <segue destination="9pv-A4-QxB" kind="show" identifier="main" id="53F-ib-aH2"/>
                     </connections>
@@ -270,7 +268,7 @@
         <!--TimeZone-->
         <scene sceneID="ueI-IE-Vvp">
             <objects>
-                <viewController title="TimeZone" id="f0k-Sz-0oL" customClass="TimezoneViewController" sceneMemberID="viewController">
+                <viewController title="TimeZone" id="f0k-Sz-0oL" customClass="TimezoneViewController" customModule="BudgetThis" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zYT-fJ-KrH"/>
                         <viewControllerLayoutGuide type="bottom" id="Lrt-xH-J9h"/>
@@ -286,6 +284,7 @@
                                 <rect key="frame" x="0.0" y="84" width="414" height="216"/>
                                 <connections>
                                     <outlet property="dataSource" destination="f0k-Sz-0oL" id="AIc-jD-ssO"/>
+                                    <outlet property="delegate" destination="f0k-Sz-0oL" id="Xo3-lG-Cv5"/>
                                 </connections>
                             </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A68-Pq-w59">
@@ -354,7 +353,7 @@
         <!--Details-->
         <scene sceneID="FGc-Ap-Eoi">
             <objects>
-                <viewController title="Details" id="H1F-0N-Fi7" customClass="DetailsViewController" sceneMemberID="viewController">
+                <viewController title="Details" id="H1F-0N-Fi7" customClass="DetailsViewController" customModule="BudgetThis" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jbD-6j-oec"/>
                         <viewControllerLayoutGuide type="bottom" id="AXH-0z-NJE"/>
@@ -513,7 +512,7 @@
         <!--View Statement-->
         <scene sceneID="SQq-zN-bfH">
             <objects>
-                <viewController id="FeN-sL-VUe" customClass="StatementViewController" sceneMemberID="viewController">
+                <viewController id="FeN-sL-VUe" customClass="StatementViewController" customModule="BudgetThis" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Xev-O2-uSY"/>
                         <viewControllerLayoutGuide type="bottom" id="KXh-oM-B1w"/>
@@ -750,10 +749,10 @@
             </objects>
             <point key="canvasLocation" x="3495" y="752"/>
         </scene>
-        <!--Submit Outgoing Amount-->
+        <!--Submit Transaction-->
         <scene sceneID="0xH-th-rXI">
             <objects>
-                <viewController id="NRn-xN-Dbz" customClass="TransactionViewController" sceneMemberID="viewController">
+                <viewController id="NRn-xN-Dbz" customClass="TransactionViewController" customModule="BudgetThis" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wQj-Iz-KZ3"/>
                         <viewControllerLayoutGuide type="bottom" id="Bsc-e3-VwZ"/>
@@ -785,11 +784,11 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                         </variation>
                                         <connections>
-                                            <action selector="txtAmountAction:" destination="NRn-xN-Dbz" eventType="editingChanged" id="TbH-DC-zPl"/>
+                                            <action selector="AmountEdit:" destination="NRn-xN-Dbz" eventType="editingDidEnd" id="4Ab-yz-cTS"/>
                                         </connections>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1fp-wo-vLs">
-                                        <rect key="frame" x="150.33333333333334" y="98.333333333333343" width="75" height="20.333333333333329"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Envelope:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1fp-wo-vLs">
+                                        <rect key="frame" x="150.33333333333334" y="98.333333333333343" width="75" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -820,7 +819,7 @@
                                             </mask>
                                         </variation>
                                         <connections>
-                                            <action selector="txtCategoryAction:" destination="NRn-xN-Dbz" eventType="editingDidBegin" id="qsi-dc-5dg"/>
+                                            <action selector="pickerSelected:" destination="NRn-xN-Dbz" eventType="editingDidBegin" id="Ans-YL-JiC"/>
                                         </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description(optional):" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKE-nh-YSO">
@@ -852,7 +851,7 @@
                                             </mask>
                                         </variation>
                                         <connections>
-                                            <action selector="txtDescriptionAction:" destination="NRn-xN-Dbz" eventType="editingDidBegin" id="pjJ-Lx-HSl"/>
+                                            <action selector="DescriptionSelected:" destination="NRn-xN-Dbz" eventType="editingDidBegin" id="zqW-kU-UFw"/>
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="efQ-pB-uDD">
@@ -982,13 +981,13 @@
                             <constraint firstItem="EEz-IE-Srt" firstAttribute="leading" secondItem="N9K-Im-qKo" secondAttribute="leadingMargin" constant="-20" id="vR9-DK-8aR"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Submit Outgoing Amount" id="Els-Uo-2Yf"/>
+                    <navigationItem key="navigationItem" title="Submit Transaction" id="Els-Uo-2Yf"/>
                     <connections>
                         <outlet property="amountAddedMessage" destination="i8p-MZ-zgJ" id="4cO-MA-LWP"/>
                         <outlet property="invalidAmountMessage" destination="vYn-fa-73R" id="sg5-gb-DTo"/>
-                        <outlet property="txtAmountOutlet" destination="15n-0l-nuo" id="unh-s8-1Mw"/>
-                        <outlet property="txtCategoryOutlet" destination="tf0-0D-6cP" id="2AY-Ol-CZR"/>
-                        <outlet property="txtDescriptionOutlet" destination="TH3-xc-TA6" id="KFm-9C-shp"/>
+                        <outlet property="txtAmount" destination="15n-0l-nuo" id="Pst-zz-fLc"/>
+                        <outlet property="txtDescription" destination="TH3-xc-TA6" id="gCd-aW-Uwy"/>
+                        <outlet property="txtEnvelope" destination="tf0-0D-6cP" id="5hq-0W-YHi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rz2-X1-DJP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -998,7 +997,7 @@
         <!--Income-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
-                <viewController id="8rJ-Kc-sve" customClass="IncomeViewController" sceneMemberID="viewController">
+                <viewController id="8rJ-Kc-sve" customClass="IncomeViewController" customModule="BudgetThis" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="L7p-HK-0SC"/>
                         <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>
@@ -1104,7 +1103,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="TotalEdited:" destination="8rJ-Kc-sve" eventType="editingChanged" id="q6m-DH-Coh"/>
+                                    <action selector="IncomeEdited:" destination="8rJ-Kc-sve" eventType="editingChanged" id="nh7-ih-rrx"/>
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="kjQ-1k-vcK">
@@ -1157,9 +1156,9 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="736"/>
                     <connections>
-                        <outlet property="lblAvailableBal" destination="kjQ-1k-vcK" id="yiN-8b-fHk"/>
-                        <outlet property="lblTotal" destination="IXF-IN-Inb" id="8Tj-2B-wgY"/>
-                        <outlet property="txtTotal" destination="kTB-fJ-AUB" id="URb-cs-ziL"/>
+                        <outlet property="lblAvailableAmount" destination="kjQ-1k-vcK" id="JOl-PO-tuT"/>
+                        <outlet property="lblAvailablePercent" destination="IXF-IN-Inb" id="91d-6S-BiM"/>
+                        <outlet property="txtIncome" destination="kTB-fJ-AUB" id="2Gn-ew-f3a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>

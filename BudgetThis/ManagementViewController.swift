@@ -17,20 +17,21 @@ class ManagementViewController: UIViewController {
         updateEnvelopeData()
     }
     
-    var strNameFromSegue:String = String()
-    var oldName:String = String()
-    var dblAssigned:Double = 0
+    var name     :String = String()
+    var oldName  :String = String()
+    var assigned :Double = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        txtRenameEnvelope.text = strNameFromSegue
-        txtAssigned.text = String(dblAssigned)
-        oldName = txtRenameEnvelope.text!
+        txtRenameEnvelope.text = name
+        txtAssigned.text       = String(assigned)
+        oldName                = txtRenameEnvelope.text!
     }
     
     func updateEnvelopeData() {
-        let newName:String = txtRenameEnvelope.text!
+        let newName :String = txtRenameEnvelope.text!
         let assigned:Double = Double(txtAssigned.text!)!
+        
         let fetchData = NSFetchRequest<NSFetchRequestResult>(entityName: "Envelope")
         
         do {

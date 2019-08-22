@@ -12,15 +12,10 @@ class SplashScreenViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        
         perform(#selector(SplashScreenViewController.showNavigationController), with: nil, afterDelay: 2.3)
     }
 
-    @objc func showNavigationController()
-    {
+    @objc func showNavigationController() {
         performSegue(withIdentifier: "mySplashScreen", sender: self)
     }
-
 }

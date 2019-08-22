@@ -11,16 +11,20 @@ import CoreData
 
 class IncomeViewController: UIViewController, UITextFieldDelegate {
     
-    @IBOutlet var lblTotal        : UILabel!
-    @IBOutlet var lblAvailableBal : UILabel!
-    @IBOutlet var txtTotal        : UITextField!
+    @IBOutlet var lblAvailablePercent : UILabel!
+    @IBOutlet var lblAvailableAmount  : UILabel!
+    @IBOutlet var txtIncome           : UITextField!
     
     var limitLength:Int = 12
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let userIncome:String = fetchValue(key: "userIncome") == String() ? "1000" : fetchValue(key: "userIncome")
-        txtTotal.text         = userIncome
+        txtIncome.text        = userIncome
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print("something")
     }
     
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -31,33 +35,33 @@ class IncomeViewController: UIViewController, UITextFieldDelegate {
     
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // called when 'return' key pressed. return NO to ignore.
-        txtTotal.resignFirstResponder()
+        txtIncome.resignFirstResponder()
         return true
     }
     
-    @IBAction func TotalEdited(_ sender: UITextField) {
-        let income:Double = validDouble(double: txtTotal.text!)
-        if (income == 0) { txtTotal.text = "" }
+    @IBAction func IncomeEdited(_ sender: UITextField) {
+        let income:Double = validDouble(double: txtIncome.text!)
+        if (income == 0) { txtIncome.text = "" }
         incomeChange(amount: income)
         update()
     }
     
     @IBAction func hideOpenKeyboard(_ sender: UIButton) {
-        txtTotal.resignFirstResponder()
+        txtIncome.resignFirstResponder()
     }
     
     public func update() {
-        lblTotal.text = String(calcAvailablePercent()) + "%"
-        lblAvailableBal.text = String(calcAvailableAmount())
-        lblTotal.adjustsFontSizeToFitWidth = true
-        lblAvailableBal.adjustsFontSizeToFitWidth = true
+        lblAvailablePercent.text = String(calcAvailablePercent()) + "%"
+        lblAvailableAmount.text  = String(calcAvailableAmount())
+        lblAvailablePercent.adjustsFontSizeToFitWidth = true
+        lblAvailableAmount.adjustsFontSizeToFitWidth = true
     }
     
     public func validDouble(double:String) -> Double {
         
-        let inputString:String = double
-        var newString = ""
-        let period:Character = "."
+        let inputString :String    = double
+        var newString   :String    = ""
+        let period      :Character = "."
         
         for Character in inputString {
             if (Character != "," && Character != ".") {newString = newString + String(Character)}
@@ -73,7 +77,7 @@ class IncomeViewController: UIViewController, UITextFieldDelegate {
     }
     
     public func calcAvailablePercent() -> Double {
-        let income    :String = txtTotal.text!
+        let income    :String = txtIncome.text!
         let available :Double = calcAvailableAmount()
         let percent   :Double = (available / Double(income)!) * 100
         
