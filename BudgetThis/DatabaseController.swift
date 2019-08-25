@@ -11,9 +11,7 @@ import CoreData
 
 class DatabaseController {
     
-    private init() {
-        
-    }
+    private init() {}
     
     class func getContext() -> NSManagedObjectContext {
         return DatabaseController.persistentContainer.viewContext
