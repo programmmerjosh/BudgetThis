@@ -10,25 +10,24 @@ import UIKit
 import CoreData
 
 class MainDisplayViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
-    @IBOutlet var myTableView: UITableView!
-    @IBAction func addEnvelopeAction(_ sender: Any) {
-        promptNewEnvelopeMessage()
-    }
-    
+   
     var arrEnvelope       :[Envelope]           = []
     let vcIncome          :IncomeViewController = IncomeViewController()
     var ctrRefreshControl :UIRefreshControl     = UIRefreshControl()
     var txtAlertInsertion :UITextField?
     var arrayIndex        :Int                  = 0
     
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
+    @IBOutlet var myTableView: UITableView!
+    @IBAction func addEnvelopeAction(_ sender: Any) {
+        promptNewEnvelopeMessage()
+    }
+    
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrEnvelope.count
     }
     
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-    {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell             = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MainDisplayTableViewCell
         var remaining:Double = 0
         if let envelopeName = arrEnvelope[indexPath.row].name {
@@ -302,10 +301,7 @@ class MainDisplayViewController: UIViewController, UITableViewDelegate, UITableV
         catch {
             print("Error! \(error)")
         }
-//        if (assigned != 0 && spent != 0) {
-            return round(100*Double(assigned - spent))/100
-//        }
-//        return round(100*Double(assigned))/100
+        return round(100*Double(assigned - spent))/100
     }
 }
 

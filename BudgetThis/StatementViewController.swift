@@ -11,11 +11,6 @@ import CoreData
 
 class StatementViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet var myTableView     : UITableView!
-    @IBOutlet weak var greenArrow1: UIImageView!
-    @IBOutlet weak var greenArrow2: UIImageView!
-    @IBOutlet weak var greenArrow3: UIImageView!
-    
     var ctrRefreshControl :UIRefreshControl          = UIRefreshControl()
     let vcMainDisp        :MainDisplayViewController = MainDisplayViewController()
     var arrayIndex        :Int                       = 0
@@ -23,6 +18,11 @@ class StatementViewController: UIViewController, UITableViewDelegate, UITableVie
     var amountArray                                  = [String()]
     var datesArray                                   = [String()]
     var infoArray                                    = [String()]
+    
+    @IBOutlet var myTableView     : UITableView!
+    @IBOutlet weak var greenArrow1: UIImageView!
+    @IBOutlet weak var greenArrow2: UIImageView!
+    @IBOutlet weak var greenArrow3: UIImageView!
     
     @IBAction func thisMonthAction(_ sender: UIButton) {
         monthFilter(monthsAgo: 0)

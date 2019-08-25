@@ -10,15 +10,15 @@ import UIKit
 
 class DetailsViewController: UIViewController {
 
-    @IBOutlet weak var lblDescription: UILabel!
-    @IBOutlet weak var lblCategory: UILabel!
-    @IBOutlet weak var lblAmount: UILabel!
-    @IBOutlet weak var lblDate: UILabel!
-    
     var strDescription  :String = String()
     var strEnvelopeName :String = String()
     var strAmount       :String = String()
     var strDate         :String = String()
+    
+    @IBOutlet weak var lblDescription: UILabel!
+    @IBOutlet weak var lblCategory: UILabel!
+    @IBOutlet weak var lblAmount: UILabel!
+    @IBOutlet weak var lblDate: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()

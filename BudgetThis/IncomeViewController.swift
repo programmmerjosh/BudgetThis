@@ -11,11 +11,11 @@ import CoreData
 
 class IncomeViewController: UIViewController, UITextFieldDelegate {
     
+    var limitLength:Int = 12
+    
     @IBOutlet var lblAvailablePercent : UILabel!
     @IBOutlet var lblAvailableAmount  : UILabel!
     @IBOutlet var txtIncome           : UITextField!
-    
-    var limitLength:Int = 12
     
     override func viewDidLoad() {
         super.viewDidLoad()

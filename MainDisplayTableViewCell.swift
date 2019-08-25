@@ -10,8 +10,8 @@ import UIKit
 
 class MainDisplayTableViewCell: UITableViewCell {
     
-    @IBOutlet var name: UILabel!
-    @IBOutlet var assigned: UILabel!
+    @IBOutlet var name          : UILabel!
+    @IBOutlet var assigned      : UILabel!
     @IBOutlet weak var remaining: UILabel!
 
     override func awakeFromNib() {

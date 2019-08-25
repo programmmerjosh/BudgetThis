@@ -11,8 +11,8 @@ import UIKit
 class StatementTableViewCell: UITableViewCell {
 
     @IBOutlet weak var transaction: UILabel!
-    @IBOutlet var amounts: UILabel!
-    @IBOutlet weak var dates: UILabel!
+    @IBOutlet var amounts         : UILabel!
+    @IBOutlet weak var dates      : UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

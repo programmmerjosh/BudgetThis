@@ -10,11 +10,11 @@ import UIKit
 
 class TimezoneViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
-    @IBOutlet weak var myPickerView: UIPickerView!
-    @IBOutlet weak var savedDisplayLabel: UILabel!
-    
     var arrayIndex:Int                = 0
     let vcIncome:IncomeViewController = IncomeViewController()
+    
+    @IBOutlet weak var myPickerView: UIPickerView!
+    @IBOutlet weak var savedDisplayLabel: UILabel!
     
     var tzStringArray = ["-1200", "-1100", "-1000", "-0930", "-0900", "-0800", "-0700", "-0600", "-0500", "-0400", "-0330", "-0300", "-0230", "-0200", "-0100", "+0000","+0100", "+0200", "+0300", "+0330", "+0400", "+0430", "+0500", "+0545", "+0600", "+0630", "+0700", "+0800", "+0830", "+0845", "+0900", "+0930", "+1000", "+1030", "+1100", "+1200", "+1245", "+1300", "+1345", "+1400"]
     

@@ -11,6 +11,11 @@ import CoreData
 
 class ManagementViewController: UIViewController {
 
+    var name     :String               = String()
+    var oldName  :String               = String()
+    var assigned :Double               = 0
+    let vcIncome :IncomeViewController = IncomeViewController()
+    
     @IBOutlet weak var txtRenameEnvelope : UITextField!
     @IBOutlet weak var txtAssigned       : UITextField!
     @IBAction func applyChanges(_ sender: Any) {
@@ -20,11 +25,6 @@ class ManagementViewController: UIViewController {
         txtRenameEnvelope.resignFirstResponder()
         txtAssigned.resignFirstResponder()
     }
-    
-    var name     :String = String()
-    var oldName  :String = String()
-    var assigned :Double = 0
-    let vcIncome:IncomeViewController = IncomeViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
