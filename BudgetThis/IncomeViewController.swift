@@ -21,10 +21,11 @@ class IncomeViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         let userIncome:String = fetchValue(key: "userIncome") == String() ? "1000" : fetchValue(key: "userIncome")
         txtIncome.text        = userIncome
+        update()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print("something")
+        update()
     }
     
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -77,15 +78,18 @@ class IncomeViewController: UIViewController, UITextFieldDelegate {
     }
     
     public func calcAvailablePercent() -> Double {
-        let income    :String = txtIncome.text!
+        let income    :Double = validDouble(double: txtIncome.text!)
         let available :Double = calcAvailableAmount()
-        let percent   :Double = (available / Double(income)!) * 100
-        
+        var percent   :Double = 100
+        if (available != 0 && income != 0) {
+            percent = (available / income) * 100
+        }
         return round(100*percent)/100
     }
     
     public func calcAvailableAmount() -> Double {
         var amount:Double = 0
+        let income:Double = validDouble(double: txtIncome.text!)
         let fetchData = NSFetchRequest<NSFetchRequestResult>(entityName: "Envelope")
         
         do {
@@ -98,7 +102,7 @@ class IncomeViewController: UIViewController, UITextFieldDelegate {
         catch {
             print("Error! \(error)")
         }
-        return round(100*amount)/100
+        return round(100*(income - amount))/100
     }
     
     public func incomeChange(amount: Double) {

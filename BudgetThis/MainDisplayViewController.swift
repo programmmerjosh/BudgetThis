@@ -30,7 +30,10 @@ class MainDisplayViewController: UIViewController, UITableViewDelegate, UITableV
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell             = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MainDisplayTableViewCell
-        let remaining:Double = calcEnvelopeRemainingBal(envelopeName: arrEnvelope[indexPath.row].name!)
+        var remaining:Double = 0
+        if let envelopeName = arrEnvelope[indexPath.row].name {
+            remaining = calcEnvelopeRemainingBal(envelopeName: envelopeName)
+        }
         let temp:Double      = Double(cell.remaining.text!) != nil ? Double(cell.remaining.text!)! : 0
         
         cell.name.text       = arrEnvelope[indexPath.row].name
@@ -87,6 +90,7 @@ class MainDisplayViewController: UIViewController, UITableViewDelegate, UITableV
         myTableView.delegate    = self
         myTableView.dataSource  = self
         
+        deleteOldData()
         fetchEnvelopeData()
         ctrRefreshControl.addTarget(self, action: #selector(RefreshData), for: UIControlEvents.valueChanged)
         myTableView.refreshControl = ctrRefreshControl
@@ -172,6 +176,8 @@ class MainDisplayViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func fetchEnvelopeData() {
+        
+        var found:Bool = false
         let fetchData = NSFetchRequest<NSFetchRequestResult>(entityName: "Envelope")
         
         do {
@@ -180,10 +186,19 @@ class MainDisplayViewController: UIViewController, UITableViewDelegate, UITableV
             for result in searchResults as! [Envelope] {
                 print(result)
                 arrEnvelope.append(result)
+                found = true
             }
         }
         catch {
-            print("Error! \(error)")
+            print("Envelopes not found! A default one has been created for you.")
+        }
+        
+        if !found {
+            let element:Envelope = NSEntityDescription.insertNewObject(forEntityName: String(describing: Envelope.self), into: DatabaseController.getContext()) as! Envelope
+            element.name = "Example"
+            element.assigned = 0
+            arrEnvelope.insert(element, at: 0)
+            DatabaseController.saveContext()
         }
     }
     
@@ -195,7 +210,9 @@ class MainDisplayViewController: UIViewController, UITableViewDelegate, UITableV
             let searchResults = try DatabaseController.getContext().fetch(fetchData)
             
             for result in searchResults as! [Envelope] {
-                nameExists = result.name == name ? true : false
+                if result.name == name {
+                    nameExists = true
+                }
             }
             if nameExists {
                 createAlert(title: "Whoops!", message: "This envelope name already exists.")
@@ -285,7 +302,10 @@ class MainDisplayViewController: UIViewController, UITableViewDelegate, UITableV
         catch {
             print("Error! \(error)")
         }
-        return round(100*Double(assigned - spent))/100
+//        if (assigned != 0 && spent != 0) {
+            return round(100*Double(assigned - spent))/100
+//        }
+//        return round(100*Double(assigned))/100
     }
 }
 

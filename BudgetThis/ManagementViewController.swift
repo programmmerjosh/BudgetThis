@@ -16,10 +16,15 @@ class ManagementViewController: UIViewController {
     @IBAction func applyChanges(_ sender: Any) {
         updateEnvelopeData()
     }
+    @IBAction func hideKeyboard(_ sender: Any) {
+        txtRenameEnvelope.resignFirstResponder()
+        txtAssigned.resignFirstResponder()
+    }
     
     var name     :String = String()
     var oldName  :String = String()
     var assigned :Double = 0
+    let vcIncome:IncomeViewController = IncomeViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +35,7 @@ class ManagementViewController: UIViewController {
     
     func updateEnvelopeData() {
         let newName :String = txtRenameEnvelope.text!
-        let assigned:Double = Double(txtAssigned.text!)!
+        let assigned:Double = vcIncome.validDouble(double: txtAssigned.text!)
         
         let fetchData = NSFetchRequest<NSFetchRequestResult>(entityName: "Envelope")
         

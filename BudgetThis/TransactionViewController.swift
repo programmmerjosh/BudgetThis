@@ -11,10 +11,11 @@ import CoreData
 
 class TransactionViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
-    var limitLength :Int                       = 0
+    var limitLength :Int                       = 12
     var picker                                 = UIPickerView()
     let vcIncome    :IncomeViewController      = IncomeViewController()
     let vcMainDisp  :MainDisplayViewController = MainDisplayViewController()
+    var arrEnvelope :[Envelope]                = []
     
     @IBOutlet weak var txtAmount            : UITextField!
     @IBOutlet var txtEnvelope               : UITextField!
@@ -23,7 +24,6 @@ class TransactionViewController: UIViewController, UITextFieldDelegate, UIPicker
     @IBOutlet weak var invalidAmountMessage : UILabel!
     
     @IBAction func AmountEdit(_ sender: UITextField) {
-        limitLength = 12
         let temp:Double = vcIncome.validDouble(double: txtAmount.text!)
         if (temp == 0) { txtAmount.text = "" }
     }
@@ -53,17 +53,22 @@ class TransactionViewController: UIViewController, UITextFieldDelegate, UIPicker
         
         amountAddedMessage.alpha   = 0
         invalidAmountMessage.alpha = 0
-        
+        fetchEnv()
         picker.delegate         = self
         picker.dataSource       = self
         txtAmount.delegate      = self
         txtDescription.delegate = self
-        txtEnvelope.text        = vcMainDisp.arrEnvelope[0].name
+        txtEnvelope.text        = arrEnvelope[0].name
         createPicker()
         
         if vcIncome.fetchValue(key: "TZ") == String() {
             createAlert(title: "TimeZone Settings", message: "To accurately represent your transaction history dates and times, please take a few seconds to set your current location's TimeZone. \n Click 'Okay' below and then click on the button located in the top right corner of this view.")
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        fetchEnv()
+        picker.reloadAllComponents()
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
@@ -86,13 +91,13 @@ class TransactionViewController: UIViewController, UITextFieldDelegate, UIPicker
     }
     @available(iOS 2.0, *)
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return vcMainDisp.arrEnvelope.count
+        return arrEnvelope.count
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        txtEnvelope.text = vcMainDisp.arrEnvelope[row].name!
+        txtEnvelope.text = arrEnvelope[row].name
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return vcMainDisp.arrEnvelope[row].name!
+        return arrEnvelope[row].name
     }
     
     public func createPicker() {
@@ -109,6 +114,22 @@ class TransactionViewController: UIViewController, UITextFieldDelegate, UIPicker
     
     @objc public func endProcess() {
         self.view.endEditing(true)
+    }
+    
+    public func fetchEnv() {
+        arrEnvelope = []
+        let fetchData = NSFetchRequest<NSFetchRequestResult>(entityName: "Envelope")
+        
+        do {
+            let searchResults = try DatabaseController.getContext().fetch(fetchData)
+            
+            for result in searchResults as! [Envelope] {
+                arrEnvelope.append(result)
+            }
+        }
+        catch {
+            print("Envelopes not found!")
+        }
     }
     
     public func AddTransaction() {

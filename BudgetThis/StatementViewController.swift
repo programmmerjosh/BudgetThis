@@ -68,6 +68,10 @@ class StatementViewController: UIViewController, UITableViewDelegate, UITableVie
         greenArrow3.alpha = 0
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        RefreshData()
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         arrayIndex = indexPath.row
         performSegue(withIdentifier: "details", sender: self)

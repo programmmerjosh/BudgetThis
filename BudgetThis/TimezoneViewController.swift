@@ -33,7 +33,10 @@ class TimezoneViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     @IBAction func saveButtonAction(_ sender: UIButton) {
         let value:Int = tzIntArray[arrayIndex]
         vcIncome.saveValue(value: String(value), key: "TZ")
+        print(value)
+        print(vcIncome.fetchValue(key: "TZ"))
         showMessageBriefly()
+        performSegue(withIdentifier: "tab", sender: self)
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
@@ -67,10 +70,10 @@ class TimezoneViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         var answer  :Int = 0
         
         for value in tzIntArray {
-            i += 1
             if String(value) == String(timezone) {
                 answer = i
             }
+            i += 1
         }
         return answer
     }
