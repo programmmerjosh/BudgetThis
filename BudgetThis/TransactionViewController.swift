@@ -16,6 +16,7 @@ class TransactionViewController: UIViewController, UITextFieldDelegate, UIPicker
     let vcIncome    :IncomeViewController      = IncomeViewController()
     let vcMainDisp  :MainDisplayViewController = MainDisplayViewController()
     var arrEnvelope :[Envelope]                = []
+    @IBOutlet weak var submitButton: UIButton!
     
     @IBOutlet weak var txtAmount            : UITextField!
     @IBOutlet var txtEnvelope               : UITextField!
@@ -58,7 +59,6 @@ class TransactionViewController: UIViewController, UITextFieldDelegate, UIPicker
         picker.dataSource       = self
         txtAmount.delegate      = self
         txtDescription.delegate = self
-        txtEnvelope.text        = arrEnvelope[0].name
         createPicker()
         
         if vcIncome.fetchValue(key: "TZ") == String() {
@@ -69,6 +69,19 @@ class TransactionViewController: UIViewController, UITextFieldDelegate, UIPicker
     override func viewDidAppear(_ animated: Bool) {
         fetchEnv()
         picker.reloadAllComponents()
+        
+        if arrEnvelope.count > 0 {
+            txtEnvelope.text         = arrEnvelope[0].name
+            txtAmount.isEnabled      = true
+            txtEnvelope.isEnabled    = true
+            txtDescription.isEnabled = true
+            submitButton.alpha       = 1
+        } else {
+            txtAmount.isEnabled      = false
+            txtEnvelope.isEnabled    = false
+            txtDescription.isEnabled = false
+            submitButton.alpha       = 0
+        }
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
@@ -194,9 +207,9 @@ class TransactionViewController: UIViewController, UITextFieldDelegate, UIPicker
     }
     
     public func createAlert(title:String, message:String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in
             alert.dismiss(animated: true, completion: nil)
     }))
         self.present(alert, animated: true, completion: nil)

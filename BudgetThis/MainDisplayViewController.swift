@@ -64,7 +64,7 @@ class MainDisplayViewController: UIViewController, UITableViewDelegate, UITableV
         return true
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             deleteEnvelope(envelopeName: arrEnvelope[indexPath.row].name!)
             arrEnvelope.remove(at: indexPath.row)
@@ -91,7 +91,7 @@ class MainDisplayViewController: UIViewController, UITableViewDelegate, UITableV
         
         deleteOldData()
         fetchEnvelopeData()
-        ctrRefreshControl.addTarget(self, action: #selector(RefreshData), for: UIControlEvents.valueChanged)
+        ctrRefreshControl.addTarget(self, action: #selector(RefreshData), for: UIControl.Event.valueChanged)
         myTableView.refreshControl = ctrRefreshControl
     }
     
@@ -227,17 +227,17 @@ class MainDisplayViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     public func promptNewEnvelopeMessage() {
-        let alert = UIAlertController(title: "Add New Envelope", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "Add New Envelope", message: nil, preferredStyle: UIAlertController.Style.alert)
         
         alert.addTextField(configurationHandler: txtAlertInsertion)
         
-        alert.addAction(UIAlertAction(title: "Add", style: UIAlertActionStyle.default, handler: { (action) in
+        alert.addAction(UIAlertAction(title: "Add", style: UIAlertAction.Style.default, handler: { (action) in
             let newName:String = (self.txtAlertInsertion?.text)!
             self.addNewEnvelope(name: newName)
             self.RefreshData()
         }))
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: { (action) in
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: { (action) in
             alert.dismiss(animated: true, completion: nil)
         }))
         
@@ -245,9 +245,9 @@ class MainDisplayViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func createAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in
             alert.dismiss(animated: true, completion: nil)
         }))
         

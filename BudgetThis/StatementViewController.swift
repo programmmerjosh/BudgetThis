@@ -59,7 +59,7 @@ class StatementViewController: UIViewController, UITableViewDelegate, UITableVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        ctrRefreshControl.addTarget(self, action: #selector(RefreshData), for: UIControlEvents.valueChanged)
+        ctrRefreshControl.addTarget(self, action: #selector(RefreshData), for: UIControl.Event.valueChanged)
         myTableView.refreshControl = ctrRefreshControl
         
         monthFilter(monthsAgo: 0)
