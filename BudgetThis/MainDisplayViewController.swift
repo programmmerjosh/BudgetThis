@@ -98,27 +98,6 @@ class MainDisplayViewController: UIViewController, UITableViewDelegate, UITableV
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         RefreshData()
-        AppUtility.lockOrientation(.portrait)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        AppUtility.lockOrientation(.all)
-    }
-    
-    struct AppUtility {
-        
-        static func lockOrientation(_ orientation: UIInterfaceOrientationMask) {
-            if let delegate = UIApplication.shared.delegate as? AppDelegate {
-                delegate.orientationLock = orientation
-            }
-        }
-        
-        /// OPTIONAL Added method to adjust lock and rotate to the desired orientation
-        static func lockOrientation(_ orientation: UIInterfaceOrientationMask, andRotateTo rotateOrientation:UIInterfaceOrientation) {
-            self.lockOrientation(orientation)
-            UIDevice.current.setValue(rotateOrientation.rawValue, forKey: "orientation")
-        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -33,8 +33,6 @@ class TimezoneViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     @IBAction func saveButtonAction(_ sender: UIButton) {
         let value:Int = tzIntArray[arrayIndex]
         vcIncome.saveValue(value: String(value), key: "TZ")
-        print(value)
-        print(vcIncome.fetchValue(key: "TZ"))
         showMessageBriefly()
         performSegue(withIdentifier: "tab", sender: self)
     }

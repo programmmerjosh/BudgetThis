@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		1F95E7A41EBB36A3001689B6 /* TransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F95E7A31EBB36A3001689B6 /* TransactionViewController.swift */; };
 		1F95E7A61EBB36D3001689B6 /* StatementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F95E7A51EBB36D3001689B6 /* StatementViewController.swift */; };
-		734DA4021E892CFE002D8A18 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 734DA4001E892CFE002D8A18 /* GoogleMobileAds.framework */; };
-		734DA4031E892CFF002D8A18 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 734DA4001E892CFE002D8A18 /* GoogleMobileAds.framework */; };
 		73AC4ACC1E70226900A1928A /* MainDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AC4ACB1E70226900A1928A /* MainDisplayViewController.swift */; };
 		73AC4ACE1E70226900A1928A /* IncomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AC4ACD1E70226900A1928A /* IncomeViewController.swift */; };
 		73AC4AD11E70226900A1928A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73AC4ACF1E70226900A1928A /* Main.storyboard */; };
@@ -67,19 +65,6 @@
 /* Begin PBXFileReference section */
 		1F95E7A31EBB36A3001689B6 /* TransactionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionViewController.swift; sourceTree = "<group>"; };
 		1F95E7A51EBB36D3001689B6 /* StatementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatementViewController.swift; sourceTree = "<group>"; };
-		734DA4001E892CFE002D8A18 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
-		734DA4051E892D60002D8A18 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
-		734DA4071E8931B5002D8A18 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		734DA4081E8931B5002D8A18 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		734DA4091E8931B5002D8A18 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
-		734DA40D1E8931C4002D8A18 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		734DA40F1E8931CD002D8A18 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		734DA4111E8931DF002D8A18 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
-		734DA4121E8931DF002D8A18 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
-		734DA4151E8931F2002D8A18 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		734DA4171E8931FA002D8A18 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		734DA4191E89320E002D8A18 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		734DA41B1E893220002D8A18 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		73AC4AC61E70226900A1928A /* BudgetThis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BudgetThis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73AC4AC91E70226900A1928A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73AC4ACB1E70226900A1928A /* MainDisplayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDisplayViewController.swift; sourceTree = "<group>"; };
@@ -89,7 +74,7 @@
 		73AC4AD51E70226900A1928A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		73AC4ADC1E70226900A1928A /* BudgetThisTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BudgetThisTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		73AC4AE71E70226900A1928A /* BudgetThisUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BudgetThisUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		73AC4AFB1E702C1B00A1928A /* MainDisplayTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainDisplayTableViewCell.swift; path = ../MainDisplayTableViewCell.swift; sourceTree = "<group>"; };
+		73AC4AFB1E702C1B00A1928A /* MainDisplayTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainDisplayTableViewCell.swift; sourceTree = "<group>"; };
 		73B7F3591E8AADD6001E2F5C /* SplashScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
 		84350B4A1F10F1DF00508135 /* StatementTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatementTableViewCell.swift; sourceTree = "<group>"; };
 		844434CE221C0B1F0019FB0D /* submit-button.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "submit-button.jpg"; sourceTree = "<group>"; };
@@ -132,7 +117,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				734DA4021E892CFE002D8A18 /* GoogleMobileAds.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,33 +124,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				734DA4031E892CFF002D8A18 /* GoogleMobileAds.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		734DA3FF1E892C91002D8A18 /* Admob */ = {
-			isa = PBXGroup;
-			children = (
-				734DA4001E892CFE002D8A18 /* GoogleMobileAds.framework */,
-				734DA41B1E893220002D8A18 /* SystemConfiguration.framework */,
-				734DA4191E89320E002D8A18 /* StoreKit.framework */,
-				734DA4171E8931FA002D8A18 /* MessageUI.framework */,
-				734DA4151E8931F2002D8A18 /* MediaPlayer.framework */,
-				734DA4111E8931DF002D8A18 /* EventKit.framework */,
-				734DA4121E8931DF002D8A18 /* EventKitUI.framework */,
-				734DA40F1E8931CD002D8A18 /* AudioToolbox.framework */,
-				734DA40D1E8931C4002D8A18 /* AVFoundation.framework */,
-				734DA4071E8931B5002D8A18 /* CoreGraphics.framework */,
-				734DA4081E8931B5002D8A18 /* CoreMedia.framework */,
-				734DA4091E8931B5002D8A18 /* CoreTelephony.framework */,
-				734DA4051E892D60002D8A18 /* AdSupport.framework */,
-			);
-			name = Admob;
-			sourceTree = "<group>";
-		};
 		73AC4ABD1E70226900A1928A = {
 			isa = PBXGroup;
 			children = (
@@ -188,23 +151,9 @@
 		73AC4AC81E70226900A1928A /* BudgetThis */ = {
 			isa = PBXGroup;
 			children = (
-				844434EE221C13E20019FB0D /* Images */,
-				847EF1B71F2DBD9900C9C437 /* CoreData */,
-				734DA3FF1E892C91002D8A18 /* Admob */,
-				73AC4AC91E70226900A1928A /* AppDelegate.swift */,
-				73AC4ACB1E70226900A1928A /* MainDisplayViewController.swift */,
-				84856FC0230B5365000897F0 /* ManagementViewController.swift */,
-				73AC4ACD1E70226900A1928A /* IncomeViewController.swift */,
-				1F95E7A31EBB36A3001689B6 /* TransactionViewController.swift */,
-				1F95E7A51EBB36D3001689B6 /* StatementViewController.swift */,
-				84C6B1551F3370B60036462F /* DetailsViewController.swift */,
-				844FF4881F64292B00E1C52C /* TimezoneViewController.swift */,
-				73AC4AFB1E702C1B00A1928A /* MainDisplayTableViewCell.swift */,
-				84350B4A1F10F1DF00508135 /* StatementTableViewCell.swift */,
-				73B7F3591E8AADD6001E2F5C /* SplashScreenViewController.swift */,
-				73AC4ACF1E70226900A1928A /* Main.storyboard */,
-				73AC4AD21E70226900A1928A /* Assets.xcassets */,
-				73AC4AD41E70226900A1928A /* LaunchScreen.storyboard */,
+				84907704231E4D4100A88FAE /* Model */,
+				84907706231E4D5500A88FAE /* Controller */,
+				84907705231E4D4D00A88FAE /* View */,
 				84D306011F8083BE00C03719 /* Info.plist */,
 			);
 			path = BudgetThis;
@@ -233,7 +182,7 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
-		847EF1B71F2DBD9900C9C437 /* CoreData */ = {
+		84907704231E4D4100A88FAE /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				84B4690B230B274A00089B59 /* Envelope+CoreDataClass.swift */,
@@ -243,7 +192,36 @@
 				847EF1BF1F2DC53A00C9C437 /* DatabaseController.swift */,
 				847EF1B81F2DBDEE00C9C437 /* BudgetThis.xcdatamodeld */,
 			);
-			name = CoreData;
+			name = Model;
+			sourceTree = "<group>";
+		};
+		84907705231E4D4D00A88FAE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				844434EE221C13E20019FB0D /* Images */,
+				73AC4ACF1E70226900A1928A /* Main.storyboard */,
+				73AC4AD21E70226900A1928A /* Assets.xcassets */,
+				73AC4AD41E70226900A1928A /* LaunchScreen.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		84907706231E4D5500A88FAE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				73AC4AC91E70226900A1928A /* AppDelegate.swift */,
+				73AC4ACB1E70226900A1928A /* MainDisplayViewController.swift */,
+				84856FC0230B5365000897F0 /* ManagementViewController.swift */,
+				73AC4ACD1E70226900A1928A /* IncomeViewController.swift */,
+				1F95E7A31EBB36A3001689B6 /* TransactionViewController.swift */,
+				1F95E7A51EBB36D3001689B6 /* StatementViewController.swift */,
+				84C6B1551F3370B60036462F /* DetailsViewController.swift */,
+				844FF4881F64292B00E1C52C /* TimezoneViewController.swift */,
+				73AC4AFB1E702C1B00A1928A /* MainDisplayTableViewCell.swift */,
+				84350B4A1F10F1DF00508135 /* StatementTableViewCell.swift */,
+				73B7F3591E8AADD6001E2F5C /* SplashScreenViewController.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
