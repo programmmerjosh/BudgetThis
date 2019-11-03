@@ -17,7 +17,9 @@ class TransactionViewController: UIViewController, UITextFieldDelegate, UIPicker
     let vcMainDisp  :MainDisplayViewController = MainDisplayViewController()
     var arrEnvelope :[Envelope]                = []
     
-    let aColor          = UIColor(named: "customControlColor")
+    let aColor              = UIColor(named: "customControlColor")
+    let txtBackgroundColor  = UIColor(named: "textboxBackgroundColor")
+    let txtTextColor        = UIColor(named: "textboxTextColor")
     
     @IBOutlet weak var submitButton: UIButton!
     
@@ -57,6 +59,14 @@ class TransactionViewController: UIViewController, UITextFieldDelegate, UIPicker
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        txtAmount.textColor      = txtTextColor
+        txtEnvelope.textColor    = txtTextColor
+        txtDescription.textColor = txtTextColor
+        
+        txtAmount.backgroundColor       = txtBackgroundColor
+        txtEnvelope.backgroundColor     = txtBackgroundColor
+        txtDescription.backgroundColor  = txtBackgroundColor
         
         lblAmount.textColor             = aColor
         lblEnvelope.textColor           = aColor

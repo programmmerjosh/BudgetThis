@@ -16,7 +16,9 @@ class ManagementViewController: UIViewController {
     var assigned :Double               = 0
     let vcIncome :IncomeViewController = IncomeViewController()
     
-    let aColor = UIColor(named: "customControlColor")
+    let aColor              = UIColor(named: "customControlColor")
+    let txtBackgroundColor  = UIColor(named: "textboxBackgroundColor")
+    let txtTextColor        = UIColor(named: "textboxTextColor")
     
     @IBOutlet weak var txtRenameEnvelope : UITextField!
     @IBOutlet weak var txtAssigned       : UITextField!
@@ -32,6 +34,11 @@ class ManagementViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        txtRenameEnvelope.textColor       = txtTextColor
+        txtAssigned.textColor             = txtTextColor
+        txtRenameEnvelope.backgroundColor = txtBackgroundColor
+        txtAssigned.backgroundColor       = txtBackgroundColor
         
         lblRename.textColor    = aColor
         lblAssigned.textColor  = aColor

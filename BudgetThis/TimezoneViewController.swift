@@ -56,6 +56,10 @@ class TimezoneViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         arrayIndex = row
     }
     
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        return NSAttributedString(string: tzStringArray[row], attributes: [NSAttributedString.Key.foregroundColor: aColor ?? .black])
+    }
+    
     public func showMessageBriefly() {
         savedDisplayLabel.alpha = 1.0
         
