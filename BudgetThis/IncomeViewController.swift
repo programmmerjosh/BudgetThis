@@ -12,13 +12,23 @@ import CoreData
 class IncomeViewController: UIViewController, UITextFieldDelegate {
     
     var limitLength:Int = 12
+    let aColor          = UIColor(named: "customControlColor")
     
     @IBOutlet var lblAvailablePercent : UILabel!
     @IBOutlet var lblAvailableAmount  : UILabel!
     @IBOutlet var txtIncome           : UITextField!
+    @IBOutlet weak var lblPercentTitle: UILabel!
+    @IBOutlet weak var lblBalanceTitle: UILabel!
+    @IBOutlet weak var lblIncomeTitle: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        lblAvailablePercent.textColor = aColor
+        lblAvailableAmount.textColor  = aColor
+        lblPercentTitle.textColor     = aColor
+        lblBalanceTitle.textColor     = aColor
+        lblIncomeTitle.textColor      = aColor
+        
         let userIncome:String = fetchValue(key: "userIncome") == String() ? "1000" : fetchValue(key: "userIncome")
         txtIncome.text        = userIncome
         update()

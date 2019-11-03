@@ -13,6 +13,8 @@ class TimezoneViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     var arrayIndex:Int                = 0
     let vcIncome:IncomeViewController = IncomeViewController()
     
+    let aColor = UIColor(named: "customControlColor")
+    
     @IBOutlet weak var myPickerView: UIPickerView!
     @IBOutlet weak var savedDisplayLabel: UILabel!
     
@@ -22,9 +24,10 @@ class TimezoneViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        savedDisplayLabel.alpha = 0
-        myPickerView.delegate   = self
-        myPickerView.dataSource = self
+        savedDisplayLabel.textColor = aColor
+        savedDisplayLabel.alpha     = 0
+        myPickerView.delegate       = self
+        myPickerView.dataSource     = self
         
         let row:Int = restorePickerSelection()
         myPickerView.selectRow(row, inComponent: 0, animated: true)

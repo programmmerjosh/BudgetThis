@@ -16,8 +16,12 @@ class ManagementViewController: UIViewController {
     var assigned :Double               = 0
     let vcIncome :IncomeViewController = IncomeViewController()
     
+    let aColor = UIColor(named: "customControlColor")
+    
     @IBOutlet weak var txtRenameEnvelope : UITextField!
     @IBOutlet weak var txtAssigned       : UITextField!
+    @IBOutlet weak var lblRename: UILabel!
+    @IBOutlet weak var lblAssigned: UILabel!
     @IBAction func applyChanges(_ sender: Any) {
         updateEnvelopeData()
     }
@@ -28,6 +32,9 @@ class ManagementViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        lblRename.textColor    = aColor
+        lblAssigned.textColor  = aColor
         txtRenameEnvelope.text = name
         txtAssigned.text       = String(assigned)
         oldName                = txtRenameEnvelope.text!

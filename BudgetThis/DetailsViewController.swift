@@ -14,14 +14,24 @@ class DetailsViewController: UIViewController {
     var strEnvelopeName :String = String()
     var strAmount       :String = String()
     var strDate         :String = String()
+    let aColor = UIColor(named: "customControlColor")
     
     @IBOutlet weak var lblDescription: UILabel!
     @IBOutlet weak var lblCategory: UILabel!
     @IBOutlet weak var lblAmount: UILabel!
     @IBOutlet weak var lblDate: UILabel!
+    @IBOutlet weak var lblDescriptionTitle: UILabel!
+    @IBOutlet weak var lblCategoryTitle: UILabel!
+    @IBOutlet weak var lblAmountTitle: UILabel!
+    @IBOutlet weak var lblDateTitle: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        lblDescriptionTitle.textColor = aColor
+        lblCategoryTitle.textColor    = aColor
+        lblAmountTitle.textColor      = aColor
+        lblDateTitle.textColor        = aColor
+        
         lblDescription.text  = strDescription
         lblCategory.text     = strEnvelopeName
         lblAmount.text       = strAmount

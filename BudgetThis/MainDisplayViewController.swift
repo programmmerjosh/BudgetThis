@@ -17,7 +17,12 @@ class MainDisplayViewController: UIViewController, UITableViewDelegate, UITableV
     var txtAlertInsertion :UITextField?
     var arrayIndex        :Int                  = 0
     
+    let aColor = UIColor(named: "customControlColor")
+    
     @IBOutlet var myTableView: UITableView!
+    @IBOutlet weak var lblEnvelopeTitle: UILabel!
+    @IBOutlet weak var lblAssignedTitle: UILabel!
+    @IBOutlet weak var lblRemainingTitle: UILabel!
     @IBAction func addEnvelopeAction(_ sender: Any) {
         promptNewEnvelopeMessage()
     }
@@ -85,6 +90,10 @@ class MainDisplayViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        lblEnvelopeTitle.textColor  = aColor
+        lblAssignedTitle.textColor  = aColor
+        lblRemainingTitle.textColor = aColor
         
         myTableView.delegate    = self
         myTableView.dataSource  = self

@@ -9,6 +9,8 @@
 import UIKit
 
 class StatementTableViewCell: UITableViewCell {
+    
+    let aColor = UIColor(named: "customControlColor")
 
     @IBOutlet weak var transaction: UILabel!
     @IBOutlet var amounts         : UILabel!
@@ -16,6 +18,10 @@ class StatementTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        transaction.textColor = aColor
+        amounts.textColor     = aColor
+        
+        print(contentView.frame.height)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

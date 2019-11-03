@@ -16,6 +16,9 @@ class TransactionViewController: UIViewController, UITextFieldDelegate, UIPicker
     let vcIncome    :IncomeViewController      = IncomeViewController()
     let vcMainDisp  :MainDisplayViewController = MainDisplayViewController()
     var arrEnvelope :[Envelope]                = []
+    
+    let aColor          = UIColor(named: "customControlColor")
+    
     @IBOutlet weak var submitButton: UIButton!
     
     @IBOutlet weak var txtAmount            : UITextField!
@@ -23,6 +26,9 @@ class TransactionViewController: UIViewController, UITextFieldDelegate, UIPicker
     @IBOutlet var txtDescription            : UITextField!
     @IBOutlet weak var amountAddedMessage   : UILabel!
     @IBOutlet weak var invalidAmountMessage : UILabel!
+    @IBOutlet weak var lblAmount: UILabel!
+    @IBOutlet weak var lblEnvelope: UILabel!
+    @IBOutlet weak var lblDescription: UILabel!
     
     @IBAction func AmountEdit(_ sender: UITextField) {
         let temp:Double = vcIncome.validDouble(double: txtAmount.text!)
@@ -51,6 +57,12 @@ class TransactionViewController: UIViewController, UITextFieldDelegate, UIPicker
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        lblAmount.textColor             = aColor
+        lblEnvelope.textColor           = aColor
+        lblDescription.textColor        = aColor
+        amountAddedMessage.textColor    = aColor
+        invalidAmountMessage.textColor  = aColor
         
         amountAddedMessage.alpha   = 0
         invalidAmountMessage.alpha = 0

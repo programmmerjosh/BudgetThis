@@ -134,6 +134,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="lblAssigned" destination="FKZ-Pa-359" id="m1H-Yx-VqQ"/>
+                        <outlet property="lblRename" destination="6wT-r3-KZ4" id="cin-fh-lJW"/>
                         <outlet property="txtAssigned" destination="nzg-9x-Y4Y" id="bJ7-Ik-KCN"/>
                         <outlet property="txtRenameEnvelope" destination="30d-Ro-TUS" id="JE4-FC-Vd4"/>
                     </connections>
@@ -347,6 +349,9 @@
                     </view>
                     <navigationItem key="navigationItem" title="Budget Summary" id="yac-5r-BPP"/>
                     <connections>
+                        <outlet property="lblAssignedTitle" destination="ZON-Yk-6Jy" id="GK2-N1-OWR"/>
+                        <outlet property="lblEnvelopeTitle" destination="JE9-Sp-Cb4" id="JvU-fU-FWf"/>
+                        <outlet property="lblRemainingTitle" destination="fnw-ph-hUP" id="NmD-fZ-PRq"/>
                         <outlet property="myTableView" destination="l4Q-ke-QAp" id="V32-Jt-lrZ"/>
                         <segue destination="kdo-Tt-fFf" kind="show" identifier="manage" id="UT1-6t-qKK"/>
                     </connections>
@@ -610,9 +615,13 @@
                     </view>
                     <connections>
                         <outlet property="lblAmount" destination="QSS-fJ-YiL" id="pmR-xf-oyy"/>
+                        <outlet property="lblAmountTitle" destination="k4F-cc-9TB" id="5gJ-0P-wtb"/>
                         <outlet property="lblCategory" destination="az5-2L-76E" id="4cW-YL-p0g"/>
+                        <outlet property="lblCategoryTitle" destination="mc9-1k-jqx" id="oqe-aT-mTh"/>
                         <outlet property="lblDate" destination="ZI6-I9-Bq2" id="Yc9-X6-HFt"/>
+                        <outlet property="lblDateTitle" destination="az8-Tp-tzW" id="Wcv-nG-93c"/>
                         <outlet property="lblDescription" destination="zbt-NR-4of" id="bxK-Kg-RkG"/>
+                        <outlet property="lblDescriptionTitle" destination="37E-Oe-3OC" id="Lys-IY-GLK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mtD-IH-Uhj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1102,6 +1111,9 @@
                     <connections>
                         <outlet property="amountAddedMessage" destination="i8p-MZ-zgJ" id="4cO-MA-LWP"/>
                         <outlet property="invalidAmountMessage" destination="vYn-fa-73R" id="sg5-gb-DTo"/>
+                        <outlet property="lblAmount" destination="hIC-wn-Jyt" id="w2G-19-1Vd"/>
+                        <outlet property="lblDescription" destination="BKE-nh-YSO" id="qqR-ho-kjf"/>
+                        <outlet property="lblEnvelope" destination="1fp-wo-vLs" id="O0Q-9L-mN4"/>
                         <outlet property="submitButton" destination="efQ-pB-uDD" id="r4g-AS-XG3"/>
                         <outlet property="txtAmount" destination="15n-0l-nuo" id="Pst-zz-fLc"/>
                         <outlet property="txtDescription" destination="TH3-xc-TA6" id="gCd-aW-Uwy"/>
@@ -1277,6 +1289,9 @@
                     <connections>
                         <outlet property="lblAvailableAmount" destination="kjQ-1k-vcK" id="JOl-PO-tuT"/>
                         <outlet property="lblAvailablePercent" destination="IXF-IN-Inb" id="91d-6S-BiM"/>
+                        <outlet property="lblBalanceTitle" destination="d2d-0i-Qwr" id="sn2-vi-OO0"/>
+                        <outlet property="lblIncomeTitle" destination="r8v-KX-CKE" id="zfm-dm-tCn"/>
+                        <outlet property="lblPercentTitle" destination="sdH-dc-Znx" id="syT-h6-QOh"/>
                         <outlet property="txtIncome" destination="kTB-fJ-AUB" id="2Gn-ew-f3a"/>
                     </connections>
                 </viewController>
